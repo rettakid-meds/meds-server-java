@@ -17,7 +17,9 @@
         <put-attribute name="body" value=""/>
     </definition>
 
-    <!--Pages-->
+    <!--      Pages      -->
+
+    <!--Home-->
     <definition name="home" extends="definition.main">
         <put-attribute name="body" value="/WEB-INF/tiles/home/home-page.jsp"/>
     </definition>
@@ -27,9 +29,24 @@
         <put-attribute name="body" value="/WEB-INF/tiles/login/login-page.jsp"/>
     </definition>
 
+    <!--Error-->
+    <definition name="error" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/error/error-page.jsp"/>
+    </definition>
+
     <!--Dashboard-->
     <definition name="dashboard" extends="definition.main">
         <put-attribute name="body" value="/WEB-INF/tiles/dashboard/dashboard-page.jsp"/>
+    </definition>
+
+    <!--Fields-->
+    <definition name="fields" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/fields/fields-page.jsp"/>
+    </definition>
+
+    <!--Practices-->
+    <definition name="practices" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/practice/practice-page.jsp"/>
     </definition>
 
 </tiles-definitions>

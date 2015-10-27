@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import za.co.rettakid.meds.common.dto.UserDto;
+import za.co.rettakid.meds.presentation.common.PageDirectory;
 import za.co.rettakid.meds.presentation.vo.LoginVo;
 
 /**
@@ -26,7 +27,7 @@ public class LoginController extends BaseController {
     public String getLoginPage(Model model) {
         LOGGER.info("accessed login");
         model.addAttribute("loginVo", new LoginVo());
-        return LOGIN_PAGE;
+        return PageDirectory.LOGIN;
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -34,15 +35,7 @@ public class LoginController extends BaseController {
         LOGGER.info("post login");
         Authentication authentication = new UsernamePasswordAuthenticationToken(new UserDto(), null, null);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return doRedirect("/dashboard");
-    }
-
-    @RequestMapping(value = "post",method = RequestMethod.POST)
-    public String postLoginPageTest() {
-        LOGGER.info("post login 2");
-        Authentication authentication = new UsernamePasswordAuthenticationToken(new UserDto(), null, null);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        return doRedirect("/dashboard");
+        return doRedirect(PageDirectory.DASHBOARD);
     }
 
 }

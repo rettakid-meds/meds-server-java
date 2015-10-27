@@ -1,4 +1,4 @@
-<%@include file="../../tiles/common/taglib-includes.jsp" %>
+<%@include file="../common/taglib-includes.jsp" %>
 <div class="row">
     <div class="col s12 m4 offset-m4">
         <div class="card">

@@ -6,6 +6,15 @@
  * Made By MaterializeCSS.com
  */
 
+
+.padding{
+  padding: 20px;
+}
+
+.margin{
+  margin: 20px;
+}
+
 nav ul a,
 nav .brand-logo {
   color: #444;

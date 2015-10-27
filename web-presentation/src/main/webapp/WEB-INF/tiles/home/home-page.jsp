@@ -1,4 +1,4 @@
-<%@include file="../../tiles/common/taglib-includes.jsp" %>
+<%@include file="../common/taglib-includes.jsp" %>
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot">
     <div class="container">
