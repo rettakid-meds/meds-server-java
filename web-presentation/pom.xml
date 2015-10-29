@@ -92,10 +92,10 @@
             <groupId>org.apache.tiles</groupId>
             <artifactId>tiles-api</artifactId>
         </dependency>
-<!--        <dependency>
+        <dependency>
             <groupId>org.apache.tiles</groupId>
             <artifactId>tiles-extras</artifactId>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>org.apache.tiles</groupId>
             <artifactId>tiles-request-api</artifactId>
@@ -103,6 +103,10 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
         </dependency>
         <!--Security-->
         <dependency>

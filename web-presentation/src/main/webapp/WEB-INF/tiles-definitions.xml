@@ -48,5 +48,11 @@
     <definition name="practices" extends="definition.main">
         <put-attribute name="body" value="/WEB-INF/tiles/practice/practice-page.jsp"/>
     </definition>
+    <definition name="practices-item-read" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/practice/practice-item-read.jsp"/>
+    </definition>
+    <definition name="practices-item-write" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/practice/practice-item-write.jsp"/>
+    </definition>
 
 </tiles-definitions>

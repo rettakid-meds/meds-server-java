@@ -33,9 +33,14 @@ public class LoginController extends BaseController {
     @RequestMapping(method = RequestMethod.POST)
     public String postLoginPage(@ModelAttribute("loginVo") LoginVo loginVo, BindingResult error, Model model) {
         LOGGER.info("post login");
-        Authentication authentication = new UsernamePasswordAuthenticationToken(new UserDto(), null, null);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        return doRedirect(PageDirectory.DASHBOARD);
+        if (error.hasErrors())  {
+            return PageDirectory.LOGIN;
+        } else  {
+            Authentication authentication = new UsernamePasswordAuthenticationToken(new UserDto(), null, null);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            return doRedirect(PageDirectory.DASHBOARD);
+        }
+
     }
 
 }

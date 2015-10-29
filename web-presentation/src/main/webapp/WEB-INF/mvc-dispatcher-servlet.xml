@@ -12,13 +12,13 @@
 
     <!--Security-->
     <security:http auto-config="true" use-expressions="true" >
-        <security:intercept-url pattern="/login**" access="permitAll" />
+        <security:intercept-url pattern="/login/**" access="permitAll" />
         <security:intercept-url pattern="/error/**" access="permitAll" />
         <security:intercept-url pattern="/resources/**" access="permitAll" />
         <security:intercept-url pattern="/dashboard/**" access="isAuthenticated()" />
         <security:intercept-url pattern="/**" access="permitAll" />
 
-        <security:form-login login-page="/login" />
+        <security:form-login login-page="/login/screen" />
         <security:access-denied-handler error-page="/error/403" />
         <security:csrf disabled="true" />
     </security:http>
