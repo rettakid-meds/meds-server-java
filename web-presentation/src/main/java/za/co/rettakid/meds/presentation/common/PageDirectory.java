@@ -14,9 +14,11 @@ public class PageDirectory {
     public static final String FIELDS = "fields";
 
     public static final String PRACTICES = "practices";
-    public static final String PRACTICES_ITEM_READ = "practices-item-read";
-    public static final String PRACTICES_ITEM_WRITE = "practices-item-write";
+    public static final String PRACTICES_ITEM = "practices-item";
+    public static final String PRACTICES_FORM = "practices/practices-form";
 
     public static final String ERROR = "error";
+
+    public static final String SUCCESS = "common/success";
 
 }

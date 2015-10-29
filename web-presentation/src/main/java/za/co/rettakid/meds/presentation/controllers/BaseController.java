@@ -1,7 +1,5 @@
 package za.co.rettakid.meds.presentation.controllers;
 
-import java.util.List;
-
 /**
  * Created by Lwazi Prusent on 2015/10/20.
  */
