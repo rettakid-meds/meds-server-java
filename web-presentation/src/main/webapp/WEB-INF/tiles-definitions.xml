@@ -29,6 +29,11 @@
         <put-attribute name="body" value="/WEB-INF/tiles/login/login-page.jsp"/>
     </definition>
 
+    <!--Register-->
+    <definition name="register" extends="definition.login">
+        <put-attribute name="body" value="/WEB-INF/tiles/register/register-page.jsp"/>
+    </definition>
+
     <!--Error-->
     <definition name="error" extends="definition.main">
         <put-attribute name="body" value="/WEB-INF/tiles/error/error-page.jsp"/>

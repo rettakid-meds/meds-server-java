@@ -12,14 +12,14 @@ public class BindTradingDay {
         if (tradingDayDto != null)    {
             tradingDayEntity = new TradingDayEntity();
             tradingDayEntity.setTradingDayId(tradingDayDto.getTradingDayId());
-            tradingDayEntity.setMondayEntity(BindTradingHour.bindTradingHour(tradingDayDto.getMonday()));
-            tradingDayEntity.setTuesdayEntity(BindTradingHour.bindTradingHour(tradingDayDto.getTuesday()));
-            tradingDayEntity.setWednesdayEntity(BindTradingHour.bindTradingHour(tradingDayDto.getWednesday()));
-            tradingDayEntity.setThursdayEntity(BindTradingHour.bindTradingHour(tradingDayDto.getThursday()));
-            tradingDayEntity.setFridayEntity(BindTradingHour.bindTradingHour(tradingDayDto.getFriday()));
-            tradingDayEntity.setSaturdayEntity(BindTradingHour.bindTradingHour(tradingDayDto.getSaturday()));
-            tradingDayEntity.setSundayEntity(BindTradingHour.bindTradingHour(tradingDayDto.getSunday()));
-            tradingDayEntity.setPubicHolidayEntity(BindTradingHour.bindTradingHour(tradingDayDto.getPubicHoliday()));
+            tradingDayEntity.setMonday(BindTradingHour.bindTradingHour(tradingDayDto.getMonday()));
+            tradingDayEntity.setTuesday(BindTradingHour.bindTradingHour(tradingDayDto.getTuesday()));
+            tradingDayEntity.setWednesday(BindTradingHour.bindTradingHour(tradingDayDto.getWednesday()));
+            tradingDayEntity.setThursday(BindTradingHour.bindTradingHour(tradingDayDto.getThursday()));
+            tradingDayEntity.setFriday(BindTradingHour.bindTradingHour(tradingDayDto.getFriday()));
+            tradingDayEntity.setSaturday(BindTradingHour.bindTradingHour(tradingDayDto.getSaturday()));
+            tradingDayEntity.setSunday(BindTradingHour.bindTradingHour(tradingDayDto.getSunday()));
+            tradingDayEntity.setPubicHoliday(BindTradingHour.bindTradingHour(tradingDayDto.getPubicHoliday()));
         }
         return tradingDayEntity;
     }
@@ -37,14 +37,14 @@ public class BindTradingDay {
         if (tradingDayEntity != null)    {
             tradingDayDto = new TradingDayDto();
             tradingDayDto.setTradingDayId(tradingDayEntity.getTradingDayId());
-            tradingDayDto.setMonday(BindTradingHour.bindTradingHour(tradingDayEntity.getMondayEntity()));
-            tradingDayDto.setTuesday(BindTradingHour.bindTradingHour(tradingDayEntity.getTuesdayEntity()));
-            tradingDayDto.setWednesday(BindTradingHour.bindTradingHour(tradingDayEntity.getWednesdayEntity()));
-            tradingDayDto.setThursday(BindTradingHour.bindTradingHour(tradingDayEntity.getThursdayEntity()));
-            tradingDayDto.setFriday(BindTradingHour.bindTradingHour(tradingDayEntity.getFridayEntity()));
-            tradingDayDto.setSaturday(BindTradingHour.bindTradingHour(tradingDayEntity.getSaturdayEntity()));
-            tradingDayDto.setSunday(BindTradingHour.bindTradingHour(tradingDayEntity.getSundayEntity()));
-            tradingDayDto.setPubicHoliday(BindTradingHour.bindTradingHour(tradingDayEntity.getPubicHolidayEntity()));
+            tradingDayDto.setMonday(BindTradingHour.bindTradingHour(tradingDayEntity.getMonday()));
+            tradingDayDto.setTuesday(BindTradingHour.bindTradingHour(tradingDayEntity.getTuesday()));
+            tradingDayDto.setWednesday(BindTradingHour.bindTradingHour(tradingDayEntity.getWednesday()));
+            tradingDayDto.setThursday(BindTradingHour.bindTradingHour(tradingDayEntity.getThursday()));
+            tradingDayDto.setFriday(BindTradingHour.bindTradingHour(tradingDayEntity.getFriday()));
+            tradingDayDto.setSaturday(BindTradingHour.bindTradingHour(tradingDayEntity.getSaturday()));
+            tradingDayDto.setSunday(BindTradingHour.bindTradingHour(tradingDayEntity.getSunday()));
+            tradingDayDto.setPubicHoliday(BindTradingHour.bindTradingHour(tradingDayEntity.getPubicHoliday()));
         }
         return tradingDayDto;
     }

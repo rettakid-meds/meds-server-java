@@ -12,15 +12,15 @@ public class PracticeEntity    {
     private Float longitude;
     private Float latitude;
     private String address;
-    private TradingDayEntity tradingDayEntity;
+    private TradingDayEntity tradingDay;
     private String phone;
     private Float fee;
-    private ImageEntity imageEntity;
-    private DataContentEntity bioEntity;
+    private ImageEntity image;
+    private DataContentEntity bio;
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="PRACTICE_ID" , length=15 , nullable=false)
     public Long getPracticeId()   {
@@ -83,12 +83,12 @@ public class PracticeEntity    {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="TRADING_DAY_ID", referencedColumnName="TRADING_DAY_ID")
-    public TradingDayEntity getTradingDayEntity()   {
-        return this.tradingDayEntity;
+    public TradingDayEntity getTradingDay()   {
+        return this.tradingDay;
     }
 
-    public void setTradingDayEntity(TradingDayEntity tradingDayEntity)   {
-        this.tradingDayEntity = tradingDayEntity;
+    public void setTradingDay(TradingDayEntity tradingDay)   {
+        this.tradingDay = tradingDay;
     }
 
     @Basic
@@ -113,22 +113,22 @@ public class PracticeEntity    {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IMAGE_ID", referencedColumnName="IMAGE_ID")
-    public ImageEntity getImageEntity()   {
-        return this.imageEntity;
+    public ImageEntity getImage()   {
+        return this.image;
     }
 
-    public void setImageEntity(ImageEntity imageEntity)   {
-        this.imageEntity = imageEntity;
+    public void setImage(ImageEntity image)   {
+        this.image = image;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="BIO_ID", referencedColumnName="DATA_CONTENT_ID")
-    public DataContentEntity getBioEntity()   {
-        return this.bioEntity;
+    public DataContentEntity getBio()   {
+        return this.bio;
     }
 
-    public void setBioEntity(DataContentEntity bioEntity)   {
-        this.bioEntity = bioEntity;
+    public void setBio(DataContentEntity bio)   {
+        this.bio = bio;
     }
 
 }

@@ -17,11 +17,11 @@ public class BindPractice {
             practiceEntity.setLongitude(practiceDto.getLongitude());
             practiceEntity.setLatitude(practiceDto.getLatitude());
             practiceEntity.setAddress(practiceDto.getAddress());
-            practiceEntity.setTradingDayEntity(BindTradingDay.bindTradingDay(practiceDto.getTradingDay()));
+            practiceEntity.setTradingDay(BindTradingDay.bindTradingDay(practiceDto.getTradingDay()));
             practiceEntity.setPhone(practiceDto.getPhone());
             practiceEntity.setFee(practiceDto.getFee());
-            practiceEntity.setImageEntity(BindImage.bindImage(practiceDto.getImage()));
-            practiceEntity.setBioEntity(BindDataContent.bindDataContent(practiceDto.getBio()));
+            practiceEntity.setImage(BindImage.bindImage(practiceDto.getImage()));
+            practiceEntity.setBio(BindDataContent.bindDataContent(practiceDto.getBio()));
         }
         return practiceEntity;
     }
@@ -44,11 +44,11 @@ public class BindPractice {
             practiceDto.setLongitude(practiceEntity.getLongitude());
             practiceDto.setLatitude(practiceEntity.getLatitude());
             practiceDto.setAddress(practiceEntity.getAddress());
-            practiceDto.setTradingDay(BindTradingDay.bindTradingDay(practiceEntity.getTradingDayEntity()));
+            practiceDto.setTradingDay(BindTradingDay.bindTradingDay(practiceEntity.getTradingDay()));
             practiceDto.setPhone(practiceEntity.getPhone());
             practiceDto.setFee(practiceEntity.getFee());
-            practiceDto.setImage(BindImage.bindImage(practiceEntity.getImageEntity()));
-            practiceDto.setBio(BindDataContent.bindDataContent(practiceEntity.getBioEntity()));
+            practiceDto.setImage(BindImage.bindImage(practiceEntity.getImage()));
+            practiceDto.setBio(BindDataContent.bindDataContent(practiceEntity.getBio()));
         }
         return practiceDto;
     }

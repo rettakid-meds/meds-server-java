@@ -14,7 +14,7 @@ public class TradingHourEntity    {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="TRADING_HOUR_ID" , length=15 , nullable=false)
     public Long getTradingHourId()   {

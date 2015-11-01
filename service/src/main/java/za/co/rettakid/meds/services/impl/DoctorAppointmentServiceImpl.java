@@ -19,22 +19,15 @@ public class DoctorAppointmentServiceImpl implements DoctorAppointmentService   
         doctorAppointmentListDto.addDoctorAppointmentList(BindDoctorAppointment.bindDoctorAppointmentEntityList(doctorAppointmentDao.read()));
         return doctorAppointmentListDto;
     }
-    
+
     @Override
     public DoctorAppointmentDto getDoctorAppointments(Long medsDoctorAppointmentId)  {
         return BindDoctorAppointment.bindDoctorAppointment(doctorAppointmentDao.read(medsDoctorAppointmentId));
     }
     
     @Override
-        public void postDoctorAppointments(DoctorAppointmentDto doctorAppointmentDto)  {
+    public void postDoctorAppointments(DoctorAppointmentDto doctorAppointmentDto)  {
         doctorAppointmentDao.createOrUpdate(BindDoctorAppointment.bindDoctorAppointment(doctorAppointmentDto));
-    }
-
-    @Override
-    public void postDoctorAppointments(DoctorAppointmentListDto doctorAppointmentListDto)  {
-        for (DoctorAppointmentDto doctorAppointmentDto : doctorAppointmentListDto.getDoctorAppointmentList()) {
-            doctorAppointmentDao.createOrUpdate(BindDoctorAppointment.bindDoctorAppointment(doctorAppointmentDto));
-        }
     }
 
     @Override

@@ -7,6 +7,6 @@
     <context:component-scan base-package="za.co.rettakid.meds.services"/>
     <context:annotation-config/>
 
-    <import resource="persistence-context.xml" />
+    <import resource="persistence-context.xml"/>
 
 </beans>

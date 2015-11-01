@@ -12,9 +12,9 @@ public class BindAppointment {
         if (appointmentDto != null)    {
             appointmentEntity = new AppointmentEntity();
             appointmentEntity.setAppointmentId(appointmentDto.getAppointmentId());
-            appointmentEntity.setPracticeEntity(BindPractice.bindPractice(appointmentDto.getPractice()));
-            appointmentEntity.setUserEntity(BindUser.bindUser(appointmentDto.getUser()));
-            appointmentEntity.setNoteEntity(BindDataContent.bindDataContent(appointmentDto.getNote()));
+            appointmentEntity.setPractice(BindPractice.bindPractice(appointmentDto.getPractice()));
+            appointmentEntity.setUser(BindUser.bindUser(appointmentDto.getUser()));
+            appointmentEntity.setNote(BindDataContent.bindDataContent(appointmentDto.getNote()));
             appointmentEntity.setExpectedFrm(appointmentDto.getExpectedFrm());
             appointmentEntity.setExpectedTo(appointmentDto.getExpectedTo());
             appointmentEntity.setActualFrm(appointmentDto.getActualFrm());
@@ -36,9 +36,9 @@ public class BindAppointment {
         if (appointmentEntity != null)    {
             appointmentDto = new AppointmentDto();
             appointmentDto.setAppointmentId(appointmentEntity.getAppointmentId());
-            appointmentDto.setPractice(BindPractice.bindPractice(appointmentEntity.getPracticeEntity()));
-            appointmentDto.setUser(BindUser.bindUser(appointmentEntity.getUserEntity()));
-            appointmentDto.setNote(BindDataContent.bindDataContent(appointmentEntity.getNoteEntity()));
+            appointmentDto.setPractice(BindPractice.bindPractice(appointmentEntity.getPractice()));
+            appointmentDto.setUser(BindUser.bindUser(appointmentEntity.getUser()));
+            appointmentDto.setNote(BindDataContent.bindDataContent(appointmentEntity.getNote()));
             appointmentDto.setExpectedFrm(appointmentEntity.getExpectedFrm());
             appointmentDto.setExpectedTo(appointmentEntity.getExpectedTo());
             appointmentDto.setActualFrm(appointmentEntity.getActualFrm());

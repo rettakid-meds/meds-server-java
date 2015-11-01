@@ -12,8 +12,8 @@ public class BindDoctorField {
         if (doctorFieldDto != null)    {
             doctorFieldEntity = new DoctorFieldEntity();
             doctorFieldEntity.setDoctorFieldId(doctorFieldDto.getDoctorFieldId());
-            doctorFieldEntity.setFieldEntity(BindField.bindField(doctorFieldDto.getField()));
-            doctorFieldEntity.setDoctorEntity(BindDoctor.bindDoctor(doctorFieldDto.getDoctor()));
+            doctorFieldEntity.setField(BindField.bindField(doctorFieldDto.getField()));
+            doctorFieldEntity.setDoctor(BindDoctor.bindDoctor(doctorFieldDto.getDoctor()));
         }
         return doctorFieldEntity;
     }
@@ -31,8 +31,8 @@ public class BindDoctorField {
         if (doctorFieldEntity != null)    {
             doctorFieldDto = new DoctorFieldDto();
             doctorFieldDto.setDoctorFieldId(doctorFieldEntity.getDoctorFieldId());
-            doctorFieldDto.setField(BindField.bindField(doctorFieldEntity.getFieldEntity()));
-            doctorFieldDto.setDoctor(BindDoctor.bindDoctor(doctorFieldEntity.getDoctorEntity()));
+            doctorFieldDto.setField(BindField.bindField(doctorFieldEntity.getField()));
+            doctorFieldDto.setDoctor(BindDoctor.bindDoctor(doctorFieldEntity.getDoctor()));
         }
         return doctorFieldDto;
     }

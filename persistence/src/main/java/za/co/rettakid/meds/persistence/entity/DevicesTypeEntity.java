@@ -12,7 +12,7 @@ public class DevicesTypeEntity    {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="DEVICES_TYPE_ID" , length=15 , nullable=false)
     public Long getDevicesTypeId()   {

@@ -20,22 +20,15 @@ public class AppointmentServiceImpl implements AppointmentService   {
         appointmentListDto.addAppointmentList(BindAppointment.bindAppointmentEntityList(appointmentDao.read()));
         return appointmentListDto;
     }
-    
+
     @Override
     public AppointmentDto getAppointments(Long appointmentId)  {
         return BindAppointment.bindAppointment(appointmentDao.read(appointmentId));
     }
     
     @Override
-        public void postAppointments(AppointmentDto appointmentDto)  {
+    public void postAppointments(AppointmentDto appointmentDto)  {
         appointmentDao.createOrUpdate(BindAppointment.bindAppointment(appointmentDto));
-    }
-
-    @Override
-    public void postAppointments(AppointmentListDto appointmentListDto)  {
-        for (AppointmentDto appointmentDto : appointmentListDto.getAppointmentList()) {
-            appointmentDao.createOrUpdate(BindAppointment.bindAppointment(appointmentDto));
-        }
     }
 
     @Override

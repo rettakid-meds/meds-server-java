@@ -12,7 +12,7 @@ public class BindPrescriptionItem {
         if (prescriptionItemDto != null)    {
             prescriptionItemEntity = new PrescriptionItemEntity();
             prescriptionItemEntity.setPrescriptionItemId(prescriptionItemDto.getPrescriptionItemId());
-            prescriptionItemEntity.setPrescriptionEntity(BindPrescription.bindPrescription(prescriptionItemDto.getPrescription()));
+            prescriptionItemEntity.setPrescription(BindPrescription.bindPrescription(prescriptionItemDto.getPrescription()));
             prescriptionItemEntity.setName(prescriptionItemDto.getName());
         }
         return prescriptionItemEntity;
@@ -31,7 +31,7 @@ public class BindPrescriptionItem {
         if (prescriptionItemEntity != null)    {
             prescriptionItemDto = new PrescriptionItemDto();
             prescriptionItemDto.setPrescriptionItemId(prescriptionItemEntity.getPrescriptionItemId());
-            prescriptionItemDto.setPrescription(BindPrescription.bindPrescription(prescriptionItemEntity.getPrescriptionEntity()));
+            prescriptionItemDto.setPrescription(BindPrescription.bindPrescription(prescriptionItemEntity.getPrescription()));
             prescriptionItemDto.setName(prescriptionItemEntity.getName());
         }
         return prescriptionItemDto;

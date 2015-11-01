@@ -18,7 +18,7 @@ public class UserEntity    {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="USER_ID" , length=15 , nullable=false)
     public Long getUserId()   {
@@ -40,7 +40,7 @@ public class UserEntity    {
     }
 
     @Basic
-    @Column(name="PASSWORD" , length=20 , nullable=false)
+    @Column(name="PASSWORD" , length=255 , nullable=false)
     public String getPassword()   {
         return this.password;
     }

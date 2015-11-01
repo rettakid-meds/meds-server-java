@@ -1,19 +1,19 @@
 package za.co.rettakid.meds.presentation.controllers;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import sun.misc.BASE64Decoder;
 import za.co.rettakid.meds.common.dto.PracticeDto;
 import za.co.rettakid.meds.presentation.common.ListDivider;
 import za.co.rettakid.meds.presentation.common.PageDirectory;
 import za.co.rettakid.meds.services.PracticeService;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -47,7 +47,9 @@ public class PracticeController extends BaseController {
     }
 
     @RequestMapping(value = "/{practiceId}",method = RequestMethod.POST)
-    public String putPracticeItem(Model model,@PathVariable("practiceId") Long practiceId,@ModelAttribute("practice") PracticeDto practiceDto,BindingResult errors) {
+    public String putPracticeItem(@ModelAttribute("practice") PracticeDto practiceDto,BindingResult errors,Model model,
+                                  @PathVariable("practiceId") Long practiceId,
+                                  @RequestParam("imageFile") String imageFile) throws IOException {
         LOGGER.info("edit practice item");
         if(errors.hasErrors())  {
             model.addAttribute("practice", practiceDto);
@@ -55,7 +57,7 @@ public class PracticeController extends BaseController {
             model.addAttribute("mapsApiKey",MAPS_API_KEY);
             return PageDirectory.PRACTICES_FORM;
         } else  {
-            practiceService.putPractices(practiceDto);
+            practiceService.putPractices(practiceDto,Base64.decodeBase64(imageFile.getBytes("UTF-8")));
             return PageDirectory.SUCCESS;
         }
     }

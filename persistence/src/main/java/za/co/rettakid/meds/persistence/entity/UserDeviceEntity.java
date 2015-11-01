@@ -7,14 +7,14 @@ import javax.persistence.*;
 public class UserDeviceEntity    {
 
     private Long userDevicesId;
-    private UserEntity userEntity;
-    private DevicesTypeEntity typeEntity;
+    private UserEntity user;
+    private DevicesTypeEntity type;
     private String name;
     private String devicePushId;
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="USER_DEVICES_ID" , length=15 , nullable=false)
     public Long getUserDevicesId()   {
@@ -27,22 +27,22 @@ public class UserDeviceEntity    {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="USER_ID", referencedColumnName="USER_ID")
-    public UserEntity getUserEntity()   {
-        return this.userEntity;
+    public UserEntity getUser()   {
+        return this.user;
     }
 
-    public void setUserEntity(UserEntity userEntity)   {
-        this.userEntity = userEntity;
+    public void setUser(UserEntity user)   {
+        this.user = user;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="TYPE_ID", referencedColumnName="DEVICES_TYPE_ID")
-    public DevicesTypeEntity getTypeEntity()   {
-        return this.typeEntity;
+    public DevicesTypeEntity getType()   {
+        return this.type;
     }
 
-    public void setTypeEntity(DevicesTypeEntity typeEntity)   {
-        this.typeEntity = typeEntity;
+    public void setType(DevicesTypeEntity type)   {
+        this.type = type;
     }
 
     @Basic

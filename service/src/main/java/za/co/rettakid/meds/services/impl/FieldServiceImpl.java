@@ -19,22 +19,15 @@ public class FieldServiceImpl implements FieldService   {
         fieldListDto.addFieldList(BindField.bindFieldEntityList(fieldDao.read()));
         return fieldListDto;
     }
-    
+
     @Override
     public FieldDto getFields(Long fieldId)  {
         return BindField.bindField(fieldDao.read(fieldId));
     }
     
     @Override
-        public void postFields(FieldDto fieldDto)  {
+    public void postFields(FieldDto fieldDto)  {
         fieldDao.createOrUpdate(BindField.bindField(fieldDto));
-    }
-
-    @Override
-    public void postFields(FieldListDto fieldListDto)  {
-        for (FieldDto fieldDto : fieldListDto.getFieldList()) {
-            fieldDao.createOrUpdate(BindField.bindField(fieldDto));
-        }
     }
 
     @Override

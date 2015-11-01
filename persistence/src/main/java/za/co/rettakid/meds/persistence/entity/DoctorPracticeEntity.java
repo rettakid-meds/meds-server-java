@@ -7,12 +7,12 @@ import javax.persistence.*;
 public class DoctorPracticeEntity    {
 
     private Long medsDoctorPracticeId;
-    private PracticeEntity practiceEntity;
-    private DoctorEntity doctorEntity;
+    private PracticeEntity practice;
+    private DoctorEntity doctor;
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="MEDS_DOCTOR_PRACTICE_ID" , length=15 , nullable=false)
     public Long getMedsDoctorPracticeId()   {
@@ -25,22 +25,22 @@ public class DoctorPracticeEntity    {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="PRACTICE_ID", referencedColumnName="PRACTICE_ID")
-    public PracticeEntity getPracticeEntity()   {
-        return this.practiceEntity;
+    public PracticeEntity getPractice()   {
+        return this.practice;
     }
 
-    public void setPracticeEntity(PracticeEntity practiceEntity)   {
-        this.practiceEntity = practiceEntity;
+    public void setPractice(PracticeEntity practice)   {
+        this.practice = practice;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="DOCTOR_ID", referencedColumnName="DOCTOR_ID")
-    public DoctorEntity getDoctorEntity()   {
-        return this.doctorEntity;
+    public DoctorEntity getDoctor()   {
+        return this.doctor;
     }
 
-    public void setDoctorEntity(DoctorEntity doctorEntity)   {
-        this.doctorEntity = doctorEntity;
+    public void setDoctor(DoctorEntity doctor)   {
+        this.doctor = doctor;
     }
 
 }

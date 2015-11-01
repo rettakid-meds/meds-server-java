@@ -19,22 +19,15 @@ public class DoctorServiceImpl implements DoctorService   {
         doctorListDto.addDoctorList(BindDoctor.bindDoctorEntityList(doctorDao.read()));
         return doctorListDto;
     }
-    
+
     @Override
     public DoctorDto getDoctors(Long doctorId)  {
         return BindDoctor.bindDoctor(doctorDao.read(doctorId));
     }
     
     @Override
-        public void postDoctors(DoctorDto doctorDto)  {
+    public void postDoctors(DoctorDto doctorDto)  {
         doctorDao.createOrUpdate(BindDoctor.bindDoctor(doctorDto));
-    }
-
-    @Override
-    public void postDoctors(DoctorListDto doctorListDto)  {
-        for (DoctorDto doctorDto : doctorListDto.getDoctorList()) {
-            doctorDao.createOrUpdate(BindDoctor.bindDoctor(doctorDto));
-        }
     }
 
     @Override

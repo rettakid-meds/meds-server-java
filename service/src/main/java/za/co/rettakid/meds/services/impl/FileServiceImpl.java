@@ -20,22 +20,15 @@ public class FileServiceImpl implements FileService   {
         fileListDto.addFileList(BindFile.bindFileEntityList(fileDao.read()));
         return fileListDto;
     }
-    
+
     @Override
     public FileDto getFiles(Long fileId)  {
         return BindFile.bindFile(fileDao.read(fileId));
     }
     
     @Override
-        public void postFiles(FileDto fileDto)  {
+    public void postFiles(FileDto fileDto)  {
         fileDao.createOrUpdate(BindFile.bindFile(fileDto));
-    }
-
-    @Override
-    public void postFiles(FileListDto fileListDto)  {
-        for (FileDto fileDto : fileListDto.getFileList()) {
-            fileDao.createOrUpdate(BindFile.bindFile(fileDto));
-        }
     }
 
     @Override

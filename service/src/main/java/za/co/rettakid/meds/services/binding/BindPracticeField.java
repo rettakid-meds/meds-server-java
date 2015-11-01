@@ -12,8 +12,8 @@ public class BindPracticeField {
         if (practiceFieldDto != null)    {
             practiceFieldEntity = new PracticeFieldEntity();
             practiceFieldEntity.setPracticeFieldId(practiceFieldDto.getPracticeFieldId());
-            practiceFieldEntity.setFieldEntity(BindField.bindField(practiceFieldDto.getField()));
-            practiceFieldEntity.setPracticeEntity(BindPractice.bindPractice(practiceFieldDto.getPractice()));
+            practiceFieldEntity.setField(BindField.bindField(practiceFieldDto.getField()));
+            practiceFieldEntity.setPractice(BindPractice.bindPractice(practiceFieldDto.getPractice()));
         }
         return practiceFieldEntity;
     }
@@ -31,8 +31,8 @@ public class BindPracticeField {
         if (practiceFieldEntity != null)    {
             practiceFieldDto = new PracticeFieldDto();
             practiceFieldDto.setPracticeFieldId(practiceFieldEntity.getPracticeFieldId());
-            practiceFieldDto.setField(BindField.bindField(practiceFieldEntity.getFieldEntity()));
-            practiceFieldDto.setPractice(BindPractice.bindPractice(practiceFieldEntity.getPracticeEntity()));
+            practiceFieldDto.setField(BindField.bindField(practiceFieldEntity.getField()));
+            practiceFieldDto.setPractice(BindPractice.bindPractice(practiceFieldEntity.getPractice()));
         }
         return practiceFieldDto;
     }

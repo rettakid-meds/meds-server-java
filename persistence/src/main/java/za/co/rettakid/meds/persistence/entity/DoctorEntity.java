@@ -7,14 +7,14 @@ import javax.persistence.*;
 public class DoctorEntity    {
 
     private Long doctorId;
-    private UserEntity userEntity;
-    private ImageEntity iconEntity;
-    private ImageEntity imageEntity;
-    private DataContentEntity bioEntity;
+    private UserEntity user;
+    private ImageEntity icon;
+    private ImageEntity image;
+    private DataContentEntity bio;
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="DOCTOR_ID" , length=15 , nullable=false)
     public Long getDoctorId()   {
@@ -27,42 +27,42 @@ public class DoctorEntity    {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="USER_ID", referencedColumnName="USER_ID")
-    public UserEntity getUserEntity()   {
-        return this.userEntity;
+    public UserEntity getUser()   {
+        return this.user;
     }
 
-    public void setUserEntity(UserEntity userEntity)   {
-        this.userEntity = userEntity;
+    public void setUser(UserEntity user)   {
+        this.user = user;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="ICON_ID", referencedColumnName="IMAGE_ID")
-    public ImageEntity getIconEntity()   {
-        return this.iconEntity;
+    public ImageEntity getIcon()   {
+        return this.icon;
     }
 
-    public void setIconEntity(ImageEntity iconEntity)   {
-        this.iconEntity = iconEntity;
+    public void setIcon(ImageEntity icon)   {
+        this.icon = icon;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IMAGE_ID", referencedColumnName="IMAGE_ID")
-    public ImageEntity getImageEntity()   {
-        return this.imageEntity;
+    public ImageEntity getImage()   {
+        return this.image;
     }
 
-    public void setImageEntity(ImageEntity imageEntity)   {
-        this.imageEntity = imageEntity;
+    public void setImage(ImageEntity image)   {
+        this.image = image;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="BIO_ID", referencedColumnName="DATA_CONTENT_ID")
-    public DataContentEntity getBioEntity()   {
-        return this.bioEntity;
+    public DataContentEntity getBio()   {
+        return this.bio;
     }
 
-    public void setBioEntity(DataContentEntity bioEntity)   {
-        this.bioEntity = bioEntity;
+    public void setBio(DataContentEntity bio)   {
+        this.bio = bio;
     }
 
 }

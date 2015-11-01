@@ -12,7 +12,7 @@ public class FieldEntity    {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="FIELD_ID" , length=15 , nullable=false)
     public Long getFieldId()   {

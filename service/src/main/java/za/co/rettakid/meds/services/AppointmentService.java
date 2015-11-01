@@ -8,7 +8,6 @@ public interface AppointmentService    {
     AppointmentListDto getAppointments();
     AppointmentDto getAppointments(Long appointmentId);
     void postAppointments(AppointmentDto appointmentDto);
-    void postAppointments(AppointmentListDto appointmentListDto);
     void putAppointments(AppointmentDto appointmentDto);
     void deleteAppointments(Long appointmentId);
 

@@ -11,7 +11,7 @@ public class DataContentEntity    {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="DATA_CONTENT_ID" , length=15 , nullable=false)
     public Long getDataContentId()   {

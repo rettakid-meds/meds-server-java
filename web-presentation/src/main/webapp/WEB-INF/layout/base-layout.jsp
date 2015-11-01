@@ -8,27 +8,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
     <title>Meds</title>
     <title></title>
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet"
-          href="<c:url value='/resources/ThirdParty/materialize/css/materialize.min.css'/>" media="screen,projection"/>
+    <!--Import css-->
+    <link type="text/css" rel="stylesheet" href="<c:url value="/resources/ThirdParty/font/material/icons/icon.css" />" />
+    <link type="text/css" rel="stylesheet" href="<c:url value='/resources/ThirdParty/materialize/css/materialize.min.css'/>" media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/resources/style/common.css'/>"/>
+
+    <!--Import script-->
+    <script type="text/javascript" src="<c:url value='/resources/ThirdParty/jquery/jquery-2.1.1.min.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/resources/ThirdParty/materialize/js/materialize.min.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/resources/ThirdParty/cropit/jquery.cropit.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/resources/script/common/common.js'/>"></script>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body>
+<body class="grey lighten-5">
 
-<!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="<c:url value='/resources/ThirdParty/materialize/js/materialize.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/resources/script/common/common.js'/>"></script>
+<c:if test="${not empty toastText}">
+    <script>
+        initToast("<c:out value="${toastText}" />");
+    </script>
+</c:if>
 
-<tiles:insertAttribute name="nav" />
+<tiles:insertAttribute name="nav"/>
 
-<tiles:insertAttribute name="body" />
+<tiles:insertAttribute name="body"/>
 
-<tiles:insertAttribute name="footer" />
+<tiles:insertAttribute name="footer"/>
 
 </body>
 </html>

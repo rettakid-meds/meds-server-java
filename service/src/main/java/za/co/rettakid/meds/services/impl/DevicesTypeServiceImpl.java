@@ -19,22 +19,15 @@ public class DevicesTypeServiceImpl implements DevicesTypeService   {
         devicesTypeListDto.addDevicesTypeList(BindDevicesType.bindDevicesTypeEntityList(devicesTypeDao.read()));
         return devicesTypeListDto;
     }
-    
+
     @Override
     public DevicesTypeDto getDevicesTypes(Long devicesTypeId)  {
         return BindDevicesType.bindDevicesType(devicesTypeDao.read(devicesTypeId));
     }
     
     @Override
-        public void postDevicesTypes(DevicesTypeDto devicesTypeDto)  {
+    public void postDevicesTypes(DevicesTypeDto devicesTypeDto)  {
         devicesTypeDao.createOrUpdate(BindDevicesType.bindDevicesType(devicesTypeDto));
-    }
-
-    @Override
-    public void postDevicesTypes(DevicesTypeListDto devicesTypeListDto)  {
-        for (DevicesTypeDto devicesTypeDto : devicesTypeListDto.getDevicesTypeList()) {
-            devicesTypeDao.createOrUpdate(BindDevicesType.bindDevicesType(devicesTypeDto));
-        }
     }
 
     @Override

@@ -12,13 +12,20 @@
 
     <!--Security-->
     <security:http auto-config="true" use-expressions="true" >
-        <security:intercept-url pattern="/login/**" access="permitAll" />
-        <security:intercept-url pattern="/error/**" access="permitAll" />
-        <security:intercept-url pattern="/resources/**" access="permitAll" />
-        <security:intercept-url pattern="/dashboard/**" access="isAuthenticated()" />
-        <security:intercept-url pattern="/**" access="permitAll" />
 
-        <security:form-login login-page="/login/screen" />
+        <security:intercept-url pattern="/login/**" access="permitAll()" />
+        <security:intercept-url pattern="/error/**" access="permitAll()" />
+        <security:intercept-url pattern="/resources/**" access="permitAll()" />
+
+        <security:intercept-url pattern="/practices" access="hasAuthority(T(za.co.rettakid.meds.common.enums.PermissionEnum).PRACTICE_LIST_READ.toString())" />
+        <security:intercept-url pattern="/practices" access="hasAuthority(T(za.co.rettakid.meds.common.enums.PermissionEnum).PRACTICE_ITEM_ADD.toString())" method="POST" />
+        <security:intercept-url pattern="/practices" access="hasAuthority(T(za.co.rettakid.meds.common.enums.PermissionEnum).PRACTICE_ITEM_UPDATE.toString())" method="PUT" />
+        <security:intercept-url pattern="/practices/*" access="hasAuthority(T(za.co.rettakid.meds.common.enums.PermissionEnum).PRACTICE_ITEM_DELETE.toString())" method="DELETE" />
+        <security:intercept-url pattern="/practices/*" access="hasAuthority(T(za.co.rettakid.meds.common.enums.PermissionEnum).PRACTICE_ITEM_READ.toString())" />
+
+        <security:intercept-url pattern="/**" access="permitAll()" />
+
+        <security:form-login login-page="/login" />
         <security:access-denied-handler error-page="/error/403" />
         <security:csrf disabled="true" />
     </security:http>
@@ -50,13 +57,13 @@
     </bean>
 
     <!--validators-->
-<!--    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
         <property name="validationMessageSource" ref="messageSource"/>
     </bean>
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="basename" value="validation-messages.validation" />
-    </bean>-->
+    </bean>
 
     <import resource="classpath:service-config.xml"/>
 

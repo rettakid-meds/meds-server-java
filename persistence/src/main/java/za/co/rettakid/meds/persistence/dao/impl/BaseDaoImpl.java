@@ -39,4 +39,8 @@ public abstract class BaseDaoImpl<T,PK extends Serializable> implements BaseDao<
         sessionFactory.getCurrentSession().flush();
     }
 
+    public Criteria createCriteria()    {
+        return sessionFactory.getCurrentSession().createCriteria(getEntityClass());
+    }
+
 }

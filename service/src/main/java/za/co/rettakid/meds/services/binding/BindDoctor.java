@@ -12,10 +12,10 @@ public class BindDoctor {
         if (doctorDto != null)    {
             doctorEntity = new DoctorEntity();
             doctorEntity.setDoctorId(doctorDto.getDoctorId());
-            doctorEntity.setUserEntity(BindUser.bindUser(doctorDto.getUser()));
-            doctorEntity.setIconEntity(BindImage.bindImage(doctorDto.getIcon()));
-            doctorEntity.setImageEntity(BindImage.bindImage(doctorDto.getImage()));
-            doctorEntity.setBioEntity(BindDataContent.bindDataContent(doctorDto.getBio()));
+            doctorEntity.setUser(BindUser.bindUser(doctorDto.getUser()));
+            doctorEntity.setIcon(BindImage.bindImage(doctorDto.getIcon()));
+            doctorEntity.setImage(BindImage.bindImage(doctorDto.getImage()));
+            doctorEntity.setBio(BindDataContent.bindDataContent(doctorDto.getBio()));
         }
         return doctorEntity;
     }
@@ -33,10 +33,10 @@ public class BindDoctor {
         if (doctorEntity != null)    {
             doctorDto = new DoctorDto();
             doctorDto.setDoctorId(doctorEntity.getDoctorId());
-            doctorDto.setUser(BindUser.bindUser(doctorEntity.getUserEntity()));
-            doctorDto.setIcon(BindImage.bindImage(doctorEntity.getIconEntity()));
-            doctorDto.setImage(BindImage.bindImage(doctorEntity.getImageEntity()));
-            doctorDto.setBio(BindDataContent.bindDataContent(doctorEntity.getBioEntity()));
+            doctorDto.setUser(BindUser.bindUser(doctorEntity.getUser()));
+            doctorDto.setIcon(BindImage.bindImage(doctorEntity.getIcon()));
+            doctorDto.setImage(BindImage.bindImage(doctorEntity.getImage()));
+            doctorDto.setBio(BindDataContent.bindDataContent(doctorEntity.getBio()));
         }
         return doctorDto;
     }

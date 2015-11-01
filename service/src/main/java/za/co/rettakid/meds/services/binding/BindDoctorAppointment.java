@@ -12,8 +12,8 @@ public class BindDoctorAppointment {
         if (doctorAppointmentDto != null)    {
             doctorAppointmentEntity = new DoctorAppointmentEntity();
             doctorAppointmentEntity.setMedsDoctorAppointmentId(doctorAppointmentDto.getMedsDoctorAppointmentId());
-            doctorAppointmentEntity.setAppointmentEntity(BindAppointment.bindAppointment(doctorAppointmentDto.getAppointment()));
-            doctorAppointmentEntity.setDoctorEntity(BindDoctor.bindDoctor(doctorAppointmentDto.getDoctor()));
+            doctorAppointmentEntity.setAppointment(BindAppointment.bindAppointment(doctorAppointmentDto.getAppointment()));
+            doctorAppointmentEntity.setDoctor(BindDoctor.bindDoctor(doctorAppointmentDto.getDoctor()));
         }
         return doctorAppointmentEntity;
     }
@@ -31,8 +31,8 @@ public class BindDoctorAppointment {
         if (doctorAppointmentEntity != null)    {
             doctorAppointmentDto = new DoctorAppointmentDto();
             doctorAppointmentDto.setMedsDoctorAppointmentId(doctorAppointmentEntity.getMedsDoctorAppointmentId());
-            doctorAppointmentDto.setAppointment(BindAppointment.bindAppointment(doctorAppointmentEntity.getAppointmentEntity()));
-            doctorAppointmentDto.setDoctor(BindDoctor.bindDoctor(doctorAppointmentEntity.getDoctorEntity()));
+            doctorAppointmentDto.setAppointment(BindAppointment.bindAppointment(doctorAppointmentEntity.getAppointment()));
+            doctorAppointmentDto.setDoctor(BindDoctor.bindDoctor(doctorAppointmentEntity.getDoctor()));
         }
         return doctorAppointmentDto;
     }

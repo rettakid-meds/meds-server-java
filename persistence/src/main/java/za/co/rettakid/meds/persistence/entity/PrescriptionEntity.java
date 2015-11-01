@@ -8,16 +8,16 @@ import java.util.Date;
 public class PrescriptionEntity    {
 
     private Long prescriptionId;
-    private AppointmentEntity appointmentEntity;
-    private DoctorEntity doctorEntity;
-    private UserEntity userEntity;
-    private FileEntity fileEntity;
+    private AppointmentEntity appointment;
+    private DoctorEntity doctor;
+    private UserEntity user;
+    private FileEntity file;
     private Date effFrm;
     private Date effTo;
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="PRESCRIPTION_ID" , length=15 , nullable=false)
     public Long getPrescriptionId()   {
@@ -30,42 +30,42 @@ public class PrescriptionEntity    {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="APPOINTMENT_ID", referencedColumnName="APPOINTMENT_ID")
-    public AppointmentEntity getAppointmentEntity()   {
-        return this.appointmentEntity;
+    public AppointmentEntity getAppointment()   {
+        return this.appointment;
     }
 
-    public void setAppointmentEntity(AppointmentEntity appointmentEntity)   {
-        this.appointmentEntity = appointmentEntity;
+    public void setAppointment(AppointmentEntity appointment)   {
+        this.appointment = appointment;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="DOCTOR_ID", referencedColumnName="DOCTOR_ID")
-    public DoctorEntity getDoctorEntity()   {
-        return this.doctorEntity;
+    public DoctorEntity getDoctor()   {
+        return this.doctor;
     }
 
-    public void setDoctorEntity(DoctorEntity doctorEntity)   {
-        this.doctorEntity = doctorEntity;
+    public void setDoctor(DoctorEntity doctor)   {
+        this.doctor = doctor;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="USER_ID", referencedColumnName="USER_ID")
-    public UserEntity getUserEntity()   {
-        return this.userEntity;
+    public UserEntity getUser()   {
+        return this.user;
     }
 
-    public void setUserEntity(UserEntity userEntity)   {
-        this.userEntity = userEntity;
+    public void setUser(UserEntity user)   {
+        this.user = user;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="FILE_ID", referencedColumnName="FILE_ID")
-    public FileEntity getFileEntity()   {
-        return this.fileEntity;
+    public FileEntity getFile()   {
+        return this.file;
     }
 
-    public void setFileEntity(FileEntity fileEntity)   {
-        this.fileEntity = fileEntity;
+    public void setFile(FileEntity file)   {
+        this.file = file;
     }
 
     @Basic

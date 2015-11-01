@@ -19,22 +19,15 @@ public class ImageServiceImpl implements ImageService   {
         imageListDto.addImageList(BindImage.bindImageEntityList(imageDao.read()));
         return imageListDto;
     }
-    
+
     @Override
     public ImageDto getImages(Long imageId)  {
         return BindImage.bindImage(imageDao.read(imageId));
     }
     
     @Override
-        public void postImages(ImageDto imageDto)  {
+    public void postImages(ImageDto imageDto)  {
         imageDao.createOrUpdate(BindImage.bindImage(imageDto));
-    }
-
-    @Override
-    public void postImages(ImageListDto imageListDto)  {
-        for (ImageDto imageDto : imageListDto.getImageList()) {
-            imageDao.createOrUpdate(BindImage.bindImage(imageDto));
-        }
     }
 
     @Override

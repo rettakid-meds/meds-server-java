@@ -19,22 +19,15 @@ public class UserServiceImpl implements UserService   {
         userListDto.addUserList(BindUser.bindUserEntityList(userDao.read()));
         return userListDto;
     }
-    
+
     @Override
     public UserDto getUsers(Long userId)  {
         return BindUser.bindUser(userDao.read(userId));
     }
     
     @Override
-        public void postUsers(UserDto userDto)  {
+    public void postUsers(UserDto userDto)  {
         userDao.createOrUpdate(BindUser.bindUser(userDto));
-    }
-
-    @Override
-    public void postUsers(UserListDto userListDto)  {
-        for (UserDto userDto : userListDto.getUserList()) {
-            userDao.createOrUpdate(BindUser.bindUser(userDto));
-        }
     }
 
     @Override

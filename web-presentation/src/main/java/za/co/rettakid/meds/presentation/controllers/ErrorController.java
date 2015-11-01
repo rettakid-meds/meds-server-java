@@ -18,11 +18,13 @@ public class ErrorController extends BaseController {
     @RequestMapping("/403")
     public String get403Error(Model model) {
         LOGGER.info("Error 403");
+        model.addAttribute("error","403 you are not authorised to view this page");
         return PageDirectory.ERROR;
     }
 
     @RequestMapping("/404")
     public String get404Error(Model model) {
+        model.addAttribute("error","404 this page does not exist");
         LOGGER.info("Error 404");
         return PageDirectory.ERROR;
     }

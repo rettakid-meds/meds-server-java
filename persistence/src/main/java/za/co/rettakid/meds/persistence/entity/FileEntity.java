@@ -14,7 +14,7 @@ public class FileEntity    {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="FILE_ID" , length=15 , nullable=false)
     public Long getFileId()   {

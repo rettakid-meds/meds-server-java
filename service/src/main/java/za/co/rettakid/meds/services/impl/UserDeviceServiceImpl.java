@@ -19,22 +19,15 @@ public class UserDeviceServiceImpl implements UserDeviceService   {
         userDeviceListDto.addUserDeviceList(BindUserDevice.bindUserDeviceEntityList(userDeviceDao.read()));
         return userDeviceListDto;
     }
-    
+
     @Override
     public UserDeviceDto getUserDevices(Long userDevicesId)  {
         return BindUserDevice.bindUserDevice(userDeviceDao.read(userDevicesId));
     }
     
     @Override
-        public void postUserDevices(UserDeviceDto userDeviceDto)  {
+    public void postUserDevices(UserDeviceDto userDeviceDto)  {
         userDeviceDao.createOrUpdate(BindUserDevice.bindUserDevice(userDeviceDto));
-    }
-
-    @Override
-    public void postUserDevices(UserDeviceListDto userDeviceListDto)  {
-        for (UserDeviceDto userDeviceDto : userDeviceListDto.getUserDeviceList()) {
-            userDeviceDao.createOrUpdate(BindUserDevice.bindUserDevice(userDeviceDto));
-        }
     }
 
     @Override

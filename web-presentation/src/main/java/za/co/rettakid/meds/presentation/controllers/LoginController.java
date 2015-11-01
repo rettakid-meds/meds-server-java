@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import za.co.rettakid.meds.common.dto.UserDto;
+import za.co.rettakid.meds.common.error.MedsError;
 import za.co.rettakid.meds.presentation.common.PageDirectory;
 import za.co.rettakid.meds.presentation.vo.LoginVo;
+
+import javax.validation.Valid;
 
 /**
  * Created by Lwazi Prusent on 2015/10/20.
@@ -31,16 +34,21 @@ public class LoginController extends BaseController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String postLoginPage(@ModelAttribute("loginVo") LoginVo loginVo, BindingResult error, Model model) {
+    public String postLoginPage(@ModelAttribute("loginVo") @Valid LoginVo loginVo, BindingResult error, Model model) {
         LOGGER.info("post login");
-        if (error.hasErrors())  {
+        if (error.hasErrors()) {
+            createToast(model, "Please complete form.");
             return PageDirectory.LOGIN;
-        } else  {
-            Authentication authentication = new UsernamePasswordAuthenticationToken(new UserDto(), null, null);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            return doRedirect(PageDirectory.DASHBOARD);
+        } else {
+            if (loginUser(loginVo)) {
+                return doRedirect(PageDirectory.DASHBOARD);
+            } else {
+                createToast(model, MedsError.LOGIN_DOES_NOT_EXIST.getError());
+                loginVo.setPassword("");
+            }
         }
-
+        return PageDirectory.LOGIN;
     }
+
 
 }

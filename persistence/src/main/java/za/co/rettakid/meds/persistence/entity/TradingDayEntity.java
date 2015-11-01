@@ -7,18 +7,18 @@ import javax.persistence.*;
 public class TradingDayEntity    {
 
     private Long tradingDayId;
-    private TradingHourEntity mondayEntity;
-    private TradingHourEntity tuesdayEntity;
-    private TradingHourEntity wednesdayEntity;
-    private TradingHourEntity thursdayEntity;
-    private TradingHourEntity fridayEntity;
-    private TradingHourEntity saturdayEntity;
-    private TradingHourEntity sundayEntity;
-    private TradingHourEntity pubicHolidayEntity;
+    private TradingHourEntity monday;
+    private TradingHourEntity tuesday;
+    private TradingHourEntity wednesday;
+    private TradingHourEntity thursday;
+    private TradingHourEntity friday;
+    private TradingHourEntity saturday;
+    private TradingHourEntity sunday;
+    private TradingHourEntity pubicHoliday;
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="TRADING_DAY_ID" , length=15 , nullable=false)
     public Long getTradingDayId()   {
@@ -31,82 +31,82 @@ public class TradingDayEntity    {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="MONDAY_ID", referencedColumnName="TRADING_HOUR_ID")
-    public TradingHourEntity getMondayEntity()   {
-        return this.mondayEntity;
+    public TradingHourEntity getMonday()   {
+        return this.monday;
     }
 
-    public void setMondayEntity(TradingHourEntity mondayEntity)   {
-        this.mondayEntity = mondayEntity;
+    public void setMonday(TradingHourEntity monday)   {
+        this.monday = monday;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="TUESDAY_ID", referencedColumnName="TRADING_HOUR_ID")
-    public TradingHourEntity getTuesdayEntity()   {
-        return this.tuesdayEntity;
+    public TradingHourEntity getTuesday()   {
+        return this.tuesday;
     }
 
-    public void setTuesdayEntity(TradingHourEntity tuesdayEntity)   {
-        this.tuesdayEntity = tuesdayEntity;
+    public void setTuesday(TradingHourEntity tuesday)   {
+        this.tuesday = tuesday;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="WEDNESDAY_ID", referencedColumnName="TRADING_HOUR_ID")
-    public TradingHourEntity getWednesdayEntity()   {
-        return this.wednesdayEntity;
+    public TradingHourEntity getWednesday()   {
+        return this.wednesday;
     }
 
-    public void setWednesdayEntity(TradingHourEntity wednesdayEntity)   {
-        this.wednesdayEntity = wednesdayEntity;
+    public void setWednesday(TradingHourEntity wednesday)   {
+        this.wednesday = wednesday;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="THURSDAY_ID", referencedColumnName="TRADING_HOUR_ID")
-    public TradingHourEntity getThursdayEntity()   {
-        return this.thursdayEntity;
+    public TradingHourEntity getThursday()   {
+        return this.thursday;
     }
 
-    public void setThursdayEntity(TradingHourEntity thursdayEntity)   {
-        this.thursdayEntity = thursdayEntity;
+    public void setThursday(TradingHourEntity thursday)   {
+        this.thursday = thursday;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="FRIDAY_ID", referencedColumnName="TRADING_HOUR_ID")
-    public TradingHourEntity getFridayEntity()   {
-        return this.fridayEntity;
+    public TradingHourEntity getFriday()   {
+        return this.friday;
     }
 
-    public void setFridayEntity(TradingHourEntity fridayEntity)   {
-        this.fridayEntity = fridayEntity;
+    public void setFriday(TradingHourEntity friday)   {
+        this.friday = friday;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="SATURDAY_ID", referencedColumnName="TRADING_HOUR_ID")
-    public TradingHourEntity getSaturdayEntity()   {
-        return this.saturdayEntity;
+    public TradingHourEntity getSaturday()   {
+        return this.saturday;
     }
 
-    public void setSaturdayEntity(TradingHourEntity saturdayEntity)   {
-        this.saturdayEntity = saturdayEntity;
+    public void setSaturday(TradingHourEntity saturday)   {
+        this.saturday = saturday;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="SUNDAY_ID", referencedColumnName="TRADING_HOUR_ID")
-    public TradingHourEntity getSundayEntity()   {
-        return this.sundayEntity;
+    public TradingHourEntity getSunday()   {
+        return this.sunday;
     }
 
-    public void setSundayEntity(TradingHourEntity sundayEntity)   {
-        this.sundayEntity = sundayEntity;
+    public void setSunday(TradingHourEntity sunday)   {
+        this.sunday = sunday;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="PUBIC_HOLIDAY_ID", referencedColumnName="TRADING_HOUR_ID")
-    public TradingHourEntity getPubicHolidayEntity()   {
-        return this.pubicHolidayEntity;
+    public TradingHourEntity getPubicHoliday()   {
+        return this.pubicHoliday;
     }
 
-    public void setPubicHolidayEntity(TradingHourEntity pubicHolidayEntity)   {
-        this.pubicHolidayEntity = pubicHolidayEntity;
+    public void setPubicHoliday(TradingHourEntity pubicHoliday)   {
+        this.pubicHoliday = pubicHoliday;
     }
 
 }

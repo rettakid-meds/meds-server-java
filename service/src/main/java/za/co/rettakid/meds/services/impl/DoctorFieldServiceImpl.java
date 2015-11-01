@@ -19,22 +19,15 @@ public class DoctorFieldServiceImpl implements DoctorFieldService   {
         doctorFieldListDto.addDoctorFieldList(BindDoctorField.bindDoctorFieldEntityList(doctorFieldDao.read()));
         return doctorFieldListDto;
     }
-    
+
     @Override
     public DoctorFieldDto getDoctorFields(Long doctorFieldId)  {
         return BindDoctorField.bindDoctorField(doctorFieldDao.read(doctorFieldId));
     }
     
     @Override
-        public void postDoctorFields(DoctorFieldDto doctorFieldDto)  {
+    public void postDoctorFields(DoctorFieldDto doctorFieldDto)  {
         doctorFieldDao.createOrUpdate(BindDoctorField.bindDoctorField(doctorFieldDto));
-    }
-
-    @Override
-    public void postDoctorFields(DoctorFieldListDto doctorFieldListDto)  {
-        for (DoctorFieldDto doctorFieldDto : doctorFieldListDto.getDoctorFieldList()) {
-            doctorFieldDao.createOrUpdate(BindDoctorField.bindDoctorField(doctorFieldDto));
-        }
     }
 
     @Override

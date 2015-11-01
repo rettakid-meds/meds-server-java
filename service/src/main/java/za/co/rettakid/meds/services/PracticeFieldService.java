@@ -7,7 +7,6 @@ public interface PracticeFieldService    {
     PracticeFieldListDto getPracticeFields();
     PracticeFieldDto getPracticeFields(Long practiceFieldId);
     void postPracticeFields(PracticeFieldDto practiceFieldDto);
-    void postPracticeFields(PracticeFieldListDto practiceFieldListDto);
     void putPracticeFields(PracticeFieldDto practiceFieldDto);
     void deletePracticeFields(Long practiceFieldId);
 

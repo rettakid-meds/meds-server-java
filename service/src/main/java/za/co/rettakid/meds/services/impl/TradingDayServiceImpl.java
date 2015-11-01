@@ -19,22 +19,15 @@ public class TradingDayServiceImpl implements TradingDayService   {
         tradingDayListDto.addTradingDayList(BindTradingDay.bindTradingDayEntityList(tradingDayDao.read()));
         return tradingDayListDto;
     }
-    
+
     @Override
     public TradingDayDto getTradingDays(Long tradingDayId)  {
         return BindTradingDay.bindTradingDay(tradingDayDao.read(tradingDayId));
     }
     
     @Override
-        public void postTradingDays(TradingDayDto tradingDayDto)  {
+    public void postTradingDays(TradingDayDto tradingDayDto)  {
         tradingDayDao.createOrUpdate(BindTradingDay.bindTradingDay(tradingDayDto));
-    }
-
-    @Override
-    public void postTradingDays(TradingDayListDto tradingDayListDto)  {
-        for (TradingDayDto tradingDayDto : tradingDayListDto.getTradingDayList()) {
-            tradingDayDao.createOrUpdate(BindTradingDay.bindTradingDay(tradingDayDto));
-        }
     }
 
     @Override

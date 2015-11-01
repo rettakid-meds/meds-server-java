@@ -7,13 +7,13 @@ import javax.persistence.*;
 public class ImageEntity    {
 
     private Long imageId;
-    private FileEntity fileEntity;
+    private FileEntity file;
     private Integer width;
     private Integer height;
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="IMAGE_ID" , length=15 , nullable=false)
     public Long getImageId()   {
@@ -26,12 +26,12 @@ public class ImageEntity    {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="FILE_ID", referencedColumnName="FILE_ID")
-    public FileEntity getFileEntity()   {
-        return this.fileEntity;
+    public FileEntity getFile()   {
+        return this.file;
     }
 
-    public void setFileEntity(FileEntity fileEntity)   {
-        this.fileEntity = fileEntity;
+    public void setFile(FileEntity file)   {
+        this.file = file;
     }
 
     @Basic

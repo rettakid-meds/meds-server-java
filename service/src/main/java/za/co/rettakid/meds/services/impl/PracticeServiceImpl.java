@@ -2,16 +2,30 @@ package za.co.rettakid.meds.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import za.co.rettakid.meds.persistence.entity.FileEntity;
+import za.co.rettakid.meds.persistence.entity.ImageEntity;
+import za.co.rettakid.meds.persistence.entity.PracticeEntity;
 import za.co.rettakid.meds.services.binding.*;
 import za.co.rettakid.meds.services.*;
 import za.co.rettakid.meds.common.dto.*;
 import za.co.rettakid.meds.persistence.dao.*;
+
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Date;
 
 @Service
 public class PracticeServiceImpl implements PracticeService   {
 
     @Autowired
     private PracticeDao practiceDao;
+    @Autowired
+    private FileDao fileDao;
+    @Autowired
+    private ImageDao imageDao;
 
     @Override
     public PracticeListDto getPractices()  {
@@ -19,27 +33,46 @@ public class PracticeServiceImpl implements PracticeService   {
         practiceListDto.addPracticeList(BindPractice.bindPracticeEntityList(practiceDao.read()));
         return practiceListDto;
     }
-    
+
     @Override
     public PracticeDto getPractices(Long practiceId)  {
         return BindPractice.bindPractice(practiceDao.read(practiceId));
     }
     
     @Override
-        public void postPractices(PracticeDto practiceDto)  {
+    public void postPractices(PracticeDto practiceDto)  {
         practiceDao.createOrUpdate(BindPractice.bindPractice(practiceDto));
     }
 
+    @Transactional
     @Override
-    public void postPractices(PracticeListDto practiceListDto)  {
-        for (PracticeDto practiceDto : practiceListDto.getPracticeList()) {
-            practiceDao.createOrUpdate(BindPractice.bindPractice(practiceDto));
+    public void putPractices(PracticeDto practiceDto, byte[] imageFile) throws IOException {
+        PracticeEntity practiceEntity = practiceDao.read(practiceDto.getPracticeId());
+        practiceEntity.setName(practiceDto.getName());
+        practiceEntity.setPhone(practiceDto.getPhone());
+        practiceEntity.setAddress(practiceDto.getAddress());
+        practiceEntity.setEmail(practiceDto.getEmail());
+        practiceEntity.setFee(practiceDto.getFee());
+        if (imageFile != null)  {
+            FileEntity fileEntity = new FileEntity();
+            fileEntity.setName("practice" + practiceDto.getPracticeId() + ".jpg");
+            fileEntity.setGuid(java.util.UUID.randomUUID().toString());
+            fileEntity.setEffFrm(new Date());
+            fileDao.createOrUpdate(fileEntity);
+            ImageEntity imageEntity = new ImageEntity();
+            imageEntity.setFile(fileEntity);
+            imageEntity.setHeight(200);
+            imageEntity.setWidth(200);
+            imageDao.createOrUpdate(imageEntity);
+            practiceEntity.setImage(imageEntity);
+            OutputStream out = new BufferedOutputStream(new FileOutputStream("C:\\images\\" + fileEntity.getGuid()));
+            out.write(imageFile);
         }
-    }
-
-    @Override
-    public void putPractices(PracticeDto practiceDto)  {
-        practiceDao.createOrUpdate(BindPractice.bindPractice(practiceDto));
+        //practiceEntity.setBio();
+        //practiceEntity.setLatitude();
+        //practiceEntity.setLongitude();
+        //practiceEntity.setTradingDay();
+        practiceDao.createOrUpdate(practiceEntity);
     }
 
     @Override

@@ -7,7 +7,6 @@ public interface TradingDayService    {
     TradingDayListDto getTradingDays();
     TradingDayDto getTradingDays(Long tradingDayId);
     void postTradingDays(TradingDayDto tradingDayDto);
-    void postTradingDays(TradingDayListDto tradingDayListDto);
     void putTradingDays(TradingDayDto tradingDayDto);
     void deleteTradingDays(Long tradingDayId);
 

@@ -12,8 +12,8 @@ public class BindUserDevice {
         if (userDeviceDto != null)    {
             userDeviceEntity = new UserDeviceEntity();
             userDeviceEntity.setUserDevicesId(userDeviceDto.getUserDevicesId());
-            userDeviceEntity.setUserEntity(BindUser.bindUser(userDeviceDto.getUser()));
-            userDeviceEntity.setTypeEntity(BindDevicesType.bindDevicesType(userDeviceDto.getType()));
+            userDeviceEntity.setUser(BindUser.bindUser(userDeviceDto.getUser()));
+            userDeviceEntity.setType(BindDevicesType.bindDevicesType(userDeviceDto.getType()));
             userDeviceEntity.setName(userDeviceDto.getName());
             userDeviceEntity.setDevicePushId(userDeviceDto.getDevicePushId());
         }
@@ -33,8 +33,8 @@ public class BindUserDevice {
         if (userDeviceEntity != null)    {
             userDeviceDto = new UserDeviceDto();
             userDeviceDto.setUserDevicesId(userDeviceEntity.getUserDevicesId());
-            userDeviceDto.setUser(BindUser.bindUser(userDeviceEntity.getUserEntity()));
-            userDeviceDto.setType(BindDevicesType.bindDevicesType(userDeviceEntity.getTypeEntity()));
+            userDeviceDto.setUser(BindUser.bindUser(userDeviceEntity.getUser()));
+            userDeviceDto.setType(BindDevicesType.bindDevicesType(userDeviceEntity.getType()));
             userDeviceDto.setName(userDeviceEntity.getName());
             userDeviceDto.setDevicePushId(userDeviceEntity.getDevicePushId());
         }

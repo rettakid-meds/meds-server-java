@@ -12,7 +12,7 @@ public class BindImage {
         if (imageDto != null)    {
             imageEntity = new ImageEntity();
             imageEntity.setImageId(imageDto.getImageId());
-            imageEntity.setFileEntity(BindFile.bindFile(imageDto.getFile()));
+            imageEntity.setFile(BindFile.bindFile(imageDto.getFile()));
             imageEntity.setWidth(imageDto.getWidth());
             imageEntity.setHeight(imageDto.getHeight());
         }
@@ -32,7 +32,7 @@ public class BindImage {
         if (imageEntity != null)    {
             imageDto = new ImageDto();
             imageDto.setImageId(imageEntity.getImageId());
-            imageDto.setFile(BindFile.bindFile(imageEntity.getFileEntity()));
+            imageDto.setFile(BindFile.bindFile(imageEntity.getFile()));
             imageDto.setWidth(imageEntity.getWidth());
             imageDto.setHeight(imageEntity.getHeight());
         }

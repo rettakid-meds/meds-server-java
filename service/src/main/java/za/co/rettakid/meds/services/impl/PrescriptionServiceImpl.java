@@ -20,22 +20,15 @@ public class PrescriptionServiceImpl implements PrescriptionService   {
         prescriptionListDto.addPrescriptionList(BindPrescription.bindPrescriptionEntityList(prescriptionDao.read()));
         return prescriptionListDto;
     }
-    
+
     @Override
     public PrescriptionDto getPrescriptions(Long prescriptionId)  {
         return BindPrescription.bindPrescription(prescriptionDao.read(prescriptionId));
     }
     
     @Override
-        public void postPrescriptions(PrescriptionDto prescriptionDto)  {
+    public void postPrescriptions(PrescriptionDto prescriptionDto)  {
         prescriptionDao.createOrUpdate(BindPrescription.bindPrescription(prescriptionDto));
-    }
-
-    @Override
-    public void postPrescriptions(PrescriptionListDto prescriptionListDto)  {
-        for (PrescriptionDto prescriptionDto : prescriptionListDto.getPrescriptionList()) {
-            prescriptionDao.createOrUpdate(BindPrescription.bindPrescription(prescriptionDto));
-        }
     }
 
     @Override

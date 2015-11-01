@@ -12,8 +12,8 @@ public class BindDoctorPractice {
         if (doctorPracticeDto != null)    {
             doctorPracticeEntity = new DoctorPracticeEntity();
             doctorPracticeEntity.setMedsDoctorPracticeId(doctorPracticeDto.getMedsDoctorPracticeId());
-            doctorPracticeEntity.setPracticeEntity(BindPractice.bindPractice(doctorPracticeDto.getPractice()));
-            doctorPracticeEntity.setDoctorEntity(BindDoctor.bindDoctor(doctorPracticeDto.getDoctor()));
+            doctorPracticeEntity.setPractice(BindPractice.bindPractice(doctorPracticeDto.getPractice()));
+            doctorPracticeEntity.setDoctor(BindDoctor.bindDoctor(doctorPracticeDto.getDoctor()));
         }
         return doctorPracticeEntity;
     }
@@ -31,8 +31,8 @@ public class BindDoctorPractice {
         if (doctorPracticeEntity != null)    {
             doctorPracticeDto = new DoctorPracticeDto();
             doctorPracticeDto.setMedsDoctorPracticeId(doctorPracticeEntity.getMedsDoctorPracticeId());
-            doctorPracticeDto.setPractice(BindPractice.bindPractice(doctorPracticeEntity.getPracticeEntity()));
-            doctorPracticeDto.setDoctor(BindDoctor.bindDoctor(doctorPracticeEntity.getDoctorEntity()));
+            doctorPracticeDto.setPractice(BindPractice.bindPractice(doctorPracticeEntity.getPractice()));
+            doctorPracticeDto.setDoctor(BindDoctor.bindDoctor(doctorPracticeEntity.getDoctor()));
         }
         return doctorPracticeDto;
     }

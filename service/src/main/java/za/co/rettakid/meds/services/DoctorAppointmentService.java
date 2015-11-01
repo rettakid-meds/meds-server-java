@@ -7,7 +7,6 @@ public interface DoctorAppointmentService    {
     DoctorAppointmentListDto getDoctorAppointments();
     DoctorAppointmentDto getDoctorAppointments(Long medsDoctorAppointmentId);
     void postDoctorAppointments(DoctorAppointmentDto doctorAppointmentDto);
-    void postDoctorAppointments(DoctorAppointmentListDto doctorAppointmentListDto);
     void putDoctorAppointments(DoctorAppointmentDto doctorAppointmentDto);
     void deleteDoctorAppointments(Long medsDoctorAppointmentId);
 

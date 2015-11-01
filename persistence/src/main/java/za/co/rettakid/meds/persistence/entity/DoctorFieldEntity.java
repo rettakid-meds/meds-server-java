@@ -7,12 +7,12 @@ import javax.persistence.*;
 public class DoctorFieldEntity    {
 
     private Long doctorFieldId;
-    private FieldEntity fieldEntity;
-    private DoctorEntity doctorEntity;
+    private FieldEntity field;
+    private DoctorEntity doctor;
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="DOCTOR_FIELD_ID" , length=15 , nullable=false)
     public Long getDoctorFieldId()   {
@@ -25,22 +25,22 @@ public class DoctorFieldEntity    {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="FIELD_ID", referencedColumnName="FIELD_ID")
-    public FieldEntity getFieldEntity()   {
-        return this.fieldEntity;
+    public FieldEntity getField()   {
+        return this.field;
     }
 
-    public void setFieldEntity(FieldEntity fieldEntity)   {
-        this.fieldEntity = fieldEntity;
+    public void setField(FieldEntity field)   {
+        this.field = field;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="DOCTOR_ID", referencedColumnName="DOCTOR_ID")
-    public DoctorEntity getDoctorEntity()   {
-        return this.doctorEntity;
+    public DoctorEntity getDoctor()   {
+        return this.doctor;
     }
 
-    public void setDoctorEntity(DoctorEntity doctorEntity)   {
-        this.doctorEntity = doctorEntity;
+    public void setDoctor(DoctorEntity doctor)   {
+        this.doctor = doctor;
     }
 
 }

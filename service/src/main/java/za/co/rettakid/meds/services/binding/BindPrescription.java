@@ -12,10 +12,10 @@ public class BindPrescription {
         if (prescriptionDto != null)    {
             prescriptionEntity = new PrescriptionEntity();
             prescriptionEntity.setPrescriptionId(prescriptionDto.getPrescriptionId());
-            prescriptionEntity.setAppointmentEntity(BindAppointment.bindAppointment(prescriptionDto.getAppointment()));
-            prescriptionEntity.setDoctorEntity(BindDoctor.bindDoctor(prescriptionDto.getDoctor()));
-            prescriptionEntity.setUserEntity(BindUser.bindUser(prescriptionDto.getUser()));
-            prescriptionEntity.setFileEntity(BindFile.bindFile(prescriptionDto.getFile()));
+            prescriptionEntity.setAppointment(BindAppointment.bindAppointment(prescriptionDto.getAppointment()));
+            prescriptionEntity.setDoctor(BindDoctor.bindDoctor(prescriptionDto.getDoctor()));
+            prescriptionEntity.setUser(BindUser.bindUser(prescriptionDto.getUser()));
+            prescriptionEntity.setFile(BindFile.bindFile(prescriptionDto.getFile()));
             prescriptionEntity.setEffFrm(prescriptionDto.getEffFrm());
             prescriptionEntity.setEffTo(prescriptionDto.getEffTo());
         }
@@ -35,10 +35,10 @@ public class BindPrescription {
         if (prescriptionEntity != null)    {
             prescriptionDto = new PrescriptionDto();
             prescriptionDto.setPrescriptionId(prescriptionEntity.getPrescriptionId());
-            prescriptionDto.setAppointment(BindAppointment.bindAppointment(prescriptionEntity.getAppointmentEntity()));
-            prescriptionDto.setDoctor(BindDoctor.bindDoctor(prescriptionEntity.getDoctorEntity()));
-            prescriptionDto.setUser(BindUser.bindUser(prescriptionEntity.getUserEntity()));
-            prescriptionDto.setFile(BindFile.bindFile(prescriptionEntity.getFileEntity()));
+            prescriptionDto.setAppointment(BindAppointment.bindAppointment(prescriptionEntity.getAppointment()));
+            prescriptionDto.setDoctor(BindDoctor.bindDoctor(prescriptionEntity.getDoctor()));
+            prescriptionDto.setUser(BindUser.bindUser(prescriptionEntity.getUser()));
+            prescriptionDto.setFile(BindFile.bindFile(prescriptionEntity.getFile()));
             prescriptionDto.setEffFrm(prescriptionEntity.getEffFrm());
             prescriptionDto.setEffTo(prescriptionEntity.getEffTo());
         }

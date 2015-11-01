@@ -19,22 +19,15 @@ public class PracticeFieldServiceImpl implements PracticeFieldService   {
         practiceFieldListDto.addPracticeFieldList(BindPracticeField.bindPracticeFieldEntityList(practiceFieldDao.read()));
         return practiceFieldListDto;
     }
-    
+
     @Override
     public PracticeFieldDto getPracticeFields(Long practiceFieldId)  {
         return BindPracticeField.bindPracticeField(practiceFieldDao.read(practiceFieldId));
     }
     
     @Override
-        public void postPracticeFields(PracticeFieldDto practiceFieldDto)  {
+    public void postPracticeFields(PracticeFieldDto practiceFieldDto)  {
         practiceFieldDao.createOrUpdate(BindPracticeField.bindPracticeField(practiceFieldDto));
-    }
-
-    @Override
-    public void postPracticeFields(PracticeFieldListDto practiceFieldListDto)  {
-        for (PracticeFieldDto practiceFieldDto : practiceFieldListDto.getPracticeFieldList()) {
-            practiceFieldDao.createOrUpdate(BindPracticeField.bindPracticeField(practiceFieldDto));
-        }
     }
 
     @Override

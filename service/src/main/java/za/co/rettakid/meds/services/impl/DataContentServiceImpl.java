@@ -19,22 +19,15 @@ public class DataContentServiceImpl implements DataContentService   {
         dataContentListDto.addDataContentList(BindDataContent.bindDataContentEntityList(dataContentDao.read()));
         return dataContentListDto;
     }
-    
+
     @Override
     public DataContentDto getDataContents(Long dataContentId)  {
         return BindDataContent.bindDataContent(dataContentDao.read(dataContentId));
     }
     
     @Override
-        public void postDataContents(DataContentDto dataContentDto)  {
+    public void postDataContents(DataContentDto dataContentDto)  {
         dataContentDao.createOrUpdate(BindDataContent.bindDataContent(dataContentDto));
-    }
-
-    @Override
-    public void postDataContents(DataContentListDto dataContentListDto)  {
-        for (DataContentDto dataContentDto : dataContentListDto.getDataContentList()) {
-            dataContentDao.createOrUpdate(BindDataContent.bindDataContent(dataContentDto));
-        }
     }
 
     @Override

@@ -8,9 +8,9 @@ import java.util.Date;
 public class AppointmentEntity    {
 
     private Long appointmentId;
-    private PracticeEntity practiceEntity;
-    private UserEntity userEntity;
-    private DataContentEntity noteEntity;
+    private PracticeEntity practice;
+    private UserEntity user;
+    private DataContentEntity note;
     private Date expectedFrm;
     private Date expectedTo;
     private Date actualFrm;
@@ -18,7 +18,7 @@ public class AppointmentEntity    {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name="APPOINTMENT_ID" , length=15 , nullable=false)
     public Long getAppointmentId()   {
@@ -31,32 +31,32 @@ public class AppointmentEntity    {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="PRACTICE_ID", referencedColumnName="PRACTICE_ID")
-    public PracticeEntity getPracticeEntity()   {
-        return this.practiceEntity;
+    public PracticeEntity getPractice()   {
+        return this.practice;
     }
 
-    public void setPracticeEntity(PracticeEntity practiceEntity)   {
-        this.practiceEntity = practiceEntity;
+    public void setPractice(PracticeEntity practice)   {
+        this.practice = practice;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="USER_ID", referencedColumnName="USER_ID")
-    public UserEntity getUserEntity()   {
-        return this.userEntity;
+    public UserEntity getUser()   {
+        return this.user;
     }
 
-    public void setUserEntity(UserEntity userEntity)   {
-        this.userEntity = userEntity;
+    public void setUser(UserEntity user)   {
+        this.user = user;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="NOTE_ID", referencedColumnName="DATA_CONTENT_ID")
-    public DataContentEntity getNoteEntity()   {
-        return this.noteEntity;
+    public DataContentEntity getNote()   {
+        return this.note;
     }
 
-    public void setNoteEntity(DataContentEntity noteEntity)   {
-        this.noteEntity = noteEntity;
+    public void setNote(DataContentEntity note)   {
+        this.note = note;
     }
 
     @Basic

@@ -9,6 +9,8 @@ public class PageDirectory {
 
     public static final String LOGIN = "login";
 
+    public static final String REGISTER = "register";
+
     public static final String DASHBOARD = "dashboard";
 
     public static final String FIELDS = "fields";
@@ -19,6 +21,6 @@ public class PageDirectory {
 
     public static final String ERROR = "error";
 
-    public static final String SUCCESS = "common/success";
+    public static final String SUCCESS = "/common/success";
 
 }

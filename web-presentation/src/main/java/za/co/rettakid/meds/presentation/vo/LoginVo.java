@@ -1,25 +1,29 @@
 package za.co.rettakid.meds.presentation.vo;
 
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  * Created by Lwazi Prusent on 2015/10/20.
  */
 public class LoginVo {
 
-    @NotNull @Size(min = 1)
-    private String username;
-    @NotNull @Size(min = 1)
+    @NotBlank
+    @NotNull
+    private String email;
+    @NotBlank
+    @NotNull
     private String password;
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

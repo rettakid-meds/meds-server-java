@@ -19,22 +19,15 @@ public class PrescriptionItemServiceImpl implements PrescriptionItemService   {
         prescriptionItemListDto.addPrescriptionItemList(BindPrescriptionItem.bindPrescriptionItemEntityList(prescriptionItemDao.read()));
         return prescriptionItemListDto;
     }
-    
+
     @Override
     public PrescriptionItemDto getPrescriptionItems(Long prescriptionItemId)  {
         return BindPrescriptionItem.bindPrescriptionItem(prescriptionItemDao.read(prescriptionItemId));
     }
     
     @Override
-        public void postPrescriptionItems(PrescriptionItemDto prescriptionItemDto)  {
+    public void postPrescriptionItems(PrescriptionItemDto prescriptionItemDto)  {
         prescriptionItemDao.createOrUpdate(BindPrescriptionItem.bindPrescriptionItem(prescriptionItemDto));
-    }
-
-    @Override
-    public void postPrescriptionItems(PrescriptionItemListDto prescriptionItemListDto)  {
-        for (PrescriptionItemDto prescriptionItemDto : prescriptionItemListDto.getPrescriptionItemList()) {
-            prescriptionItemDao.createOrUpdate(BindPrescriptionItem.bindPrescriptionItem(prescriptionItemDto));
-        }
     }
 
     @Override

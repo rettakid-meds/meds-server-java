@@ -20,22 +20,15 @@ public class TradingHourServiceImpl implements TradingHourService   {
         tradingHourListDto.addTradingHourList(BindTradingHour.bindTradingHourEntityList(tradingHourDao.read()));
         return tradingHourListDto;
     }
-    
+
     @Override
     public TradingHourDto getTradingHours(Long tradingHourId)  {
         return BindTradingHour.bindTradingHour(tradingHourDao.read(tradingHourId));
     }
     
     @Override
-        public void postTradingHours(TradingHourDto tradingHourDto)  {
+    public void postTradingHours(TradingHourDto tradingHourDto)  {
         tradingHourDao.createOrUpdate(BindTradingHour.bindTradingHour(tradingHourDto));
-    }
-
-    @Override
-    public void postTradingHours(TradingHourListDto tradingHourListDto)  {
-        for (TradingHourDto tradingHourDto : tradingHourListDto.getTradingHourList()) {
-            tradingHourDao.createOrUpdate(BindTradingHour.bindTradingHour(tradingHourDto));
-        }
     }
 
     @Override
