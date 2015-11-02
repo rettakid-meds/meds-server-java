@@ -43,12 +43,7 @@
         <i class="large material-icons">mode_edit</i>
     </a>
     <ul>
-        <li><a class="btn-floating red"><i class="material-icons">delete</i></i></a></li>
-        <li><a class="btn-floating green modal-trigger" href="#practice-modal"><i
-                class="material-icons">mode_edit</i></a></li>
+        <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
+        <li><a class="btn-floating green" href="<c:url value="/practices/${practice.practiceId}/form" />"><i class="material-icons">mode_edit</i></a></li>
     </ul>
-</div>
-
-<div id="practice-modal" class="modal modal-fixed-footer">
-    <jsp:include page="practice-form.jsp" />
 </div>

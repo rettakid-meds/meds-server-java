@@ -46,6 +46,15 @@ public class PracticeController extends BaseController {
         return PageDirectory.PRACTICES_ITEM;
     }
 
+    @RequestMapping("/{practiceId}/form")
+    public String getPracticeItemForm(Model model,@PathVariable("practiceId") Long practiceId) {
+        LOGGER.info("retuning single practice form");
+        model.addAttribute("practice", practiceService.getPractices(practiceId));
+        model.addAttribute("tradingDay", practiceService.getPractices(practiceId).getTradingDay());
+        model.addAttribute("mapsApiKey",MAPS_API_KEY);
+        return PageDirectory.PRACTICES_FORM;
+    }
+
     @RequestMapping(value = "/{practiceId}",method = RequestMethod.POST)
     public String putPracticeItem(@ModelAttribute("practice") PracticeDto practiceDto,BindingResult errors,Model model,
                                   @PathVariable("practiceId") Long practiceId,
@@ -57,8 +66,9 @@ public class PracticeController extends BaseController {
             model.addAttribute("mapsApiKey",MAPS_API_KEY);
             return PageDirectory.PRACTICES_FORM;
         } else  {
-            practiceService.putPractices(practiceDto,Base64.decodeBase64(imageFile.getBytes("UTF-8")));
-            return PageDirectory.SUCCESS;
+            imageFile = imageFile.substring(22);
+            practiceService.putPractices(practiceDto,Base64.decodeBase64(imageFile.getBytes()));
+            return doRedirect("/practices/" + practiceId);
         }
     }
 

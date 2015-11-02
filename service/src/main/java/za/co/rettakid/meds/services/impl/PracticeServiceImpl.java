@@ -11,10 +11,9 @@ import za.co.rettakid.meds.services.*;
 import za.co.rettakid.meds.common.dto.*;
 import za.co.rettakid.meds.persistence.dao.*;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.Date;
 
 @Service
@@ -55,7 +54,7 @@ public class PracticeServiceImpl implements PracticeService   {
         practiceEntity.setFee(practiceDto.getFee());
         if (imageFile != null)  {
             FileEntity fileEntity = new FileEntity();
-            fileEntity.setName("practice" + practiceDto.getPracticeId() + ".jpg");
+            fileEntity.setName("practice" + practiceDto.getPracticeId() + ".png");
             fileEntity.setGuid(java.util.UUID.randomUUID().toString());
             fileEntity.setEffFrm(new Date());
             fileDao.createOrUpdate(fileEntity);
@@ -65,8 +64,12 @@ public class PracticeServiceImpl implements PracticeService   {
             imageEntity.setWidth(200);
             imageDao.createOrUpdate(imageEntity);
             practiceEntity.setImage(imageEntity);
-            OutputStream out = new BufferedOutputStream(new FileOutputStream("C:\\images\\" + fileEntity.getGuid()));
+            /*OutputStream out = new BufferedOutputStream(new FileOutputStream("C:\\images\\" + fileEntity.getGuid()));
             out.write(imageFile);
+            out.close();*/
+            InputStream in = new ByteArrayInputStream(imageFile);
+            BufferedImage bufferedImage = ImageIO.read(in);
+            ImageIO.write(bufferedImage, "png", new File("C:\\images\\" + fileEntity.getGuid()));
         }
         //practiceEntity.setBio();
         //practiceEntity.setLatitude();

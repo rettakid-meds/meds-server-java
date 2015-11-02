@@ -17,7 +17,7 @@ public class PageDirectory {
 
     public static final String PRACTICES = "practices";
     public static final String PRACTICES_ITEM = "practices-item";
-    public static final String PRACTICES_FORM = "practices/practices-form";
+    public static final String PRACTICES_FORM = "practices-form";
 
     public static final String ERROR = "error";
 

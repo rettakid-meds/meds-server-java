@@ -56,5 +56,8 @@
     <definition name="practices-item" extends="definition.main">
         <put-attribute name="body" value="/WEB-INF/tiles/practice/practice-item.jsp"/>
     </definition>
+    <definition name="practices-form" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/practice/practice-form.jsp"/>
+    </definition>
 
 </tiles-definitions>
