@@ -5,7 +5,7 @@
             <c:url var="loginUrl" value="/login"/>
             <form:form commandName="loginVo" action="${loginUrl}/" method="post">
                 <div class="card-image">
-                    <img src="<c:url value='/resources/img/welcome.jpg' />">
+                    <img src="<c:url value='/res/img/welcome.jpg' />">
                     <span class="card-title">Login</span>
                 </div>
                 <div class="card-content">

@@ -16,7 +16,7 @@
       <br><br>
     </div>
   </div>
-  <div class="parallax"><img src="<c:url value='/resources/img/background1.jpg' />" ></div>
+  <div class="parallax"><img src="<c:url value='/res/img/background1.jpg' />" ></div>
 </div>
 
 
@@ -72,7 +72,7 @@
       </div>
     </div>
   </div>
-  <div class="parallax"><img src="<c:url value='/resources/img/background2.jpg'/>" alt="Unsplashed background img 2"></div>
+  <div class="parallax"><img src="<c:url value='/res/img/background2.jpg'/>" alt="Unsplashed background img 2"></div>
 </div>
 
 <div class="container">
@@ -105,5 +105,5 @@
       </div>
     </div>
   </div>
-  <div class="parallax"><img src="<c:url value='/resources/img/background3.jpg'/>" alt="Unsplashed background img 3"></div>
+  <div class="parallax"><img src="<c:url value='/res/img/background3.jpg'/>" alt="Unsplashed background img 3"></div>
 </div>

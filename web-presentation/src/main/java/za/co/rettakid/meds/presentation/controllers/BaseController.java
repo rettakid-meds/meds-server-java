@@ -88,4 +88,11 @@ public class BaseController {
         return model;
     }
 
+    @ExceptionHandler(MedsErrorException.class)
+    public ModelAndView catchGeneralError(Throwable e) {
+        ModelAndView model = new ModelAndView(PageDirectory.ERROR);
+        model.addObject("error", "Sorry something broke");
+        return model;
+    }
+
 }

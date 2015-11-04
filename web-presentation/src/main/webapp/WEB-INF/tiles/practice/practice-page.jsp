@@ -2,7 +2,7 @@
 <script>
     var practiceItemUrl = "<c:url value="/practices/{practiceId}" />";
 </script>
-<script src="<c:url value="/resources/script/practice/practice-script.js" />"></script>
+<script src="<c:url value="/res/script/practice/practice-script.js" />"></script>
 <div class="container">
     <c:forEach items="${practices}" var="practiceSection">
         <div class="row isotope">

@@ -1,6 +1,6 @@
 <%@include file="../common/taglib-includes.jsp" %>
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/ThirdParty/cropit/cropit.css" />"/>
-<script type="text/javascript" src="<c:url value="/resources/ThirdParty/cropit/cropit.js" />"></script>
+<link type="text/css" rel="stylesheet" href="<c:url value="/res/ThirdParty/cropit/cropit.css" />"/>
+<script type="text/javascript" src="<c:url value="/res/ThirdParty/cropit/cropit.js" />"></script>
 <img class="full-width image-editor-preview" src="<c:url value="${param.cropitUrl}" />" />
 <input id="imageFile" name="imageFile" type="hidden" />
 <div class="image-editor">

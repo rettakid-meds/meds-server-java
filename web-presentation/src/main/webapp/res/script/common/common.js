@@ -28,7 +28,7 @@ function createToast(toastText) {
 }
 
 /*map*/
-function initMap(name, latitude, longitude) {
+function initReadMap(name, latitude, longitude) {
     var myLatLng = {lat: latitude, lng: longitude};
 
     // Create a map object and specify the DOM element for display.
@@ -44,4 +44,32 @@ function initMap(name, latitude, longitude) {
         position: myLatLng,
         title: name
     });
+}
+
+function initWriteMap(name, latitude, longitude,callback) {
+    var myLatLng = {lat: latitude, lng: longitude};
+
+    // Create a map object and specify the DOM element for display.
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: myLatLng,
+        scrollwheel: false,
+        zoom: 12
+    });
+
+    // Create a marker and set its position.
+    var marker = new google.maps.Marker({
+        map: map,
+        position: myLatLng,
+        title: name,
+        draggable: true,
+        animation: google.maps.Animation.DROP
+    });
+
+    //adds right click listener
+    map.addListener('rightclick', function(e) {
+        marker.setPosition(e.latLng);
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+        callback(e.latLng);
+    });
+
 }

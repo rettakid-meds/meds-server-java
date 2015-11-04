@@ -5,7 +5,7 @@
             <c:url var="registerUrl" value="/register"/>
             <form:form commandName="userVo" action="${registerUrl}" method="post">
                 <div class="card-image">
-                    <img src="<c:url value='/resources/img/welcome.jpg' />">
+                    <img src="<c:url value='/res/img/welcome.jpg' />">
                     <span class="card-title">Register</span>
                 </div>
                 <div class="card-content">
