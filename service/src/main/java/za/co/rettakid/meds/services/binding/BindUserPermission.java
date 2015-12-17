@@ -18,6 +18,22 @@ public class BindUserPermission {
         return userPermissionEntity;
     }
 
+    public static UserPermissionEntity bindUserPermission(UserPermissionDto userPermissionDto,UserPermissionEntity userPermissionEntity) {
+        if (userPermissionDto != null && userPermissionEntity != null)    {
+            if (userPermissionEntity.getUser().getUserId() != null) {
+                userPermissionEntity.setUser(BindUser.bindUser(userPermissionDto.getUser(), userPermissionEntity.getUser()));
+            } else  {
+                userPermissionEntity.setUser(BindUser.bindUser(userPermissionDto.getUser(), new UserEntity()));
+            }
+            if (userPermissionEntity.getPermission().getPermissionId() != null) {
+                userPermissionEntity.setPermission(BindPermission.bindPermission(userPermissionDto.getPermission(), userPermissionEntity.getPermission()));
+            } else  {
+                userPermissionEntity.setPermission(BindPermission.bindPermission(userPermissionDto.getPermission(), new PermissionEntity()));
+            }
+        }
+        return userPermissionEntity;
+    }
+
     public static List<UserPermissionEntity> bindUserPermissionDtoList(List<UserPermissionDto> userPermissionDtos) {
     List<UserPermissionEntity> userPermissionEntities = new ArrayList<UserPermissionEntity>();
         for (UserPermissionDto userPermissionDto : userPermissionDtos) {
@@ -39,8 +55,10 @@ public class BindUserPermission {
 
     public static List<UserPermissionDto> bindUserPermissionEntityList(List<UserPermissionEntity> userPermissionEntitys) {
         List<UserPermissionDto> userPermissionDtos = new ArrayList<UserPermissionDto>();
-        for (UserPermissionEntity userPermissionEntity : userPermissionEntitys) {
-            userPermissionDtos.add(bindUserPermission(userPermissionEntity));
+        if (userPermissionEntitys != null)   {
+            for (UserPermissionEntity userPermissionEntity : userPermissionEntitys) {
+                userPermissionDtos.add(bindUserPermission(userPermissionEntity));
+            }
         }
         return userPermissionDtos;
     }

@@ -6,7 +6,7 @@ public interface FieldService    {
 
     FieldListDto getFields();
     FieldDto getFields(Long fieldId);
-    void postFields(FieldDto fieldDto);
+    FieldDto postFields(FieldDto fieldDto);
     void putFields(FieldDto fieldDto);
     void deleteFields(Long fieldId);
 

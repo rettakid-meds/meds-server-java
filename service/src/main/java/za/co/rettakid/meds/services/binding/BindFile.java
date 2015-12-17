@@ -1,9 +1,10 @@
 package za.co.rettakid.meds.services.binding;
 
+import za.co.rettakid.meds.common.dto.FileDto;
+import za.co.rettakid.meds.persistence.entity.FileEntity;
+
 import java.util.ArrayList;
 import java.util.List;
-import za.co.rettakid.meds.common.dto.*;
-import za.co.rettakid.meds.persistence.entity.*;
 
 public class BindFile {
 
@@ -12,6 +13,15 @@ public class BindFile {
         if (fileDto != null)    {
             fileEntity = new FileEntity();
             fileEntity.setFileId(fileDto.getFileId());
+            fileEntity.setGuid(fileDto.getGuid());
+            fileEntity.setName(fileDto.getName());
+            fileEntity.setEffFrm(fileDto.getEffFrm());
+        }
+        return fileEntity;
+    }
+
+    public static FileEntity bindFile(FileDto fileDto,FileEntity fileEntity) {
+        if (fileDto != null && fileEntity != null)    {
             fileEntity.setGuid(fileDto.getGuid());
             fileEntity.setName(fileDto.getName());
             fileEntity.setEffFrm(fileDto.getEffFrm());
@@ -41,8 +51,10 @@ public class BindFile {
 
     public static List<FileDto> bindFileEntityList(List<FileEntity> fileEntitys) {
         List<FileDto> fileDtos = new ArrayList<FileDto>();
-        for (FileEntity fileEntity : fileEntitys) {
-            fileDtos.add(bindFile(fileEntity));
+        if (fileEntitys != null)   {
+            for (FileEntity fileEntity : fileEntitys) {
+                fileDtos.add(bindFile(fileEntity));
+            }
         }
         return fileDtos;
     }

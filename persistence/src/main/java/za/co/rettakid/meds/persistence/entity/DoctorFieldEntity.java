@@ -1,8 +1,11 @@
 package za.co.rettakid.meds.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 @Table(name = "MEDS_DOCTOR_FIELD")
 public class DoctorFieldEntity    {
 
@@ -42,5 +45,6 @@ public class DoctorFieldEntity    {
     public void setDoctor(DoctorEntity doctor)   {
         this.doctor = doctor;
     }
+
 
 }

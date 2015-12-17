@@ -8,6 +8,9 @@ public class DataContentDto    {
 
     private Long dataContentId;
     private String data;
+    private PracticeListDto practiceBios;
+    private DoctorListDto doctorBios;
+    private AppointmentListDto appointmentNotes;
 
     public Long getDataContentId()   {
         return this.dataContentId;
@@ -25,6 +28,31 @@ public class DataContentDto    {
     @XmlElement(name = "data")
     public void setData(String data)   {
         this.data = data;
+    }
+
+
+    public PracticeListDto getPracticeBios()   {
+        return this.practiceBios;
+    }
+
+    public void setPracticeBios(PracticeListDto practiceBios)   {
+        this.practiceBios = practiceBios;
+    }
+
+    public DoctorListDto getDoctorBios()   {
+        return this.doctorBios;
+    }
+
+    public void setDoctorBios(DoctorListDto doctorBios)   {
+        this.doctorBios = doctorBios;
+    }
+
+    public AppointmentListDto getAppointmentNotes()   {
+        return this.appointmentNotes;
+    }
+
+    public void setAppointmentNotes(AppointmentListDto appointmentNotes)   {
+        this.appointmentNotes = appointmentNotes;
     }
 
 }

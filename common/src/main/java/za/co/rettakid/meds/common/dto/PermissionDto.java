@@ -8,6 +8,7 @@ public class PermissionDto    {
 
     private Long permissionId;
     private String permissionName;
+    private UserPermissionListDto userPermissionPermissions;
 
     public Long getPermissionId()   {
         return this.permissionId;
@@ -25,6 +26,15 @@ public class PermissionDto    {
     @XmlElement(name = "permissionname")
     public void setPermissionName(String permissionName)   {
         this.permissionName = permissionName;
+    }
+
+
+    public UserPermissionListDto getUserPermissionPermissions()   {
+        return this.userPermissionPermissions;
+    }
+
+    public void setUserPermissionPermissions(UserPermissionListDto userPermissionPermissions)   {
+        this.userPermissionPermissions = userPermissionPermissions;
     }
 
 }

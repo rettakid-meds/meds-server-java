@@ -17,6 +17,13 @@ public class BindDataContent {
         return dataContentEntity;
     }
 
+    public static DataContentEntity bindDataContent(DataContentDto dataContentDto,DataContentEntity dataContentEntity) {
+        if (dataContentDto != null && dataContentEntity != null)    {
+            dataContentEntity.setData(dataContentDto.getData());
+        }
+        return dataContentEntity;
+    }
+
     public static List<DataContentEntity> bindDataContentDtoList(List<DataContentDto> dataContentDtos) {
     List<DataContentEntity> dataContentEntities = new ArrayList<DataContentEntity>();
         for (DataContentDto dataContentDto : dataContentDtos) {
@@ -37,8 +44,10 @@ public class BindDataContent {
 
     public static List<DataContentDto> bindDataContentEntityList(List<DataContentEntity> dataContentEntitys) {
         List<DataContentDto> dataContentDtos = new ArrayList<DataContentDto>();
-        for (DataContentEntity dataContentEntity : dataContentEntitys) {
-            dataContentDtos.add(bindDataContent(dataContentEntity));
+        if (dataContentEntitys != null)   {
+            for (DataContentEntity dataContentEntity : dataContentEntitys) {
+                dataContentDtos.add(bindDataContent(dataContentEntity));
+            }
         }
         return dataContentDtos;
     }

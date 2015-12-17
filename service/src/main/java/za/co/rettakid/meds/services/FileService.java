@@ -7,7 +7,7 @@ public interface FileService    {
 
     FileListDto getFiles();
     FileDto getFiles(Long fileId);
-    void postFiles(FileDto fileDto);
+    FileDto postFiles(FileDto fileDto);
     void putFiles(FileDto fileDto);
     void deleteFiles(Long fileId);
 

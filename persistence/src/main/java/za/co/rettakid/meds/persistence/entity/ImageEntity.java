@@ -1,8 +1,11 @@
 package za.co.rettakid.meds.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 @Table(name = "MEDS_IMAGE")
 public class ImageEntity    {
 
@@ -10,6 +13,9 @@ public class ImageEntity    {
     private FileEntity file;
     private Integer width;
     private Integer height;
+    private List<PracticeEntity> practiceImages;
+    private List<DoctorEntity> doctorImages;
+    private List<DoctorEntity> doctorIcons;
 
 
     @Id
@@ -52,6 +58,34 @@ public class ImageEntity    {
 
     public void setHeight(Integer height)   {
         this.height = height;
+    }
+
+
+    @OneToMany(mappedBy = "image", fetch = FetchType.LAZY)
+    public List<PracticeEntity> getPracticeImages()   {
+        return this.practiceImages;
+    }
+
+    public void setPracticeImages(List<PracticeEntity> practiceImages)   {
+    this.practiceImages = practiceImages;
+    }
+
+    @OneToMany(mappedBy = "image", fetch = FetchType.LAZY)
+    public List<DoctorEntity> getDoctorImages()   {
+        return this.doctorImages;
+    }
+
+    public void setDoctorImages(List<DoctorEntity> doctorImages)   {
+    this.doctorImages = doctorImages;
+    }
+
+    @OneToMany(mappedBy = "icon", fetch = FetchType.LAZY)
+    public List<DoctorEntity> getDoctorIcons()   {
+        return this.doctorIcons;
+    }
+
+    public void setDoctorIcons(List<DoctorEntity> doctorIcons)   {
+    this.doctorIcons = doctorIcons;
     }
 
 }

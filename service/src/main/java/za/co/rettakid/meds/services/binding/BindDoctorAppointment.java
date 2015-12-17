@@ -18,6 +18,22 @@ public class BindDoctorAppointment {
         return doctorAppointmentEntity;
     }
 
+    public static DoctorAppointmentEntity bindDoctorAppointment(DoctorAppointmentDto doctorAppointmentDto,DoctorAppointmentEntity doctorAppointmentEntity) {
+        if (doctorAppointmentDto != null && doctorAppointmentEntity != null)    {
+            if (doctorAppointmentEntity.getAppointment().getAppointmentId() != null) {
+                doctorAppointmentEntity.setAppointment(BindAppointment.bindAppointment(doctorAppointmentDto.getAppointment(), doctorAppointmentEntity.getAppointment()));
+            } else  {
+                doctorAppointmentEntity.setAppointment(BindAppointment.bindAppointment(doctorAppointmentDto.getAppointment(), new AppointmentEntity()));
+            }
+            if (doctorAppointmentEntity.getDoctor().getDoctorId() != null) {
+                doctorAppointmentEntity.setDoctor(BindDoctor.bindDoctor(doctorAppointmentDto.getDoctor(), doctorAppointmentEntity.getDoctor()));
+            } else  {
+                doctorAppointmentEntity.setDoctor(BindDoctor.bindDoctor(doctorAppointmentDto.getDoctor(), new DoctorEntity()));
+            }
+        }
+        return doctorAppointmentEntity;
+    }
+
     public static List<DoctorAppointmentEntity> bindDoctorAppointmentDtoList(List<DoctorAppointmentDto> doctorAppointmentDtos) {
     List<DoctorAppointmentEntity> doctorAppointmentEntities = new ArrayList<DoctorAppointmentEntity>();
         for (DoctorAppointmentDto doctorAppointmentDto : doctorAppointmentDtos) {
@@ -39,8 +55,10 @@ public class BindDoctorAppointment {
 
     public static List<DoctorAppointmentDto> bindDoctorAppointmentEntityList(List<DoctorAppointmentEntity> doctorAppointmentEntitys) {
         List<DoctorAppointmentDto> doctorAppointmentDtos = new ArrayList<DoctorAppointmentDto>();
-        for (DoctorAppointmentEntity doctorAppointmentEntity : doctorAppointmentEntitys) {
-            doctorAppointmentDtos.add(bindDoctorAppointment(doctorAppointmentEntity));
+        if (doctorAppointmentEntitys != null)   {
+            for (DoctorAppointmentEntity doctorAppointmentEntity : doctorAppointmentEntitys) {
+                doctorAppointmentDtos.add(bindDoctorAppointment(doctorAppointmentEntity));
+            }
         }
         return doctorAppointmentDtos;
     }

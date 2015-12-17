@@ -8,10 +8,10 @@ public class UserPermissionVo    {
 
     private Long userPermissionId;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private UserVo user;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private PermissionVo permission;
 
     public Long getUserPermissionId()   {

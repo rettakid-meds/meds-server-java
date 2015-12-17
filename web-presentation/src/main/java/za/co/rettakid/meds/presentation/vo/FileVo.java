@@ -12,7 +12,7 @@ public class FileVo    {
     private String guid;
     @NotBlank @NotNull
     private String name;
-    @NotBlank @NotNull
+    @NotNull
     private Date effFrm;
 
     public Long getFileId()   {

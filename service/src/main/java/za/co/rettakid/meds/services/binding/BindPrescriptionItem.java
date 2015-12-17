@@ -18,6 +18,18 @@ public class BindPrescriptionItem {
         return prescriptionItemEntity;
     }
 
+    public static PrescriptionItemEntity bindPrescriptionItem(PrescriptionItemDto prescriptionItemDto,PrescriptionItemEntity prescriptionItemEntity) {
+        if (prescriptionItemDto != null && prescriptionItemEntity != null)    {
+            if (prescriptionItemEntity.getPrescription().getPrescriptionId() != null) {
+                prescriptionItemEntity.setPrescription(BindPrescription.bindPrescription(prescriptionItemDto.getPrescription(), prescriptionItemEntity.getPrescription()));
+            } else  {
+                prescriptionItemEntity.setPrescription(BindPrescription.bindPrescription(prescriptionItemDto.getPrescription(), new PrescriptionEntity()));
+            }
+            prescriptionItemEntity.setName(prescriptionItemDto.getName());
+        }
+        return prescriptionItemEntity;
+    }
+
     public static List<PrescriptionItemEntity> bindPrescriptionItemDtoList(List<PrescriptionItemDto> prescriptionItemDtos) {
     List<PrescriptionItemEntity> prescriptionItemEntities = new ArrayList<PrescriptionItemEntity>();
         for (PrescriptionItemDto prescriptionItemDto : prescriptionItemDtos) {
@@ -39,8 +51,10 @@ public class BindPrescriptionItem {
 
     public static List<PrescriptionItemDto> bindPrescriptionItemEntityList(List<PrescriptionItemEntity> prescriptionItemEntitys) {
         List<PrescriptionItemDto> prescriptionItemDtos = new ArrayList<PrescriptionItemDto>();
-        for (PrescriptionItemEntity prescriptionItemEntity : prescriptionItemEntitys) {
-            prescriptionItemDtos.add(bindPrescriptionItem(prescriptionItemEntity));
+        if (prescriptionItemEntitys != null)   {
+            for (PrescriptionItemEntity prescriptionItemEntity : prescriptionItemEntitys) {
+                prescriptionItemDtos.add(bindPrescriptionItem(prescriptionItemEntity));
+            }
         }
         return prescriptionItemDtos;
     }

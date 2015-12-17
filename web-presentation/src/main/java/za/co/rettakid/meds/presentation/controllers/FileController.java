@@ -27,6 +27,7 @@ public class FileController extends BaseController {
     @Autowired
     private FileService fileService;
 
+
     @ResponseBody
     @RequestMapping(value = "/{fileId}" , produces = MediaType.ALL_VALUE)
     public byte[] getFile(@PathVariable("fileId") Long fileId) throws IOException {

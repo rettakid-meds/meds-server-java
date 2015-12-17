@@ -8,13 +8,17 @@ import java.util.List;
  */
 public class ListDivider<T> {
     
-    public List<List<T>> divideList(List<T> fullList)   {
+    public List<List<T>> divideList(List<T> fullList,Integer colLength)   {
         List<List<T>> divList = new ArrayList<>();
-        for (int section = 0 ; section < fullList.size() / 3 ; section++) {
+        for (int section = 0 ; section <= fullList.size() / colLength ; section++) {
             List<T> secList = new ArrayList<>();
-            for (int item = 0 ; item < 3 ; item++)   {
-                int index = (section * 3) + item;
-                secList.add(fullList.get(index));
+            for (int item = 0 ; item < colLength ; item++)   {
+                int index = (section * colLength) + item;
+                if ((section * colLength) + item <= fullList.size() - 1)    {
+                    secList.add(fullList.get(index));
+                } else  {
+                    break;
+                }
             }
             divList.add(secList);
         }

@@ -8,10 +8,10 @@ public class UserDeviceVo    {
 
     private Long userDevicesId;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private UserVo user;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private DevicesTypeVo type;
     @NotBlank @NotNull
     private String name;

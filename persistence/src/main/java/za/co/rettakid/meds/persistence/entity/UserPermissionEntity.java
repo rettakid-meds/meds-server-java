@@ -1,8 +1,11 @@
 package za.co.rettakid.meds.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 @Table(name = "MEDS_USER_PERMISSION")
 public class UserPermissionEntity    {
 
@@ -42,5 +45,6 @@ public class UserPermissionEntity    {
     public void setPermission(PermissionEntity permission)   {
         this.permission = permission;
     }
+
 
 }

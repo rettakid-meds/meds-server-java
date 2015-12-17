@@ -20,6 +20,24 @@ public class BindUserDevice {
         return userDeviceEntity;
     }
 
+    public static UserDeviceEntity bindUserDevice(UserDeviceDto userDeviceDto,UserDeviceEntity userDeviceEntity) {
+        if (userDeviceDto != null && userDeviceEntity != null)    {
+            if (userDeviceEntity.getUser().getUserId() != null) {
+                userDeviceEntity.setUser(BindUser.bindUser(userDeviceDto.getUser(), userDeviceEntity.getUser()));
+            } else  {
+                userDeviceEntity.setUser(BindUser.bindUser(userDeviceDto.getUser(), new UserEntity()));
+            }
+            if (userDeviceEntity.getType().getDevicesTypeId() != null) {
+                userDeviceEntity.setType(BindDevicesType.bindDevicesType(userDeviceDto.getType(), userDeviceEntity.getType()));
+            } else  {
+                userDeviceEntity.setType(BindDevicesType.bindDevicesType(userDeviceDto.getType(), new DevicesTypeEntity()));
+            }
+            userDeviceEntity.setName(userDeviceDto.getName());
+            userDeviceEntity.setDevicePushId(userDeviceDto.getDevicePushId());
+        }
+        return userDeviceEntity;
+    }
+
     public static List<UserDeviceEntity> bindUserDeviceDtoList(List<UserDeviceDto> userDeviceDtos) {
     List<UserDeviceEntity> userDeviceEntities = new ArrayList<UserDeviceEntity>();
         for (UserDeviceDto userDeviceDto : userDeviceDtos) {
@@ -43,8 +61,10 @@ public class BindUserDevice {
 
     public static List<UserDeviceDto> bindUserDeviceEntityList(List<UserDeviceEntity> userDeviceEntitys) {
         List<UserDeviceDto> userDeviceDtos = new ArrayList<UserDeviceDto>();
-        for (UserDeviceEntity userDeviceEntity : userDeviceEntitys) {
-            userDeviceDtos.add(bindUserDevice(userDeviceEntity));
+        if (userDeviceEntitys != null)   {
+            for (UserDeviceEntity userDeviceEntity : userDeviceEntitys) {
+                userDeviceDtos.add(bindUserDevice(userDeviceEntity));
+            }
         }
         return userDeviceDtos;
     }

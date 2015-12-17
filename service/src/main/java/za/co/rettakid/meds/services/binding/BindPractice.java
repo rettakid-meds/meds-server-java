@@ -22,6 +22,36 @@ public class BindPractice {
             practiceEntity.setFee(practiceDto.getFee());
             practiceEntity.setImage(BindImage.bindImage(practiceDto.getImage()));
             practiceEntity.setBio(BindDataContent.bindDataContent(practiceDto.getBio()));
+            practiceEntity.setEffFrm(practiceDto.getEffFrm());
+            practiceEntity.setEffTo(practiceDto.getEffTo());
+        }
+        return practiceEntity;
+    }
+
+    public static PracticeEntity bindPractice(PracticeDto practiceDto,PracticeEntity practiceEntity) {
+        if (practiceDto != null && practiceEntity != null)    {
+            practiceEntity.setName(practiceDto.getName());
+            practiceEntity.setEmail(practiceDto.getEmail());
+            practiceEntity.setLongitude(practiceDto.getLongitude());
+            practiceEntity.setLatitude(practiceDto.getLatitude());
+            practiceEntity.setAddress(practiceDto.getAddress());
+            if (practiceEntity.getTradingDay().getTradingDayId() != null) {
+                practiceEntity.setTradingDay(BindTradingDay.bindTradingDay(practiceDto.getTradingDay(), practiceEntity.getTradingDay()));
+            } else  {
+                practiceEntity.setTradingDay(BindTradingDay.bindTradingDay(practiceDto.getTradingDay(), new TradingDayEntity()));
+            }
+            practiceEntity.setPhone(practiceDto.getPhone());
+            practiceEntity.setFee(practiceDto.getFee());
+            if (practiceEntity.getImage().getImageId() != null) {
+                practiceEntity.setImage(BindImage.bindImage(practiceDto.getImage(), practiceEntity.getImage()));
+            } else  {
+                practiceEntity.setImage(BindImage.bindImage(practiceDto.getImage(), new ImageEntity()));
+            }
+            if (practiceEntity.getBio().getDataContentId() != null) {
+                practiceEntity.setBio(BindDataContent.bindDataContent(practiceDto.getBio(), practiceEntity.getBio()));
+            } else  {
+                practiceEntity.setBio(BindDataContent.bindDataContent(practiceDto.getBio(), new DataContentEntity()));
+            }
         }
         return practiceEntity;
     }
@@ -49,14 +79,18 @@ public class BindPractice {
             practiceDto.setFee(practiceEntity.getFee());
             practiceDto.setImage(BindImage.bindImage(practiceEntity.getImage()));
             practiceDto.setBio(BindDataContent.bindDataContent(practiceEntity.getBio()));
+            practiceDto.setEffFrm(practiceEntity.getEffFrm());
+            practiceDto.setEffTo(practiceEntity.getEffTo());
         }
         return practiceDto;
     }
 
     public static List<PracticeDto> bindPracticeEntityList(List<PracticeEntity> practiceEntitys) {
         List<PracticeDto> practiceDtos = new ArrayList<PracticeDto>();
-        for (PracticeEntity practiceEntity : practiceEntitys) {
-            practiceDtos.add(bindPractice(practiceEntity));
+        if (practiceEntitys != null)   {
+            for (PracticeEntity practiceEntity : practiceEntitys) {
+                practiceDtos.add(bindPractice(practiceEntity));
+            }
         }
         return practiceDtos;
     }

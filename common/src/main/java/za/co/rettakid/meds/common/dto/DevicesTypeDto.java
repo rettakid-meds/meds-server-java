@@ -9,6 +9,7 @@ public class DevicesTypeDto    {
     private Long devicesTypeId;
     private String typeName;
     private Boolean canPush;
+    private UserDeviceListDto userDeviceTypes;
 
     public Long getDevicesTypeId()   {
         return this.devicesTypeId;
@@ -35,6 +36,15 @@ public class DevicesTypeDto    {
     @XmlElement(name = "canpush")
     public void setCanPush(Boolean canPush)   {
         this.canPush = canPush;
+    }
+
+
+    public UserDeviceListDto getUserDeviceTypes()   {
+        return this.userDeviceTypes;
+    }
+
+    public void setUserDeviceTypes(UserDeviceListDto userDeviceTypes)   {
+        this.userDeviceTypes = userDeviceTypes;
     }
 
 }

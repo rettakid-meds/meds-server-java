@@ -1,14 +1,19 @@
 package za.co.rettakid.meds.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 @Table(name = "MEDS_FIELD")
 public class FieldEntity    {
 
     private Long fieldId;
     private String name;
     private String mapColor;
+    private List<PracticeFieldEntity> practiceFieldFields;
+    private List<DoctorFieldEntity> doctorFieldFields;
 
 
     @Id
@@ -41,6 +46,25 @@ public class FieldEntity    {
 
     public void setMapColor(String mapColor)   {
         this.mapColor = mapColor;
+    }
+
+
+    @OneToMany(mappedBy = "field", fetch = FetchType.LAZY)
+    public List<PracticeFieldEntity> getPracticeFieldFields()   {
+        return this.practiceFieldFields;
+    }
+
+    public void setPracticeFieldFields(List<PracticeFieldEntity> practiceFieldFields)   {
+    this.practiceFieldFields = practiceFieldFields;
+    }
+
+    @OneToMany(mappedBy = "field", fetch = FetchType.LAZY)
+    public List<DoctorFieldEntity> getDoctorFieldFields()   {
+        return this.doctorFieldFields;
+    }
+
+    public void setDoctorFieldFields(List<DoctorFieldEntity> doctorFieldFields)   {
+    this.doctorFieldFields = doctorFieldFields;
     }
 
 }

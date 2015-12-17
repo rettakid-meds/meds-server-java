@@ -8,10 +8,10 @@ public class DoctorFieldVo    {
 
     private Long doctorFieldId;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private FieldVo field;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private DoctorVo doctor;
 
     public Long getDoctorFieldId()   {

@@ -17,6 +17,13 @@ public class BindPermission {
         return permissionEntity;
     }
 
+    public static PermissionEntity bindPermission(PermissionDto permissionDto,PermissionEntity permissionEntity) {
+        if (permissionDto != null && permissionEntity != null)    {
+            permissionEntity.setPermissionName(permissionDto.getPermissionName());
+        }
+        return permissionEntity;
+    }
+
     public static List<PermissionEntity> bindPermissionDtoList(List<PermissionDto> permissionDtos) {
     List<PermissionEntity> permissionEntities = new ArrayList<PermissionEntity>();
         for (PermissionDto permissionDto : permissionDtos) {
@@ -37,8 +44,10 @@ public class BindPermission {
 
     public static List<PermissionDto> bindPermissionEntityList(List<PermissionEntity> permissionEntitys) {
         List<PermissionDto> permissionDtos = new ArrayList<PermissionDto>();
-        for (PermissionEntity permissionEntity : permissionEntitys) {
-            permissionDtos.add(bindPermission(permissionEntity));
+        if (permissionEntitys != null)   {
+            for (PermissionEntity permissionEntity : permissionEntitys) {
+                permissionDtos.add(bindPermission(permissionEntity));
+            }
         }
         return permissionDtos;
     }

@@ -6,7 +6,7 @@ public interface UserService    {
 
     UserListDto getUsers();
     UserDto getUsers(Long userId);
-    void postUsers(UserDto userDto);
+    UserDto postUsers(UserDto userDto);
     void putUsers(UserDto userDto);
     void deleteUsers(Long userId);
 

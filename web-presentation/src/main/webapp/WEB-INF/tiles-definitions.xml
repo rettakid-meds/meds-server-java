@@ -19,6 +19,34 @@
 
     <!--      Pages      -->
 
+    <!--Appointments-->
+    <definition name="appointments" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/appointments/appointment-page.jsp"/>
+    </definition>
+
+    <!--Chat-->
+    <definition name="chat" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/chat/chat-page.jsp"/>
+    </definition>
+
+    <!--Dashboard-->
+    <definition name="dashboard" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/dashboard/dashboard-page.jsp"/>
+    </definition>
+
+    <!--Doctors-->
+    <definition name="doctors" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/doctors/doctors-list-page.jsp"/>
+    </definition>
+    <definition name="doctors-item" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/doctors/doctors-item.jsp"/>
+    </definition>
+
+    <!--Fields-->
+    <definition name="fields" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/fields/fields-page.jsp"/>
+    </definition>
+
     <!--Home-->
     <definition name="home" extends="definition.main">
         <put-attribute name="body" value="/WEB-INF/tiles/home/home-page.jsp"/>
@@ -27,26 +55,6 @@
     <!--Login-->
     <definition name="login" extends="definition.login">
         <put-attribute name="body" value="/WEB-INF/tiles/login/login-page.jsp"/>
-    </definition>
-
-    <!--Register-->
-    <definition name="register" extends="definition.login">
-        <put-attribute name="body" value="/WEB-INF/tiles/register/register-page.jsp"/>
-    </definition>
-
-    <!--Error-->
-    <definition name="error" extends="definition.main">
-        <put-attribute name="body" value="/WEB-INF/tiles/error/error-page.jsp"/>
-    </definition>
-
-    <!--Dashboard-->
-    <definition name="dashboard" extends="definition.main">
-        <put-attribute name="body" value="/WEB-INF/tiles/dashboard/dashboard-page.jsp"/>
-    </definition>
-
-    <!--Fields-->
-    <definition name="fields" extends="definition.main">
-        <put-attribute name="body" value="/WEB-INF/tiles/fields/fields-page.jsp"/>
     </definition>
 
     <!--Practices-->
@@ -59,5 +67,22 @@
     <definition name="practices-form" extends="definition.main">
         <put-attribute name="body" value="/WEB-INF/tiles/practice/practice-form.jsp"/>
     </definition>
+
+    <!--Register-->
+    <definition name="register" extends="definition.login">
+        <put-attribute name="body" value="/WEB-INF/tiles/register/register-page.jsp"/>
+    </definition>
+
+    <!--Schedule-->
+    <definition name="schedule" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/schedule/schedule-page.jsp"/>
+    </definition>
+
+    <!--Error-->
+    <definition name="error" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/error/error-page.jsp"/>
+    </definition>
+
+
 
 </tiles-definitions>

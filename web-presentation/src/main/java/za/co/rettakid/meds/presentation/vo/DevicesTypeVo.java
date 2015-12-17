@@ -9,7 +9,7 @@ public class DevicesTypeVo    {
     private Long devicesTypeId;
     @NotBlank @NotNull
     private String typeName;
-    @NotBlank @NotNull
+    @NotNull
     private Boolean canPush;
 
     public Long getDevicesTypeId()   {

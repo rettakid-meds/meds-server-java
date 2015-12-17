@@ -2,12 +2,15 @@ package za.co.rettakid.meds.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import za.co.rettakid.meds.services.binding.*;
 import za.co.rettakid.meds.services.*;
 import za.co.rettakid.meds.common.dto.*;
 import za.co.rettakid.meds.persistence.dao.*;
+import za.co.rettakid.meds.persistence.entity.*;
 
 @Service
+@Transactional
 public class DevicesTypeServiceImpl implements DevicesTypeService   {
 
     @Autowired
@@ -26,9 +29,11 @@ public class DevicesTypeServiceImpl implements DevicesTypeService   {
     }
     
     @Override
-    public void postDevicesTypes(DevicesTypeDto devicesTypeDto)  {
-        devicesTypeDao.createOrUpdate(BindDevicesType.bindDevicesType(devicesTypeDto));
-    }
+    public DevicesTypeDto postDevicesTypes(DevicesTypeDto devicesTypeDto)  {
+        DevicesTypeEntity devicesTypeEntity = BindDevicesType.bindDevicesType(devicesTypeDto);
+        devicesTypeDao.createOrUpdate(devicesTypeEntity);
+        return BindDevicesType.bindDevicesType(devicesTypeEntity);
+}
 
     @Override
     public void putDevicesTypes(DevicesTypeDto devicesTypeDto)  {
@@ -38,6 +43,6 @@ public class DevicesTypeServiceImpl implements DevicesTypeService   {
     @Override
     public void deleteDevicesTypes(Long devicesTypeId)  {
         devicesTypeDao.delete(devicesTypeDao.read(devicesTypeId));
-}
+    }
 
 }

@@ -1,8 +1,11 @@
 package za.co.rettakid.meds.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 @Table(name = "MEDS_PRESCRIPTION_ITEM")
 public class PrescriptionItemEntity    {
 
@@ -42,5 +45,6 @@ public class PrescriptionItemEntity    {
     public void setName(String name)   {
         this.name = name;
     }
+
 
 }

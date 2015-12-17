@@ -14,6 +14,23 @@ public class BindTradingHour {
             tradingHourEntity.setTradingHourId(tradingHourDto.getTradingHourId());
             tradingHourEntity.setEffFrm(tradingHourDto.getEffFrm());
             tradingHourEntity.setEffTo(tradingHourDto.getEffTo());
+            tradingHourEntity.setBreakAEffFrm(tradingHourDto.getBreakAEffFrm());
+            tradingHourEntity.setBreakAEffTo(tradingHourDto.getBreakAEffTo());
+            tradingHourEntity.setBreakBEffFrm(tradingHourDto.getBreakBEffFrm());
+            tradingHourEntity.setBreakBEffTo(tradingHourDto.getBreakBEffTo());
+            tradingHourEntity.setOpen(tradingHourDto.getOpen());
+        }
+        return tradingHourEntity;
+    }
+
+    public static TradingHourEntity bindTradingHour(TradingHourDto tradingHourDto,TradingHourEntity tradingHourEntity) {
+        if (tradingHourDto != null && tradingHourEntity != null)    {
+            tradingHourEntity.setEffFrm(tradingHourDto.getEffFrm());
+            tradingHourEntity.setEffTo(tradingHourDto.getEffTo());
+            tradingHourEntity.setBreakAEffFrm(tradingHourDto.getBreakAEffFrm());
+            tradingHourEntity.setBreakAEffTo(tradingHourDto.getBreakAEffTo());
+            tradingHourEntity.setBreakBEffFrm(tradingHourDto.getBreakBEffFrm());
+            tradingHourEntity.setBreakBEffTo(tradingHourDto.getBreakBEffTo());
             tradingHourEntity.setOpen(tradingHourDto.getOpen());
         }
         return tradingHourEntity;
@@ -34,6 +51,10 @@ public class BindTradingHour {
             tradingHourDto.setTradingHourId(tradingHourEntity.getTradingHourId());
             tradingHourDto.setEffFrm(tradingHourEntity.getEffFrm());
             tradingHourDto.setEffTo(tradingHourEntity.getEffTo());
+            tradingHourDto.setBreakAEffFrm(tradingHourEntity.getBreakAEffFrm());
+            tradingHourDto.setBreakAEffTo(tradingHourEntity.getBreakAEffTo());
+            tradingHourDto.setBreakBEffFrm(tradingHourEntity.getBreakBEffFrm());
+            tradingHourDto.setBreakBEffTo(tradingHourEntity.getBreakBEffTo());
             tradingHourDto.setOpen(tradingHourEntity.getOpen());
         }
         return tradingHourDto;
@@ -41,8 +62,10 @@ public class BindTradingHour {
 
     public static List<TradingHourDto> bindTradingHourEntityList(List<TradingHourEntity> tradingHourEntitys) {
         List<TradingHourDto> tradingHourDtos = new ArrayList<TradingHourDto>();
-        for (TradingHourEntity tradingHourEntity : tradingHourEntitys) {
-            tradingHourDtos.add(bindTradingHour(tradingHourEntity));
+        if (tradingHourEntitys != null)   {
+            for (TradingHourEntity tradingHourEntity : tradingHourEntitys) {
+                tradingHourDtos.add(bindTradingHour(tradingHourEntity));
+            }
         }
         return tradingHourDtos;
     }

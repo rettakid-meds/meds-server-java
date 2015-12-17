@@ -18,6 +18,22 @@ public class BindPracticeField {
         return practiceFieldEntity;
     }
 
+    public static PracticeFieldEntity bindPracticeField(PracticeFieldDto practiceFieldDto,PracticeFieldEntity practiceFieldEntity) {
+        if (practiceFieldDto != null && practiceFieldEntity != null)    {
+            if (practiceFieldEntity.getField().getFieldId() != null) {
+                practiceFieldEntity.setField(BindField.bindField(practiceFieldDto.getField(), practiceFieldEntity.getField()));
+            } else  {
+                practiceFieldEntity.setField(BindField.bindField(practiceFieldDto.getField(), new FieldEntity()));
+            }
+            if (practiceFieldEntity.getPractice().getPracticeId() != null) {
+                practiceFieldEntity.setPractice(BindPractice.bindPractice(practiceFieldDto.getPractice(), practiceFieldEntity.getPractice()));
+            } else  {
+                practiceFieldEntity.setPractice(BindPractice.bindPractice(practiceFieldDto.getPractice(), new PracticeEntity()));
+            }
+        }
+        return practiceFieldEntity;
+    }
+
     public static List<PracticeFieldEntity> bindPracticeFieldDtoList(List<PracticeFieldDto> practiceFieldDtos) {
     List<PracticeFieldEntity> practiceFieldEntities = new ArrayList<PracticeFieldEntity>();
         for (PracticeFieldDto practiceFieldDto : practiceFieldDtos) {
@@ -39,8 +55,10 @@ public class BindPracticeField {
 
     public static List<PracticeFieldDto> bindPracticeFieldEntityList(List<PracticeFieldEntity> practiceFieldEntitys) {
         List<PracticeFieldDto> practiceFieldDtos = new ArrayList<PracticeFieldDto>();
-        for (PracticeFieldEntity practiceFieldEntity : practiceFieldEntitys) {
-            practiceFieldDtos.add(bindPracticeField(practiceFieldEntity));
+        if (practiceFieldEntitys != null)   {
+            for (PracticeFieldEntity practiceFieldEntity : practiceFieldEntitys) {
+                practiceFieldDtos.add(bindPracticeField(practiceFieldEntity));
+            }
         }
         return practiceFieldDtos;
     }

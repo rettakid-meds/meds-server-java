@@ -8,28 +8,28 @@ public class TradingDayVo    {
 
     private Long tradingDayId;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private TradingHourVo monday;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private TradingHourVo tuesday;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private TradingHourVo wednesday;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private TradingHourVo thursday;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private TradingHourVo friday;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private TradingHourVo saturday;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private TradingHourVo sunday;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private TradingHourVo pubicHoliday;
 
     public Long getTradingDayId()   {

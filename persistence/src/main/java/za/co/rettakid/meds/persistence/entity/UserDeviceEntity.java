@@ -1,8 +1,11 @@
 package za.co.rettakid.meds.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 @Table(name = "MEDS_USER_DEVICE")
 public class UserDeviceEntity    {
 
@@ -64,5 +67,6 @@ public class UserDeviceEntity    {
     public void setDevicePushId(String devicePushId)   {
         this.devicePushId = devicePushId;
     }
+
 
 }

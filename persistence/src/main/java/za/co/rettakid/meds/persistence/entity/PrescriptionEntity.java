@@ -1,9 +1,12 @@
 package za.co.rettakid.meds.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import org.hibernate.envers.Audited;
 import java.util.Date;
 
 @Entity
+@Audited
 @Table(name = "MEDS_PRESCRIPTION")
 public class PrescriptionEntity    {
 
@@ -14,6 +17,7 @@ public class PrescriptionEntity    {
     private FileEntity file;
     private Date effFrm;
     private Date effTo;
+    private List<PrescriptionItemEntity> prescriptionItemPrescriptions;
 
 
     @Id
@@ -69,7 +73,7 @@ public class PrescriptionEntity    {
     }
 
     @Basic
-    @Column(name="EFF_FRM" , nullable=false)
+    @Column(name="EFF_FRM" , length=0 , nullable=false)
     public Date getEffFrm()   {
         return this.effFrm;
     }
@@ -79,13 +83,23 @@ public class PrescriptionEntity    {
     }
 
     @Basic
-    @Column(name="EFF_TO" , nullable=false)
+    @Column(name="EFF_TO" , length=0 , nullable=false)
     public Date getEffTo()   {
         return this.effTo;
     }
 
     public void setEffTo(Date effTo)   {
         this.effTo = effTo;
+    }
+
+
+    @OneToMany(mappedBy = "prescription", fetch = FetchType.LAZY)
+    public List<PrescriptionItemEntity> getPrescriptionItemPrescriptions()   {
+        return this.prescriptionItemPrescriptions;
+    }
+
+    public void setPrescriptionItemPrescriptions(List<PrescriptionItemEntity> prescriptionItemPrescriptions)   {
+    this.prescriptionItemPrescriptions = prescriptionItemPrescriptions;
     }
 
 }

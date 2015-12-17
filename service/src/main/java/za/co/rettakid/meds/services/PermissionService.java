@@ -6,7 +6,7 @@ public interface PermissionService    {
 
     PermissionListDto getPermissions();
     PermissionDto getPermissions(Long permissionId);
-    void postPermissions(PermissionDto permissionDto);
+    PermissionDto postPermissions(PermissionDto permissionDto);
     void putPermissions(PermissionDto permissionDto);
     void deletePermissions(Long permissionId);
 

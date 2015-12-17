@@ -6,7 +6,7 @@ public interface DoctorPracticeService    {
 
     DoctorPracticeListDto getDoctorPractices();
     DoctorPracticeDto getDoctorPractices(Long medsDoctorPracticeId);
-    void postDoctorPractices(DoctorPracticeDto doctorPracticeDto);
+    DoctorPracticeDto postDoctorPractices(DoctorPracticeDto doctorPracticeDto);
     void putDoctorPractices(DoctorPracticeDto doctorPracticeDto);
     void deleteDoctorPractices(Long medsDoctorPracticeId);
 

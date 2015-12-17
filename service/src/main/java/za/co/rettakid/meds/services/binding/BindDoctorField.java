@@ -18,6 +18,22 @@ public class BindDoctorField {
         return doctorFieldEntity;
     }
 
+    public static DoctorFieldEntity bindDoctorField(DoctorFieldDto doctorFieldDto,DoctorFieldEntity doctorFieldEntity) {
+        if (doctorFieldDto != null && doctorFieldEntity != null)    {
+            if (doctorFieldEntity.getField().getFieldId() != null) {
+                doctorFieldEntity.setField(BindField.bindField(doctorFieldDto.getField(), doctorFieldEntity.getField()));
+            } else  {
+                doctorFieldEntity.setField(BindField.bindField(doctorFieldDto.getField(), new FieldEntity()));
+            }
+            if (doctorFieldEntity.getDoctor().getDoctorId() != null) {
+                doctorFieldEntity.setDoctor(BindDoctor.bindDoctor(doctorFieldDto.getDoctor(), doctorFieldEntity.getDoctor()));
+            } else  {
+                doctorFieldEntity.setDoctor(BindDoctor.bindDoctor(doctorFieldDto.getDoctor(), new DoctorEntity()));
+            }
+        }
+        return doctorFieldEntity;
+    }
+
     public static List<DoctorFieldEntity> bindDoctorFieldDtoList(List<DoctorFieldDto> doctorFieldDtos) {
     List<DoctorFieldEntity> doctorFieldEntities = new ArrayList<DoctorFieldEntity>();
         for (DoctorFieldDto doctorFieldDto : doctorFieldDtos) {
@@ -39,8 +55,10 @@ public class BindDoctorField {
 
     public static List<DoctorFieldDto> bindDoctorFieldEntityList(List<DoctorFieldEntity> doctorFieldEntitys) {
         List<DoctorFieldDto> doctorFieldDtos = new ArrayList<DoctorFieldDto>();
-        for (DoctorFieldEntity doctorFieldEntity : doctorFieldEntitys) {
-            doctorFieldDtos.add(bindDoctorField(doctorFieldEntity));
+        if (doctorFieldEntitys != null)   {
+            for (DoctorFieldEntity doctorFieldEntity : doctorFieldEntitys) {
+                doctorFieldDtos.add(bindDoctorField(doctorFieldEntity));
+            }
         }
         return doctorFieldDtos;
     }

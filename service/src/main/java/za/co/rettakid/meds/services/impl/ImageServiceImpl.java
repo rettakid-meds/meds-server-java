@@ -2,12 +2,15 @@ package za.co.rettakid.meds.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import za.co.rettakid.meds.services.binding.*;
 import za.co.rettakid.meds.services.*;
 import za.co.rettakid.meds.common.dto.*;
 import za.co.rettakid.meds.persistence.dao.*;
+import za.co.rettakid.meds.persistence.entity.*;
 
 @Service
+@Transactional
 public class ImageServiceImpl implements ImageService   {
 
     @Autowired
@@ -26,9 +29,11 @@ public class ImageServiceImpl implements ImageService   {
     }
     
     @Override
-    public void postImages(ImageDto imageDto)  {
-        imageDao.createOrUpdate(BindImage.bindImage(imageDto));
-    }
+    public ImageDto postImages(ImageDto imageDto)  {
+        ImageEntity imageEntity = BindImage.bindImage(imageDto);
+        imageDao.createOrUpdate(imageEntity);
+        return BindImage.bindImage(imageEntity);
+}
 
     @Override
     public void putImages(ImageDto imageDto)  {
@@ -38,6 +43,6 @@ public class ImageServiceImpl implements ImageService   {
     @Override
     public void deleteImages(Long imageId)  {
         imageDao.delete(imageDao.read(imageId));
-}
+    }
 
 }

@@ -8,11 +8,11 @@ import java.util.List;
  */
 public interface BaseDao<T,P extends Serializable> {
 
-    public T read(P pk);
-    public List<T> read();
-    public void delete(T entity);
-    public void createOrUpdate(T entity);
-    public Class getEntityClass();
-    public void flush();
+    T read(P pk);
+    List<T> read();
+    void delete(T entity);
+    void createOrUpdate(T entity);
+    Class getEntityClass();
+    void flush();
 
 }

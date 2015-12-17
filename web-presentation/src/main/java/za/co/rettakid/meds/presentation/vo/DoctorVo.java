@@ -3,22 +3,30 @@ package za.co.rettakid.meds.presentation.vo;
 import org.hibernate.validator.constraints.*;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
+import java.util.Date;
 
 public class DoctorVo    {
 
     private Long doctorId;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private UserVo user;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private ImageVo icon;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private ImageVo image;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
+    private TradingDayVo tradingDay;
+    @Valid
+    @NotNull
     private DataContentVo bio;
+    @NotNull
+    private Date effFrm;
+    @NotNull
+    private Date effTo;
 
     public Long getDoctorId()   {
         return this.doctorId;
@@ -52,12 +60,36 @@ public class DoctorVo    {
         this.image = image;
     }
 
+    public TradingDayVo getTradingDay()   {
+        return this.tradingDay;
+    }
+
+    public void setTradingDay(TradingDayVo tradingDay)   {
+        this.tradingDay = tradingDay;
+    }
+
     public DataContentVo getBio()   {
         return this.bio;
     }
 
     public void setBio(DataContentVo bio)   {
         this.bio = bio;
+    }
+
+    public Date getEffFrm()   {
+        return this.effFrm;
+    }
+
+    public void setEffFrm(Date effFrm)   {
+        this.effFrm = effFrm;
+    }
+
+    public Date getEffTo()   {
+        return this.effTo;
+    }
+
+    public void setEffTo(Date effTo)   {
+        this.effTo = effTo;
     }
 
 }

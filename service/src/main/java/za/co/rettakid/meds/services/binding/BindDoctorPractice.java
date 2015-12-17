@@ -18,6 +18,22 @@ public class BindDoctorPractice {
         return doctorPracticeEntity;
     }
 
+    public static DoctorPracticeEntity bindDoctorPractice(DoctorPracticeDto doctorPracticeDto,DoctorPracticeEntity doctorPracticeEntity) {
+        if (doctorPracticeDto != null && doctorPracticeEntity != null)    {
+            if (doctorPracticeEntity.getPractice().getPracticeId() != null) {
+                doctorPracticeEntity.setPractice(BindPractice.bindPractice(doctorPracticeDto.getPractice(), doctorPracticeEntity.getPractice()));
+            } else  {
+                doctorPracticeEntity.setPractice(BindPractice.bindPractice(doctorPracticeDto.getPractice(), new PracticeEntity()));
+            }
+            if (doctorPracticeEntity.getDoctor().getDoctorId() != null) {
+                doctorPracticeEntity.setDoctor(BindDoctor.bindDoctor(doctorPracticeDto.getDoctor(), doctorPracticeEntity.getDoctor()));
+            } else  {
+                doctorPracticeEntity.setDoctor(BindDoctor.bindDoctor(doctorPracticeDto.getDoctor(), new DoctorEntity()));
+            }
+        }
+        return doctorPracticeEntity;
+    }
+
     public static List<DoctorPracticeEntity> bindDoctorPracticeDtoList(List<DoctorPracticeDto> doctorPracticeDtos) {
     List<DoctorPracticeEntity> doctorPracticeEntities = new ArrayList<DoctorPracticeEntity>();
         for (DoctorPracticeDto doctorPracticeDto : doctorPracticeDtos) {
@@ -39,8 +55,10 @@ public class BindDoctorPractice {
 
     public static List<DoctorPracticeDto> bindDoctorPracticeEntityList(List<DoctorPracticeEntity> doctorPracticeEntitys) {
         List<DoctorPracticeDto> doctorPracticeDtos = new ArrayList<DoctorPracticeDto>();
-        for (DoctorPracticeEntity doctorPracticeEntity : doctorPracticeEntitys) {
-            doctorPracticeDtos.add(bindDoctorPractice(doctorPracticeEntity));
+        if (doctorPracticeEntitys != null)   {
+            for (DoctorPracticeEntity doctorPracticeEntity : doctorPracticeEntitys) {
+                doctorPracticeDtos.add(bindDoctorPractice(doctorPracticeEntity));
+            }
         }
         return doctorPracticeDtos;
     }

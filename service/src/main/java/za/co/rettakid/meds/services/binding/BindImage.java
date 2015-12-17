@@ -19,6 +19,19 @@ public class BindImage {
         return imageEntity;
     }
 
+    public static ImageEntity bindImage(ImageDto imageDto,ImageEntity imageEntity) {
+        if (imageDto != null && imageEntity != null)    {
+            if (imageEntity.getFile().getFileId() != null) {
+                imageEntity.setFile(BindFile.bindFile(imageDto.getFile(), imageEntity.getFile()));
+            } else  {
+                imageEntity.setFile(BindFile.bindFile(imageDto.getFile(), new FileEntity()));
+            }
+            imageEntity.setWidth(imageDto.getWidth());
+            imageEntity.setHeight(imageDto.getHeight());
+        }
+        return imageEntity;
+    }
+
     public static List<ImageEntity> bindImageDtoList(List<ImageDto> imageDtos) {
     List<ImageEntity> imageEntities = new ArrayList<ImageEntity>();
         for (ImageDto imageDto : imageDtos) {
@@ -41,8 +54,10 @@ public class BindImage {
 
     public static List<ImageDto> bindImageEntityList(List<ImageEntity> imageEntitys) {
         List<ImageDto> imageDtos = new ArrayList<ImageDto>();
-        for (ImageEntity imageEntity : imageEntitys) {
-            imageDtos.add(bindImage(imageEntity));
+        if (imageEntitys != null)   {
+            for (ImageEntity imageEntity : imageEntitys) {
+                imageDtos.add(bindImage(imageEntity));
+            }
         }
         return imageDtos;
     }

@@ -9,20 +9,20 @@ public class PrescriptionVo    {
 
     private Long prescriptionId;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private AppointmentVo appointment;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private DoctorVo doctor;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private UserVo user;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private FileVo file;
-    @NotBlank @NotNull
+    @NotNull
     private Date effFrm;
-    @NotBlank @NotNull
+    @NotNull
     private Date effTo;
 
     public Long getPrescriptionId()   {

@@ -15,6 +15,14 @@ public class UserDto    {
     private String gender;
     private Integer age;
     private Boolean userAllowPush;
+    private UserPermissionListDto userPermissionUsers;
+    private UserDeviceListDto userDeviceUsers;
+    private UserMedicalAidListDto userMedicalAidUsers;
+    private PracticeUserListDto practiceUserUsers;
+    private DoctorListDto doctorUsers;
+    private DoctorUserListDto doctorUserUsers;
+    private AppointmentListDto appointmentUsers;
+    private PrescriptionListDto prescriptionUsers;
 
     public Long getUserId()   {
         return this.userId;
@@ -95,6 +103,71 @@ public class UserDto    {
     @XmlElement(name = "userallowpush")
     public void setUserAllowPush(Boolean userAllowPush)   {
         this.userAllowPush = userAllowPush;
+    }
+
+
+    public UserPermissionListDto getUserPermissionUsers()   {
+        return this.userPermissionUsers;
+    }
+
+    public void setUserPermissionUsers(UserPermissionListDto userPermissionUsers)   {
+        this.userPermissionUsers = userPermissionUsers;
+    }
+
+    public UserDeviceListDto getUserDeviceUsers()   {
+        return this.userDeviceUsers;
+    }
+
+    public void setUserDeviceUsers(UserDeviceListDto userDeviceUsers)   {
+        this.userDeviceUsers = userDeviceUsers;
+    }
+
+    public UserMedicalAidListDto getUserMedicalAidUsers()   {
+        return this.userMedicalAidUsers;
+    }
+
+    public void setUserMedicalAidUsers(UserMedicalAidListDto userMedicalAidUsers)   {
+        this.userMedicalAidUsers = userMedicalAidUsers;
+    }
+
+    public PracticeUserListDto getPracticeUserUsers()   {
+        return this.practiceUserUsers;
+    }
+
+    public void setPracticeUserUsers(PracticeUserListDto practiceUserUsers)   {
+        this.practiceUserUsers = practiceUserUsers;
+    }
+
+    public DoctorListDto getDoctorUsers()   {
+        return this.doctorUsers;
+    }
+
+    public void setDoctorUsers(DoctorListDto doctorUsers)   {
+        this.doctorUsers = doctorUsers;
+    }
+
+    public DoctorUserListDto getDoctorUserUsers()   {
+        return this.doctorUserUsers;
+    }
+
+    public void setDoctorUserUsers(DoctorUserListDto doctorUserUsers)   {
+        this.doctorUserUsers = doctorUserUsers;
+    }
+
+    public AppointmentListDto getAppointmentUsers()   {
+        return this.appointmentUsers;
+    }
+
+    public void setAppointmentUsers(AppointmentListDto appointmentUsers)   {
+        this.appointmentUsers = appointmentUsers;
+    }
+
+    public PrescriptionListDto getPrescriptionUsers()   {
+        return this.prescriptionUsers;
+    }
+
+    public void setPrescriptionUsers(PrescriptionListDto prescriptionUsers)   {
+        this.prescriptionUsers = prescriptionUsers;
     }
 
 }

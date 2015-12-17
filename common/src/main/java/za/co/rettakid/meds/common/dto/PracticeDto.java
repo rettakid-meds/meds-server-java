@@ -2,6 +2,7 @@ package za.co.rettakid.meds.common.dto;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
+import java.util.Date;
 
 @XmlRootElement(name = "practicedto")
 public class PracticeDto    {
@@ -17,6 +18,12 @@ public class PracticeDto    {
     private Float fee;
     private ImageDto image;
     private DataContentDto bio;
+    private Date effFrm;
+    private Date effTo;
+    private PracticeUserListDto practiceUserPractices;
+    private PracticeFieldListDto practiceFieldPractices;
+    private PracticeMedicalAidListDto practiceMedicalAidPractices;
+    private DoctorPracticeListDto doctorPracticePractices;
 
     public Long getPracticeId()   {
         return this.practiceId;
@@ -115,6 +122,57 @@ public class PracticeDto    {
     @XmlElement(name = "biodto")
     public void setBio(DataContentDto bio)   {
         this.bio = bio;
+    }
+
+    public Date getEffFrm()   {
+        return this.effFrm;
+    }
+
+    @XmlElement(name = "efffrm")
+    public void setEffFrm(Date effFrm)   {
+        this.effFrm = effFrm;
+    }
+
+    public Date getEffTo()   {
+        return this.effTo;
+    }
+
+    @XmlElement(name = "effto")
+    public void setEffTo(Date effTo)   {
+        this.effTo = effTo;
+    }
+
+
+    public PracticeUserListDto getPracticeUserPractices()   {
+        return this.practiceUserPractices;
+    }
+
+    public void setPracticeUserPractices(PracticeUserListDto practiceUserPractices)   {
+        this.practiceUserPractices = practiceUserPractices;
+    }
+
+    public PracticeFieldListDto getPracticeFieldPractices()   {
+        return this.practiceFieldPractices;
+    }
+
+    public void setPracticeFieldPractices(PracticeFieldListDto practiceFieldPractices)   {
+        this.practiceFieldPractices = practiceFieldPractices;
+    }
+
+    public PracticeMedicalAidListDto getPracticeMedicalAidPractices()   {
+        return this.practiceMedicalAidPractices;
+    }
+
+    public void setPracticeMedicalAidPractices(PracticeMedicalAidListDto practiceMedicalAidPractices)   {
+        this.practiceMedicalAidPractices = practiceMedicalAidPractices;
+    }
+
+    public DoctorPracticeListDto getDoctorPracticePractices()   {
+        return this.doctorPracticePractices;
+    }
+
+    public void setDoctorPracticePractices(DoctorPracticeListDto doctorPracticePractices)   {
+        this.doctorPracticePractices = doctorPracticePractices;
     }
 
 }

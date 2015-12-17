@@ -1,13 +1,17 @@
 package za.co.rettakid.meds.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 @Table(name = "MEDS_PERMISSION")
 public class PermissionEntity    {
 
     private Long permissionId;
     private String permissionName;
+    private List<UserPermissionEntity> userPermissionPermissions;
 
 
     @Id
@@ -30,6 +34,16 @@ public class PermissionEntity    {
 
     public void setPermissionName(String permissionName)   {
         this.permissionName = permissionName;
+    }
+
+
+    @OneToMany(mappedBy = "permission", fetch = FetchType.LAZY)
+    public List<UserPermissionEntity> getUserPermissionPermissions()   {
+        return this.userPermissionPermissions;
+    }
+
+    public void setUserPermissionPermissions(List<UserPermissionEntity> userPermissionPermissions)   {
+    this.userPermissionPermissions = userPermissionPermissions;
     }
 
 }

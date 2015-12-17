@@ -18,6 +18,14 @@ public class BindField {
         return fieldEntity;
     }
 
+    public static FieldEntity bindField(FieldDto fieldDto,FieldEntity fieldEntity) {
+        if (fieldDto != null && fieldEntity != null)    {
+            fieldEntity.setName(fieldDto.getName());
+            fieldEntity.setMapColor(fieldDto.getMapColor());
+        }
+        return fieldEntity;
+    }
+
     public static List<FieldEntity> bindFieldDtoList(List<FieldDto> fieldDtos) {
     List<FieldEntity> fieldEntities = new ArrayList<FieldEntity>();
         for (FieldDto fieldDto : fieldDtos) {
@@ -39,8 +47,10 @@ public class BindField {
 
     public static List<FieldDto> bindFieldEntityList(List<FieldEntity> fieldEntitys) {
         List<FieldDto> fieldDtos = new ArrayList<FieldDto>();
-        for (FieldEntity fieldEntity : fieldEntitys) {
-            fieldDtos.add(bindField(fieldEntity));
+        if (fieldEntitys != null)   {
+            for (FieldEntity fieldEntity : fieldEntitys) {
+                fieldDtos.add(bindField(fieldEntity));
+            }
         }
         return fieldDtos;
     }

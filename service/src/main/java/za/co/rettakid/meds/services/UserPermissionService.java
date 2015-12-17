@@ -9,7 +9,7 @@ public interface UserPermissionService    {
 
     PermissionListDto getPermissionsForUser(Long userId);
 
-    void postUserPermissions(UserPermissionDto userPermissionDto);
+    UserPermissionDto postUserPermissions(UserPermissionDto userPermissionDto);
     void putUserPermissions(UserPermissionDto userPermissionDto);
     void deleteUserPermissions(Long userPermissionId);
 

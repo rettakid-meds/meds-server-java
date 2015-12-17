@@ -22,6 +22,8 @@ public class BindPractice {
             practiceVo.setFee(practiceDto.getFee());
             practiceVo.setImage(BindImage.bindImage(practiceDto.getImage()));
             practiceVo.setBio(BindDataContent.bindDataContent(practiceDto.getBio()));
+            practiceVo.setEffFrm(practiceDto.getEffFrm());
+            practiceVo.setEffTo(practiceDto.getEffTo());
         }
         return practiceVo;
     }
@@ -49,6 +51,8 @@ public class BindPractice {
             practiceDto.setFee(practiceVo.getFee());
             practiceDto.setImage(BindImage.bindImage(practiceVo.getImage()));
             practiceDto.setBio(BindDataContent.bindDataContent(practiceVo.getBio()));
+            practiceDto.setEffFrm(practiceVo.getEffFrm());
+            practiceDto.setEffTo(practiceVo.getEffTo());
         }
         return practiceDto;
     }

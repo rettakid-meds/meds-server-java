@@ -24,6 +24,52 @@ public class BindTradingDay {
         return tradingDayEntity;
     }
 
+    public static TradingDayEntity bindTradingDay(TradingDayDto tradingDayDto,TradingDayEntity tradingDayEntity) {
+        if (tradingDayDto != null && tradingDayEntity != null)    {
+            if (tradingDayEntity.getMonday().getTradingHourId() != null) {
+                tradingDayEntity.setMonday(BindTradingHour.bindTradingHour(tradingDayDto.getMonday(), tradingDayEntity.getMonday()));
+            } else  {
+                tradingDayEntity.setMonday(BindTradingHour.bindTradingHour(tradingDayDto.getMonday(), new TradingHourEntity()));
+            }
+            if (tradingDayEntity.getTuesday().getTradingHourId() != null) {
+                tradingDayEntity.setTuesday(BindTradingHour.bindTradingHour(tradingDayDto.getTuesday(), tradingDayEntity.getTuesday()));
+            } else  {
+                tradingDayEntity.setTuesday(BindTradingHour.bindTradingHour(tradingDayDto.getTuesday(), new TradingHourEntity()));
+            }
+            if (tradingDayEntity.getWednesday().getTradingHourId() != null) {
+                tradingDayEntity.setWednesday(BindTradingHour.bindTradingHour(tradingDayDto.getWednesday(), tradingDayEntity.getWednesday()));
+            } else  {
+                tradingDayEntity.setWednesday(BindTradingHour.bindTradingHour(tradingDayDto.getWednesday(), new TradingHourEntity()));
+            }
+            if (tradingDayEntity.getThursday().getTradingHourId() != null) {
+                tradingDayEntity.setThursday(BindTradingHour.bindTradingHour(tradingDayDto.getThursday(), tradingDayEntity.getThursday()));
+            } else  {
+                tradingDayEntity.setThursday(BindTradingHour.bindTradingHour(tradingDayDto.getThursday(), new TradingHourEntity()));
+            }
+            if (tradingDayEntity.getFriday().getTradingHourId() != null) {
+                tradingDayEntity.setFriday(BindTradingHour.bindTradingHour(tradingDayDto.getFriday(), tradingDayEntity.getFriday()));
+            } else  {
+                tradingDayEntity.setFriday(BindTradingHour.bindTradingHour(tradingDayDto.getFriday(), new TradingHourEntity()));
+            }
+            if (tradingDayEntity.getSaturday().getTradingHourId() != null) {
+                tradingDayEntity.setSaturday(BindTradingHour.bindTradingHour(tradingDayDto.getSaturday(), tradingDayEntity.getSaturday()));
+            } else  {
+                tradingDayEntity.setSaturday(BindTradingHour.bindTradingHour(tradingDayDto.getSaturday(), new TradingHourEntity()));
+            }
+            if (tradingDayEntity.getSunday().getTradingHourId() != null) {
+                tradingDayEntity.setSunday(BindTradingHour.bindTradingHour(tradingDayDto.getSunday(), tradingDayEntity.getSunday()));
+            } else  {
+                tradingDayEntity.setSunday(BindTradingHour.bindTradingHour(tradingDayDto.getSunday(), new TradingHourEntity()));
+            }
+            if (tradingDayEntity.getPubicHoliday().getTradingHourId() != null) {
+                tradingDayEntity.setPubicHoliday(BindTradingHour.bindTradingHour(tradingDayDto.getPubicHoliday(), tradingDayEntity.getPubicHoliday()));
+            } else  {
+                tradingDayEntity.setPubicHoliday(BindTradingHour.bindTradingHour(tradingDayDto.getPubicHoliday(), new TradingHourEntity()));
+            }
+        }
+        return tradingDayEntity;
+    }
+
     public static List<TradingDayEntity> bindTradingDayDtoList(List<TradingDayDto> tradingDayDtos) {
     List<TradingDayEntity> tradingDayEntities = new ArrayList<TradingDayEntity>();
         for (TradingDayDto tradingDayDto : tradingDayDtos) {
@@ -51,8 +97,10 @@ public class BindTradingDay {
 
     public static List<TradingDayDto> bindTradingDayEntityList(List<TradingDayEntity> tradingDayEntitys) {
         List<TradingDayDto> tradingDayDtos = new ArrayList<TradingDayDto>();
-        for (TradingDayEntity tradingDayEntity : tradingDayEntitys) {
-            tradingDayDtos.add(bindTradingDay(tradingDayEntity));
+        if (tradingDayEntitys != null)   {
+            for (TradingDayEntity tradingDayEntity : tradingDayEntitys) {
+                tradingDayDtos.add(bindTradingDay(tradingDayEntity));
+            }
         }
         return tradingDayDtos;
     }

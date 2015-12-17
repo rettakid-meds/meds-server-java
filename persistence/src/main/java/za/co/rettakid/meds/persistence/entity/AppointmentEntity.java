@@ -1,20 +1,24 @@
 package za.co.rettakid.meds.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import org.hibernate.envers.Audited;
 import java.util.Date;
 
 @Entity
+@Audited
 @Table(name = "MEDS_APPOINTMENT")
 public class AppointmentEntity    {
 
     private Long appointmentId;
-    private PracticeEntity practice;
+    private DoctorEntity doctor;
     private UserEntity user;
     private DataContentEntity note;
     private Date expectedFrm;
     private Date expectedTo;
     private Date actualFrm;
     private Date actualTo;
+    private List<PrescriptionEntity> prescriptionAppointments;
 
 
     @Id
@@ -30,13 +34,13 @@ public class AppointmentEntity    {
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="PRACTICE_ID", referencedColumnName="PRACTICE_ID")
-    public PracticeEntity getPractice()   {
-        return this.practice;
+    @JoinColumn(name="DOCTOR_ID", referencedColumnName="DOCTOR_ID")
+    public DoctorEntity getDoctor()   {
+        return this.doctor;
     }
 
-    public void setPractice(PracticeEntity practice)   {
-        this.practice = practice;
+    public void setDoctor(DoctorEntity doctor)   {
+        this.doctor = doctor;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
@@ -60,7 +64,7 @@ public class AppointmentEntity    {
     }
 
     @Basic
-    @Column(name="EXPECTED_FRM" , nullable=false)
+    @Column(name="EXPECTED_FRM" , length=0 , nullable=false)
     public Date getExpectedFrm()   {
         return this.expectedFrm;
     }
@@ -70,7 +74,7 @@ public class AppointmentEntity    {
     }
 
     @Basic
-    @Column(name="EXPECTED_TO" , nullable=false)
+    @Column(name="EXPECTED_TO" , length=0 , nullable=false)
     public Date getExpectedTo()   {
         return this.expectedTo;
     }
@@ -80,7 +84,7 @@ public class AppointmentEntity    {
     }
 
     @Basic
-    @Column(name="ACTUAL_FRM" , nullable=true)
+    @Column(name="ACTUAL_FRM" , length=0 , nullable=true)
     public Date getActualFrm()   {
         return this.actualFrm;
     }
@@ -90,13 +94,23 @@ public class AppointmentEntity    {
     }
 
     @Basic
-    @Column(name="ACTUAL_TO" , nullable=true)
+    @Column(name="ACTUAL_TO" , length=0 , nullable=true)
     public Date getActualTo()   {
         return this.actualTo;
     }
 
     public void setActualTo(Date actualTo)   {
         this.actualTo = actualTo;
+    }
+
+
+    @OneToMany(mappedBy = "appointment", fetch = FetchType.LAZY)
+    public List<PrescriptionEntity> getPrescriptionAppointments()   {
+        return this.prescriptionAppointments;
+    }
+
+    public void setPrescriptionAppointments(List<PrescriptionEntity> prescriptionAppointments)   {
+    this.prescriptionAppointments = prescriptionAppointments;
     }
 
 }

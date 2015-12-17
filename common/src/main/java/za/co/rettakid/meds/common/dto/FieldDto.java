@@ -9,6 +9,8 @@ public class FieldDto    {
     private Long fieldId;
     private String name;
     private String mapColor;
+    private PracticeFieldListDto practiceFieldFields;
+    private DoctorFieldListDto doctorFieldFields;
 
     public Long getFieldId()   {
         return this.fieldId;
@@ -35,6 +37,23 @@ public class FieldDto    {
     @XmlElement(name = "mapcolor")
     public void setMapColor(String mapColor)   {
         this.mapColor = mapColor;
+    }
+
+
+    public PracticeFieldListDto getPracticeFieldFields()   {
+        return this.practiceFieldFields;
+    }
+
+    public void setPracticeFieldFields(PracticeFieldListDto practiceFieldFields)   {
+        this.practiceFieldFields = practiceFieldFields;
+    }
+
+    public DoctorFieldListDto getDoctorFieldFields()   {
+        return this.doctorFieldFields;
+    }
+
+    public void setDoctorFieldFields(DoctorFieldListDto doctorFieldFields)   {
+        this.doctorFieldFields = doctorFieldFields;
     }
 
 }

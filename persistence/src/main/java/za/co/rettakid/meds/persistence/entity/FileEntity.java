@@ -1,9 +1,12 @@
 package za.co.rettakid.meds.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import org.hibernate.envers.Audited;
 import java.util.Date;
 
 @Entity
+@Audited
 @Table(name = "MEDS_FILE")
 public class FileEntity    {
 
@@ -11,6 +14,8 @@ public class FileEntity    {
     private String guid;
     private String name;
     private Date effFrm;
+    private List<ImageEntity> imageFiles;
+    private List<PrescriptionEntity> prescriptionFiles;
 
 
     @Id
@@ -46,13 +51,32 @@ public class FileEntity    {
     }
 
     @Basic
-    @Column(name="EFF_FRM" , nullable=false)
+    @Column(name="EFF_FRM" , length=0 , nullable=false)
     public Date getEffFrm()   {
         return this.effFrm;
     }
 
     public void setEffFrm(Date effFrm)   {
         this.effFrm = effFrm;
+    }
+
+
+    @OneToMany(mappedBy = "file", fetch = FetchType.LAZY)
+    public List<ImageEntity> getImageFiles()   {
+        return this.imageFiles;
+    }
+
+    public void setImageFiles(List<ImageEntity> imageFiles)   {
+    this.imageFiles = imageFiles;
+    }
+
+    @OneToMany(mappedBy = "file", fetch = FetchType.LAZY)
+    public List<PrescriptionEntity> getPrescriptionFiles()   {
+        return this.prescriptionFiles;
+    }
+
+    public void setPrescriptionFiles(List<PrescriptionEntity> prescriptionFiles)   {
+    this.prescriptionFiles = prescriptionFiles;
     }
 
 }

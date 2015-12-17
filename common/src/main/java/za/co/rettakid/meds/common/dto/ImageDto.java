@@ -10,6 +10,9 @@ public class ImageDto    {
     private FileDto file;
     private Integer width;
     private Integer height;
+    private PracticeListDto practiceImages;
+    private DoctorListDto doctorImages;
+    private DoctorListDto doctorIcons;
 
     public Long getImageId()   {
         return this.imageId;
@@ -45,6 +48,31 @@ public class ImageDto    {
     @XmlElement(name = "height")
     public void setHeight(Integer height)   {
         this.height = height;
+    }
+
+
+    public PracticeListDto getPracticeImages()   {
+        return this.practiceImages;
+    }
+
+    public void setPracticeImages(PracticeListDto practiceImages)   {
+        this.practiceImages = practiceImages;
+    }
+
+    public DoctorListDto getDoctorImages()   {
+        return this.doctorImages;
+    }
+
+    public void setDoctorImages(DoctorListDto doctorImages)   {
+        this.doctorImages = doctorImages;
+    }
+
+    public DoctorListDto getDoctorIcons()   {
+        return this.doctorIcons;
+    }
+
+    public void setDoctorIcons(DoctorListDto doctorIcons)   {
+        this.doctorIcons = doctorIcons;
     }
 
 }

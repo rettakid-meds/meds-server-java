@@ -6,7 +6,7 @@ public interface DoctorFieldService    {
 
     DoctorFieldListDto getDoctorFields();
     DoctorFieldDto getDoctorFields(Long doctorFieldId);
-    void postDoctorFields(DoctorFieldDto doctorFieldDto);
+    DoctorFieldDto postDoctorFields(DoctorFieldDto doctorFieldDto);
     void putDoctorFields(DoctorFieldDto doctorFieldDto);
     void deleteDoctorFields(Long doctorFieldId);
 

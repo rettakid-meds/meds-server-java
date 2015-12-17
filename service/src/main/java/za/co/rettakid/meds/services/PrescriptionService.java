@@ -7,7 +7,7 @@ public interface PrescriptionService    {
 
     PrescriptionListDto getPrescriptions();
     PrescriptionDto getPrescriptions(Long prescriptionId);
-    void postPrescriptions(PrescriptionDto prescriptionDto);
+    PrescriptionDto postPrescriptions(PrescriptionDto prescriptionDto);
     void putPrescriptions(PrescriptionDto prescriptionDto);
     void deletePrescriptions(Long prescriptionId);
 

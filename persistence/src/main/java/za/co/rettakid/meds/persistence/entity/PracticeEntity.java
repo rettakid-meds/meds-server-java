@@ -1,8 +1,12 @@
 package za.co.rettakid.meds.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import org.hibernate.envers.Audited;
+import java.util.Date;
 
 @Entity
+@Audited
 @Table(name = "MEDS_PRACTICE")
 public class PracticeEntity    {
 
@@ -17,6 +21,12 @@ public class PracticeEntity    {
     private Float fee;
     private ImageEntity image;
     private DataContentEntity bio;
+    private Date effFrm;
+    private Date effTo;
+    private List<PracticeUserEntity> practiceUserPractices;
+    private List<PracticeFieldEntity> practiceFieldPractices;
+    private List<PracticeMedicalAidEntity> practiceMedicalAidPractices;
+    private List<DoctorPracticeEntity> doctorPracticePractices;
 
 
     @Id
@@ -129,6 +139,63 @@ public class PracticeEntity    {
 
     public void setBio(DataContentEntity bio)   {
         this.bio = bio;
+    }
+
+    @Basic
+    @Column(name="EFF_FRM" , length=0 , nullable=false)
+    public Date getEffFrm()   {
+        return this.effFrm;
+    }
+
+    public void setEffFrm(Date effFrm)   {
+        this.effFrm = effFrm;
+    }
+
+    @Basic
+    @Column(name="EFF_TO" , length=0 , nullable=false)
+    public Date getEffTo()   {
+        return this.effTo;
+    }
+
+    public void setEffTo(Date effTo)   {
+        this.effTo = effTo;
+    }
+
+
+    @OneToMany(mappedBy = "practice", fetch = FetchType.LAZY)
+    public List<PracticeUserEntity> getPracticeUserPractices()   {
+        return this.practiceUserPractices;
+    }
+
+    public void setPracticeUserPractices(List<PracticeUserEntity> practiceUserPractices)   {
+    this.practiceUserPractices = practiceUserPractices;
+    }
+
+    @OneToMany(mappedBy = "practice", fetch = FetchType.LAZY)
+    public List<PracticeFieldEntity> getPracticeFieldPractices()   {
+        return this.practiceFieldPractices;
+    }
+
+    public void setPracticeFieldPractices(List<PracticeFieldEntity> practiceFieldPractices)   {
+    this.practiceFieldPractices = practiceFieldPractices;
+    }
+
+    @OneToMany(mappedBy = "practice", fetch = FetchType.LAZY)
+    public List<PracticeMedicalAidEntity> getPracticeMedicalAidPractices()   {
+        return this.practiceMedicalAidPractices;
+    }
+
+    public void setPracticeMedicalAidPractices(List<PracticeMedicalAidEntity> practiceMedicalAidPractices)   {
+    this.practiceMedicalAidPractices = practiceMedicalAidPractices;
+    }
+
+    @OneToMany(mappedBy = "practice", fetch = FetchType.LAZY)
+    public List<DoctorPracticeEntity> getDoctorPracticePractices()   {
+        return this.doctorPracticePractices;
+    }
+
+    public void setDoctorPracticePractices(List<DoctorPracticeEntity> doctorPracticePractices)   {
+    this.doctorPracticePractices = doctorPracticePractices;
     }
 
 }

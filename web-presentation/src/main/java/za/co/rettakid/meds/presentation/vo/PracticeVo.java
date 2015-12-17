@@ -3,6 +3,7 @@ package za.co.rettakid.meds.presentation.vo;
 import org.hibernate.validator.constraints.*;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
+import java.util.Date;
 
 public class PracticeVo    {
 
@@ -10,23 +11,23 @@ public class PracticeVo    {
     private String name;
     @NotBlank @NotNull
     private String email;
-    @NotBlank @NotNull
+    @NotNull
     private Float longitude;
-    @NotBlank @NotNull
+    @NotNull
     private Float latitude;
     @NotBlank @NotNull
     private String address;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private TradingDayVo tradingDay;
     private String phone;
     private Float fee;
-    @Valid
-    @NotBlank @NotNull
     private ImageVo image;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private DataContentVo bio;
+    private Date effFrm;
+    private Date effTo;
 
     public Long getPracticeId()   {
         return this.practiceId;
@@ -114,6 +115,22 @@ public class PracticeVo    {
 
     public void setBio(DataContentVo bio)   {
         this.bio = bio;
+    }
+
+    public Date getEffFrm()   {
+        return this.effFrm;
+    }
+
+    public void setEffFrm(Date effFrm)   {
+        this.effFrm = effFrm;
+    }
+
+    public Date getEffTo()   {
+        return this.effTo;
+    }
+
+    public void setEffTo(Date effTo)   {
+        this.effTo = effTo;
     }
 
 }

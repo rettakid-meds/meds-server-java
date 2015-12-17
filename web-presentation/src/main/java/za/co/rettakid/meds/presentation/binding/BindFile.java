@@ -1,9 +1,10 @@
 package za.co.rettakid.meds.presentation.binding;
 
+import za.co.rettakid.meds.common.dto.FileDto;
+import za.co.rettakid.meds.presentation.vo.FileVo;
+
 import java.util.ArrayList;
 import java.util.List;
-import za.co.rettakid.meds.common.dto.*;
-import za.co.rettakid.meds.presentation.vo.*;
 
 public class BindFile {
 

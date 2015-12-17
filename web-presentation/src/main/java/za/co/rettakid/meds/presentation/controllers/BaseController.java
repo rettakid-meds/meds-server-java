@@ -1,73 +1,219 @@
 package za.co.rettakid.meds.presentation.controllers;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.servlet.ModelAndView;
-import za.co.rettakid.meds.common.dto.LoginDto;
+import za.co.rettakid.meds.common.MedsConstantes;
+import za.co.rettakid.meds.common.dto.DoctorDto;
 import za.co.rettakid.meds.common.dto.PermissionDto;
+import za.co.rettakid.meds.common.dto.PracticeDto;
 import za.co.rettakid.meds.common.dto.UserDto;
-import za.co.rettakid.meds.common.dto.UserPermissionDto;
 import za.co.rettakid.meds.common.enums.PermissionEnum;
+import za.co.rettakid.meds.common.enums.PermissionEnumType;
 import za.co.rettakid.meds.common.error.MedsError;
 import za.co.rettakid.meds.common.error.MedsErrorException;
 import za.co.rettakid.meds.presentation.binding.BindLogin;
 import za.co.rettakid.meds.presentation.common.PageDirectory;
 import za.co.rettakid.meds.presentation.vo.LoginVo;
 import za.co.rettakid.meds.presentation.vo.UserVo;
+import za.co.rettakid.meds.services.DoctorUserService;
 import za.co.rettakid.meds.services.LoginService;
+import za.co.rettakid.meds.services.PracticeUserService;
 import za.co.rettakid.meds.services.UserPermissionService;
 
+import javax.servlet.http.HttpServletResponse;
+import java.beans.PropertyEditorSupport;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Lwazi Prusent on 2015/10/20.
  */
+@Controller
 public class BaseController {
 
-    protected String FILE_DIR = "C:\\images\\";
-    protected String MAPS_API_KEY = "AIzaSyAhibwMQzQFt92wgjriJs_Y9deAfmcMOAg";
-    private static final String TOAST_TEXT = "toastText";
+    private static final Logger LOGGER = Logger.getLogger(BaseController.class);
+
+    @Value("${file.dir}")
+    protected String FILE_DIR;
+    @Value("${google.maps.api.web.key}")
+    protected String MAPS_API_WEB_KEY;
+    @Value("${google.maps.api.service.key}")
+    protected String MAPS_API_SERVICE_KEY;
+
+    private static final String TOAST_TEXT = "medsToasts";
+    private static final String TOAST_ERROR_TEXT = "medsErrorToasts";
 
     @Autowired
     private LoginService loginService;
     @Autowired
     private UserPermissionService userPermissionService;
+    @Autowired
+    private PracticeUserService practiceUserService;
+    @Autowired
+    private DoctorUserService doctorUserService;
 
-    protected void createToast(Model model, String toastText) {
+    protected void createToast(Model model, String... toastText) {
         model.addAttribute(TOAST_TEXT, toastText);
+    }
+
+    protected void createErrorToast(Model model, HttpServletResponse response, List<FieldError> fieldErrors) {
+        List<String> toastText = new ArrayList<>();
+        for (FieldError fieldError : fieldErrors) {
+            toastText.add(fieldError.getField().replaceAll("\\.", " ") + " - " + fieldError.getDefaultMessage());
+        }
+        model.addAttribute(TOAST_ERROR_TEXT, toastText);
+        try {
+            response.sendError(HttpServletResponse.SC_NON_AUTHORITATIVE_INFORMATION);
+        } catch (IOException ex) {
+            LOGGER.error("Could not add status code to response error",ex);
+        }
     }
 
     protected String doRedirect(String page) {
         return String.format("redirect:/%s", page);
     }
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+
+        binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) throws IllegalArgumentException {
+                Date date = null;
+                String dateTimeFormatPattern = "[\\d]{4}-[\\d]{2}-[\\d]{2}\\s[\\d]{2}:[\\d]{2}";
+                String dateFormatPattern = "[\\d]{4}-[\\d]{2}-[\\d]{2}";
+                String timeFormatPattern = "[\\d]{2}:[\\d]{2}";
+                Matcher dateTimeMatcher = Pattern.compile(dateTimeFormatPattern).matcher(text);
+                Matcher dateMatcher = Pattern.compile(dateFormatPattern).matcher(text);
+                Matcher timeMatcher = Pattern.compile(timeFormatPattern).matcher(text);
+                try {
+                    if (dateTimeMatcher.find()) {
+                        date = new SimpleDateFormat(MedsConstantes.DATE_TIME_FORMAT).parse(text);
+                    } else if (dateMatcher.find()) {
+                        date = new SimpleDateFormat(MedsConstantes.DATE_FORMAT).parse(text);
+                    } else if (timeMatcher.find()) {
+                        date = new SimpleDateFormat(MedsConstantes.TIME_FORMAT).parse(text);
+                    }
+                } catch (ParseException e) {
+                    LOGGER.error(String.format("could not bind date %s",text),e);
+                }
+
+                setValue(date);
+            }
+        });
+
+    }
+
+    /*login and permissions*/
     protected Boolean loginUser(LoginVo loginVo) {
         UserDto userDto = loginService.login(BindLogin.bindLogin(loginVo));
         if (userDto != null) {
-            List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-            UserPermissionDto userPermissionDto = new UserPermissionDto();
-            userPermissionDto.setUser(userDto);
-            for (final PermissionDto permissionDto : userPermissionService.getPermissionsForUser(userDto.getUserId()).getPermissionList()) {
-                grantedAuthorities.add(
-                        new GrantedAuthority() {
-                            @Override
-                            public String getAuthority() {
-                                return permissionDto.getPermissionName();
-                            }
-                        }
-                );
-            }
+            List<GrantedAuthority> grantedAuthorities = addGenericPermissions(userDto.getUserId());
             Authentication authentication = new UsernamePasswordAuthenticationToken(userDto, null, grantedAuthorities);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             return true;
         }
         return false;
+    }
+
+    private List<GrantedAuthority> addGenericPermissions(final Long userId) {
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        for (final PermissionDto permissionDto : userPermissionService.getPermissionsForUser(userId).getPermissionList()) {
+            grantedAuthorities.add(
+                    new GrantedAuthority() {
+                        @Override
+                        public String getAuthority() {
+                            return permissionDto.getPermissionName();
+                        }
+                    }
+            );
+            grantedAuthorities.addAll(addPracticePermissions(userId, permissionDto.getPermissionName()));
+            grantedAuthorities.addAll(addDoctorPermissions(userId, permissionDto.getPermissionName()));
+        }
+        return grantedAuthorities;
+    }
+
+    private List<GrantedAuthority> addPracticePermissions(final Long userId, final String permissionName) {
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        PermissionEnum permissionEnum = PermissionEnum.get(permissionName);
+        if (permissionEnum != null && permissionEnum.getType() == PermissionEnumType.PRACTICE) {
+            for (final PracticeDto practiceDto : practiceUserService.getPracticesForUser(userId).getPracticeList()) {
+                grantedAuthorities.add(
+                        new GrantedAuthority() {
+                            @Override
+                            public String getAuthority() {
+                                return permissionName + "_" + practiceDto.getPracticeId();
+                            }
+                        }
+                );
+            }
+        }
+        return grantedAuthorities;
+    }
+
+    private List<GrantedAuthority> addDoctorPermissions(final Long userId, final String permissionName) {
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        PermissionEnum permissionEnum = PermissionEnum.get(permissionName);
+        if (permissionEnum != null && permissionEnum.getType() == PermissionEnumType.DOCTOR) {
+            for (final DoctorDto doctorDto : doctorUserService.getDoctors(userId).getDoctorList()) {
+                grantedAuthorities.add(
+                        new GrantedAuthority() {
+                            @Override
+                            public String getAuthority() {
+                                return permissionName + "_" + doctorDto.getDoctorId();
+                            }
+                        }
+                );
+            }
+        }
+        return grantedAuthorities;
+    }
+
+    protected UserDto getPrinciple() {
+        return (UserDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+
+    protected Boolean hasPermission(String permission) {
+        for (GrantedAuthority grantedAuthority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
+            if (grantedAuthority.getAuthority().equals(permission)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected Boolean hasAnyPermission(String... permissions) {
+        for (GrantedAuthority grantedAuthority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
+            if (Arrays.asList(permissions).contains(grantedAuthority.getAuthority())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String denyPermission(Model model) {
+        LOGGER.info("Error 403");
+        model.addAttribute("error", "403 you are not authorised to view this page");
+        return PageDirectory.ERROR;
     }
 
     /*errors*/
@@ -88,10 +234,13 @@ public class BaseController {
         return model;
     }
 
-    @ExceptionHandler(MedsErrorException.class)
-    public ModelAndView catchGeneralError(Throwable e) {
+    @ExceptionHandler(Exception.class)
+    public ModelAndView catchGeneralError(Exception exception, HttpServletResponse response) throws IOException {
+        LOGGER.error(exception.getMessage(), exception);
         ModelAndView model = new ModelAndView(PageDirectory.ERROR);
+        model.setViewName(PageDirectory.ERROR);
         model.addObject("error", "Sorry something broke");
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, exception.getMessage());
         return model;
     }
 

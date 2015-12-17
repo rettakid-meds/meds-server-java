@@ -8,10 +8,10 @@ public class PracticeFieldVo    {
 
     private Long practiceFieldId;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private FieldVo field;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private PracticeVo practice;
 
     public Long getPracticeFieldId()   {

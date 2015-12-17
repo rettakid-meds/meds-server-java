@@ -1,24 +1,21 @@
 package za.co.rettakid.meds.presentation.vo;
 
-import org.hibernate.validator.constraints.*;
-import javax.validation.constraints.*;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class AppointmentVo    {
 
     private Long appointmentId;
-    @Valid
-    @NotBlank @NotNull
-    private PracticeVo practice;
-    @Valid
-    @NotBlank @NotNull
+    @NotNull
+    private DoctorVo doctor;
+    @NotNull
     private UserVo user;
     @Valid
     private DataContentVo note;
-    @NotBlank @NotNull
+    @NotNull
     private Date expectedFrm;
-    @NotBlank @NotNull
+    @NotNull
     private Date expectedTo;
     private Date actualFrm;
     private Date actualTo;
@@ -31,12 +28,12 @@ public class AppointmentVo    {
         this.appointmentId = appointmentId;
     }
 
-    public PracticeVo getPractice()   {
-        return this.practice;
+    public DoctorVo getDoctor()   {
+        return this.doctor;
     }
 
-    public void setPractice(PracticeVo practice)   {
-        this.practice = practice;
+    public void setDoctor(DoctorVo doctor)   {
+        this.doctor = doctor;
     }
 
     public UserVo getUser()   {

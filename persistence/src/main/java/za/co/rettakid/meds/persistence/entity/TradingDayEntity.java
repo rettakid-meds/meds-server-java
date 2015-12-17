@@ -1,8 +1,11 @@
 package za.co.rettakid.meds.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 @Table(name = "MEDS_TRADING_DAY")
 public class TradingDayEntity    {
 
@@ -15,6 +18,8 @@ public class TradingDayEntity    {
     private TradingHourEntity saturday;
     private TradingHourEntity sunday;
     private TradingHourEntity pubicHoliday;
+    private List<PracticeEntity> practiceTradingDays;
+    private List<DoctorEntity> doctorTradingDays;
 
 
     @Id
@@ -107,6 +112,25 @@ public class TradingDayEntity    {
 
     public void setPubicHoliday(TradingHourEntity pubicHoliday)   {
         this.pubicHoliday = pubicHoliday;
+    }
+
+
+    @OneToMany(mappedBy = "tradingDay", fetch = FetchType.LAZY)
+    public List<PracticeEntity> getPracticeTradingDays()   {
+        return this.practiceTradingDays;
+    }
+
+    public void setPracticeTradingDays(List<PracticeEntity> practiceTradingDays)   {
+    this.practiceTradingDays = practiceTradingDays;
+    }
+
+    @OneToMany(mappedBy = "tradingDay", fetch = FetchType.LAZY)
+    public List<DoctorEntity> getDoctorTradingDays()   {
+        return this.doctorTradingDays;
+    }
+
+    public void setDoctorTradingDays(List<DoctorEntity> doctorTradingDays)   {
+    this.doctorTradingDays = doctorTradingDays;
     }
 
 }

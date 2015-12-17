@@ -15,7 +15,10 @@ public class BindDoctor {
             doctorVo.setUser(BindUser.bindUser(doctorDto.getUser()));
             doctorVo.setIcon(BindImage.bindImage(doctorDto.getIcon()));
             doctorVo.setImage(BindImage.bindImage(doctorDto.getImage()));
+            doctorVo.setTradingDay(BindTradingDay.bindTradingDay(doctorDto.getTradingDay()));
             doctorVo.setBio(BindDataContent.bindDataContent(doctorDto.getBio()));
+            doctorVo.setEffFrm(doctorDto.getEffFrm());
+            doctorVo.setEffTo(doctorDto.getEffTo());
         }
         return doctorVo;
     }
@@ -36,7 +39,10 @@ public class BindDoctor {
             doctorDto.setUser(BindUser.bindUser(doctorVo.getUser()));
             doctorDto.setIcon(BindImage.bindImage(doctorVo.getIcon()));
             doctorDto.setImage(BindImage.bindImage(doctorVo.getImage()));
+            doctorDto.setTradingDay(BindTradingDay.bindTradingDay(doctorVo.getTradingDay()));
             doctorDto.setBio(BindDataContent.bindDataContent(doctorVo.getBio()));
+            doctorDto.setEffFrm(doctorVo.getEffFrm());
+            doctorDto.setEffTo(doctorVo.getEffTo());
         }
         return doctorDto;
     }

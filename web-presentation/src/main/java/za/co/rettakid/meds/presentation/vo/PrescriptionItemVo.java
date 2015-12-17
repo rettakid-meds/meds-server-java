@@ -8,7 +8,7 @@ public class PrescriptionItemVo    {
 
     private Long prescriptionItemId;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private PrescriptionVo prescription;
     @NotBlank @NotNull
     private String name;

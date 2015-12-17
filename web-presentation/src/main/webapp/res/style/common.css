@@ -67,14 +67,27 @@ footer.page-footer {
     min-height: 100px;
 }
 
+#map.large {
+    height: 600px;
+}
+
+
 /*generic*/
 
-.padding {
+.padding , .row .col .padding {
     padding: 20px;
 }
 
-.margin {
+.padding-none , .row .col .padding-none {
+    padding: 0;
+}
+
+.margin , .row .col .margin {
     margin: 20px;
+}
+
+.margin-none , .row .col .margin-none {
+    margin: 0;
 }
 
 .full-width {
@@ -83,4 +96,20 @@ footer.page-footer {
 
 .full-height {
     height: 100%
+}
+
+.width-20   {
+    width: 20%;
+}
+
+.height-20   {
+    height: 20%;
+}
+
+.width-40   {
+    width: 40%;
+}
+
+.height-40   {
+    height: 40%;
 }

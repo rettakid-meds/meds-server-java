@@ -6,7 +6,7 @@ public interface UserDeviceService    {
 
     UserDeviceListDto getUserDevices();
     UserDeviceDto getUserDevices(Long userDevicesId);
-    void postUserDevices(UserDeviceDto userDeviceDto);
+    UserDeviceDto postUserDevices(UserDeviceDto userDeviceDto);
     void putUserDevices(UserDeviceDto userDeviceDto);
     void deleteUserDevices(Long userDevicesId);
 

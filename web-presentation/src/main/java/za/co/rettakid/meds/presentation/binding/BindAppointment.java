@@ -12,7 +12,7 @@ public class BindAppointment {
         if (appointmentDto != null)    {
             appointmentVo = new AppointmentVo();
             appointmentVo.setAppointmentId(appointmentDto.getAppointmentId());
-            appointmentVo.setPractice(BindPractice.bindPractice(appointmentDto.getPractice()));
+            appointmentVo.setDoctor(BindDoctor.bindDoctor(appointmentDto.getDoctor()));
             appointmentVo.setUser(BindUser.bindUser(appointmentDto.getUser()));
             appointmentVo.setNote(BindDataContent.bindDataContent(appointmentDto.getNote()));
             appointmentVo.setExpectedFrm(appointmentDto.getExpectedFrm());
@@ -36,7 +36,7 @@ public class BindAppointment {
         if (appointmentVo != null)    {
             appointmentDto = new AppointmentDto();
             appointmentDto.setAppointmentId(appointmentVo.getAppointmentId());
-            appointmentDto.setPractice(BindPractice.bindPractice(appointmentVo.getPractice()));
+            appointmentDto.setDoctor(BindDoctor.bindDoctor(appointmentVo.getDoctor()));
             appointmentDto.setUser(BindUser.bindUser(appointmentVo.getUser()));
             appointmentDto.setNote(BindDataContent.bindDataContent(appointmentVo.getNote()));
             appointmentDto.setExpectedFrm(appointmentVo.getExpectedFrm());

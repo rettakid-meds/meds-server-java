@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import za.co.rettakid.meds.common.dto.FileDto;
 import za.co.rettakid.meds.common.dto.ImageDto;
-import za.co.rettakid.meds.services.FileService;
 import za.co.rettakid.meds.services.ImageService;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

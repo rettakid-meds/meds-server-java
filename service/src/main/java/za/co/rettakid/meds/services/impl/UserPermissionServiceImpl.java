@@ -2,6 +2,7 @@ package za.co.rettakid.meds.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import za.co.rettakid.meds.persistence.entity.UserPermissionEntity;
 import za.co.rettakid.meds.services.binding.*;
 import za.co.rettakid.meds.services.*;
 import za.co.rettakid.meds.common.dto.*;
@@ -33,10 +34,12 @@ public class UserPermissionServiceImpl implements UserPermissionService   {
         permissionListDto.addPermissionList(BindPermission.bindPermissionEntityList(userPermissionDao.getPermissionsForUser(userDao.read(userId))));
         return permissionListDto;
     }
-    
+
     @Override
-    public void postUserPermissions(UserPermissionDto userPermissionDto)  {
-        userPermissionDao.createOrUpdate(BindUserPermission.bindUserPermission(userPermissionDto));
+    public UserPermissionDto postUserPermissions(UserPermissionDto userPermissionDto)  {
+        UserPermissionEntity userPermissionEntity = BindUserPermission.bindUserPermission(userPermissionDto);
+        userPermissionDao.createOrUpdate(userPermissionEntity);
+        return BindUserPermission.bindUserPermission(userPermissionEntity);
     }
 
     @Override

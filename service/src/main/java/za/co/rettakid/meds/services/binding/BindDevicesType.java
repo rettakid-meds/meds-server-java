@@ -18,6 +18,14 @@ public class BindDevicesType {
         return devicesTypeEntity;
     }
 
+    public static DevicesTypeEntity bindDevicesType(DevicesTypeDto devicesTypeDto,DevicesTypeEntity devicesTypeEntity) {
+        if (devicesTypeDto != null && devicesTypeEntity != null)    {
+            devicesTypeEntity.setTypeName(devicesTypeDto.getTypeName());
+            devicesTypeEntity.setCanPush(devicesTypeDto.getCanPush());
+        }
+        return devicesTypeEntity;
+    }
+
     public static List<DevicesTypeEntity> bindDevicesTypeDtoList(List<DevicesTypeDto> devicesTypeDtos) {
     List<DevicesTypeEntity> devicesTypeEntities = new ArrayList<DevicesTypeEntity>();
         for (DevicesTypeDto devicesTypeDto : devicesTypeDtos) {
@@ -39,8 +47,10 @@ public class BindDevicesType {
 
     public static List<DevicesTypeDto> bindDevicesTypeEntityList(List<DevicesTypeEntity> devicesTypeEntitys) {
         List<DevicesTypeDto> devicesTypeDtos = new ArrayList<DevicesTypeDto>();
-        for (DevicesTypeEntity devicesTypeEntity : devicesTypeEntitys) {
-            devicesTypeDtos.add(bindDevicesType(devicesTypeEntity));
+        if (devicesTypeEntitys != null)   {
+            for (DevicesTypeEntity devicesTypeEntity : devicesTypeEntitys) {
+                devicesTypeDtos.add(bindDevicesType(devicesTypeEntity));
+            }
         }
         return devicesTypeDtos;
     }

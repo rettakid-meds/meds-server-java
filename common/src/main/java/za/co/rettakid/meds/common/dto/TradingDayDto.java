@@ -15,6 +15,8 @@ public class TradingDayDto    {
     private TradingHourDto saturday;
     private TradingHourDto sunday;
     private TradingHourDto pubicHoliday;
+    private PracticeListDto practiceTradingDays;
+    private DoctorListDto doctorTradingDays;
 
     public Long getTradingDayId()   {
         return this.tradingDayId;
@@ -95,6 +97,23 @@ public class TradingDayDto    {
     @XmlElement(name = "pubicholidaydto")
     public void setPubicHoliday(TradingHourDto pubicHoliday)   {
         this.pubicHoliday = pubicHoliday;
+    }
+
+
+    public PracticeListDto getPracticeTradingDays()   {
+        return this.practiceTradingDays;
+    }
+
+    public void setPracticeTradingDays(PracticeListDto practiceTradingDays)   {
+        this.practiceTradingDays = practiceTradingDays;
+    }
+
+    public DoctorListDto getDoctorTradingDays()   {
+        return this.doctorTradingDays;
+    }
+
+    public void setDoctorTradingDays(DoctorListDto doctorTradingDays)   {
+        this.doctorTradingDays = doctorTradingDays;
     }
 
 }

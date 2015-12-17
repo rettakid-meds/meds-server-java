@@ -1,6 +1,7 @@
 package za.co.rettakid.meds.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "MEDS_DOCTOR_APPOINTMENT")
@@ -42,5 +43,6 @@ public class DoctorAppointmentEntity    {
     public void setDoctor(DoctorEntity doctor)   {
         this.doctor = doctor;
     }
+
 
 }

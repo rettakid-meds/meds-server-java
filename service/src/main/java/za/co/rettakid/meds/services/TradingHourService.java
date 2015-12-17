@@ -7,7 +7,7 @@ public interface TradingHourService    {
 
     TradingHourListDto getTradingHours();
     TradingHourDto getTradingHours(Long tradingHourId);
-    void postTradingHours(TradingHourDto tradingHourDto);
+    TradingHourDto postTradingHours(TradingHourDto tradingHourDto);
     void putTradingHours(TradingHourDto tradingHourDto);
     void deleteTradingHours(Long tradingHourId);
 

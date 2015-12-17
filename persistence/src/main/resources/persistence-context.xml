@@ -18,6 +18,7 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <import resource="datasource-config.xml" />
+    <import resource="classpath:datasource-config.xml" />
+    <import resource="classpath:common-context.xml" />
 
 </beans>

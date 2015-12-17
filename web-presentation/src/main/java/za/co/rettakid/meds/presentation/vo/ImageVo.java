@@ -8,11 +8,11 @@ public class ImageVo    {
 
     private Long imageId;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private FileVo file;
-    @NotBlank @NotNull
+    @NotNull
     private Integer width;
-    @NotBlank @NotNull
+    @NotNull
     private Integer height;
 
     public Long getImageId()   {

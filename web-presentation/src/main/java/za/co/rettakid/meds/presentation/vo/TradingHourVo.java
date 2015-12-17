@@ -10,7 +10,11 @@ public class TradingHourVo    {
     private Long tradingHourId;
     private Date effFrm;
     private Date effTo;
-    @NotBlank @NotNull
+    private Date breakAEffFrm;
+    private Date breakAEffTo;
+    private Date breakBEffFrm;
+    private Date breakBEffTo;
+    @NotNull
     private Boolean open;
 
     public Long getTradingHourId()   {
@@ -35,6 +39,38 @@ public class TradingHourVo    {
 
     public void setEffTo(Date effTo)   {
         this.effTo = effTo;
+    }
+
+    public Date getBreakAEffFrm()   {
+        return this.breakAEffFrm;
+    }
+
+    public void setBreakAEffFrm(Date breakAEffFrm)   {
+        this.breakAEffFrm = breakAEffFrm;
+    }
+
+    public Date getBreakAEffTo()   {
+        return this.breakAEffTo;
+    }
+
+    public void setBreakAEffTo(Date breakAEffTo)   {
+        this.breakAEffTo = breakAEffTo;
+    }
+
+    public Date getBreakBEffFrm()   {
+        return this.breakBEffFrm;
+    }
+
+    public void setBreakBEffFrm(Date breakBEffFrm)   {
+        this.breakBEffFrm = breakBEffFrm;
+    }
+
+    public Date getBreakBEffTo()   {
+        return this.breakBEffTo;
+    }
+
+    public void setBreakBEffTo(Date breakBEffTo)   {
+        this.breakBEffTo = breakBEffTo;
     }
 
     public Boolean getOpen()   {

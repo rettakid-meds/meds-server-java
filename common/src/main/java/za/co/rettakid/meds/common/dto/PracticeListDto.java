@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 @XmlRootElement(name = "practicelistdto")
 public class PracticeListDto   {

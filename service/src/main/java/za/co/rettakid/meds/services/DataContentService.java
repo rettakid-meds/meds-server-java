@@ -6,7 +6,7 @@ public interface DataContentService    {
 
     DataContentListDto getDataContents();
     DataContentDto getDataContents(Long dataContentId);
-    void postDataContents(DataContentDto dataContentDto);
+    DataContentDto postDataContents(DataContentDto dataContentDto);
     void putDataContents(DataContentDto dataContentDto);
     void deleteDataContents(Long dataContentId);
 

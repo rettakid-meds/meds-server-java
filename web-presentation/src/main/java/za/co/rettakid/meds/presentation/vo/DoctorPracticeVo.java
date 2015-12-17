@@ -8,10 +8,10 @@ public class DoctorPracticeVo    {
 
     private Long medsDoctorPracticeId;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private PracticeVo practice;
     @Valid
-    @NotBlank @NotNull
+    @NotNull
     private DoctorVo doctor;
 
     public Long getMedsDoctorPracticeId()   {

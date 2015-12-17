@@ -2,12 +2,15 @@ package za.co.rettakid.meds.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import za.co.rettakid.meds.services.binding.*;
 import za.co.rettakid.meds.services.*;
 import za.co.rettakid.meds.common.dto.*;
 import za.co.rettakid.meds.persistence.dao.*;
+import za.co.rettakid.meds.persistence.entity.*;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService   {
 
     @Autowired
@@ -26,9 +29,11 @@ public class UserServiceImpl implements UserService   {
     }
     
     @Override
-    public void postUsers(UserDto userDto)  {
-        userDao.createOrUpdate(BindUser.bindUser(userDto));
-    }
+    public UserDto postUsers(UserDto userDto)  {
+        UserEntity userEntity = BindUser.bindUser(userDto);
+        userDao.createOrUpdate(userEntity);
+        return BindUser.bindUser(userEntity);
+}
 
     @Override
     public void putUsers(UserDto userDto)  {
@@ -38,6 +43,6 @@ public class UserServiceImpl implements UserService   {
     @Override
     public void deleteUsers(Long userId)  {
         userDao.delete(userDao.read(userId));
-}
+    }
 
 }

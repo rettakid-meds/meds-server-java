@@ -8,13 +8,14 @@ import java.util.Date;
 public class AppointmentDto    {
 
     private Long appointmentId;
-    private PracticeDto practice;
+    private DoctorDto doctor;
     private UserDto user;
     private DataContentDto note;
     private Date expectedFrm;
     private Date expectedTo;
     private Date actualFrm;
     private Date actualTo;
+    private PrescriptionListDto prescriptionAppointments;
 
     public Long getAppointmentId()   {
         return this.appointmentId;
@@ -25,13 +26,13 @@ public class AppointmentDto    {
         this.appointmentId = appointmentId;
     }
 
-    public PracticeDto getPractice()   {
-        return this.practice;
+    public DoctorDto getDoctor()   {
+        return this.doctor;
     }
 
-    @XmlElement(name = "practicedto")
-    public void setPractice(PracticeDto practice)   {
-        this.practice = practice;
+    @XmlElement(name = "doctordto")
+    public void setDoctor(DoctorDto doctor)   {
+        this.doctor = doctor;
     }
 
     public UserDto getUser()   {
@@ -86,6 +87,15 @@ public class AppointmentDto    {
     @XmlElement(name = "actualto" , required = false)
     public void setActualTo(Date actualTo)   {
         this.actualTo = actualTo;
+    }
+
+
+    public PrescriptionListDto getPrescriptionAppointments()   {
+        return this.prescriptionAppointments;
+    }
+
+    public void setPrescriptionAppointments(PrescriptionListDto prescriptionAppointments)   {
+        this.prescriptionAppointments = prescriptionAppointments;
     }
 
 }

@@ -11,13 +11,12 @@ public class UserVo    {
     private String email;
     @NotBlank @NotNull
     private String password;
-    @NotBlank @NotNull
     private String name;
-    @NotBlank @NotNull
     private String surname;
     private String phone;
     private String gender;
     private Integer age;
+    @NotNull
     private Boolean userAllowPush;
 
     public Long getUserId()   {

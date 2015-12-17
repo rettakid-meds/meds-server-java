@@ -9,24 +9,28 @@
     <title>Meds</title>
     <title></title>
     <!--Import css-->
-    <link type="text/css" rel="stylesheet" href="<c:url value="/res/ThirdParty/font/material/icons/icon.css" />" />
-    <link type="text/css" rel="stylesheet" href="<c:url value='/res/ThirdParty/materialize/css/materialize.min.css'/>" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="<c:url value="/res/ThirdParty/font/material/icons/icon.css" />"/>
+    <link type="text/css" rel="stylesheet" href="<c:url value='/res/ThirdParty/materialize/css/materialize.min.css'/>"
+          media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/res/style/common.css'/>"/>
 
     <!--Import script-->
     <script type="text/javascript" src="<c:url value='/res/ThirdParty/jquery/jquery-2.1.1.min.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/res/ThirdParty/materialize/js/materialize.min.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/res/ThirdParty/cropit/jquery.cropit.js'/>"></script>
+    <script type="text/javascript" src="<c:url value="/res/ThirdParty/sockjs/sockjs.min.js" />"></script>
+    <script type="text/javascript" src="<c:url value="/res/ThirdParty/stompjs/stomp.min.js" />"></script>
     <script type="text/javascript" src="<c:url value='/res/script/common/common.js'/>"></script>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body class="grey lighten-5">
+<body class="grey lighten-2">
 
-<c:if test="${not empty toastText}">
+<c:if test="${not empty medsToasts || not empty medsErrorToasts}">
     <script>
-        initToast("<c:out value="${toastText}" />");
+        <c:forEach var="toastText" items="${medsToasts}" >initToast("<c:out value="${toastText}" />");</c:forEach>
+        <c:forEach var="toastText" items="${medsErrorToasts}" varStatus="loop" >initErrorToast("<c:out value="${toastText}" />",${loop.index});</c:forEach>
     </script>
 </c:if>
 

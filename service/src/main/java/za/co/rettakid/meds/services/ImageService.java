@@ -6,7 +6,7 @@ public interface ImageService    {
 
     ImageListDto getImages();
     ImageDto getImages(Long imageId);
-    void postImages(ImageDto imageDto);
+    ImageDto postImages(ImageDto imageDto);
     void putImages(ImageDto imageDto);
     void deleteImages(Long imageId);
 

@@ -12,9 +12,34 @@ public class BindAppointment {
         if (appointmentDto != null)    {
             appointmentEntity = new AppointmentEntity();
             appointmentEntity.setAppointmentId(appointmentDto.getAppointmentId());
-            appointmentEntity.setPractice(BindPractice.bindPractice(appointmentDto.getPractice()));
+            appointmentEntity.setDoctor(BindDoctor.bindDoctor(appointmentDto.getDoctor()));
             appointmentEntity.setUser(BindUser.bindUser(appointmentDto.getUser()));
             appointmentEntity.setNote(BindDataContent.bindDataContent(appointmentDto.getNote()));
+            appointmentEntity.setExpectedFrm(appointmentDto.getExpectedFrm());
+            appointmentEntity.setExpectedTo(appointmentDto.getExpectedTo());
+            appointmentEntity.setActualFrm(appointmentDto.getActualFrm());
+            appointmentEntity.setActualTo(appointmentDto.getActualTo());
+        }
+        return appointmentEntity;
+    }
+
+    public static AppointmentEntity bindAppointment(AppointmentDto appointmentDto,AppointmentEntity appointmentEntity) {
+        if (appointmentDto != null && appointmentEntity != null)    {
+            if (appointmentEntity.getDoctor().getDoctorId() != null) {
+                appointmentEntity.setDoctor(BindDoctor.bindDoctor(appointmentDto.getDoctor(), appointmentEntity.getDoctor()));
+            } else  {
+                appointmentEntity.setDoctor(BindDoctor.bindDoctor(appointmentDto.getDoctor(), new DoctorEntity()));
+            }
+            if (appointmentEntity.getUser().getUserId() != null) {
+                appointmentEntity.setUser(BindUser.bindUser(appointmentDto.getUser(), appointmentEntity.getUser()));
+            } else  {
+                appointmentEntity.setUser(BindUser.bindUser(appointmentDto.getUser(), new UserEntity()));
+            }
+            if (appointmentEntity.getNote().getDataContentId() != null) {
+                appointmentEntity.setNote(BindDataContent.bindDataContent(appointmentDto.getNote(), appointmentEntity.getNote()));
+            } else  {
+                appointmentEntity.setNote(BindDataContent.bindDataContent(appointmentDto.getNote(), new DataContentEntity()));
+            }
             appointmentEntity.setExpectedFrm(appointmentDto.getExpectedFrm());
             appointmentEntity.setExpectedTo(appointmentDto.getExpectedTo());
             appointmentEntity.setActualFrm(appointmentDto.getActualFrm());
@@ -36,7 +61,7 @@ public class BindAppointment {
         if (appointmentEntity != null)    {
             appointmentDto = new AppointmentDto();
             appointmentDto.setAppointmentId(appointmentEntity.getAppointmentId());
-            appointmentDto.setPractice(BindPractice.bindPractice(appointmentEntity.getPractice()));
+            appointmentDto.setDoctor(BindDoctor.bindDoctor(appointmentEntity.getDoctor()));
             appointmentDto.setUser(BindUser.bindUser(appointmentEntity.getUser()));
             appointmentDto.setNote(BindDataContent.bindDataContent(appointmentEntity.getNote()));
             appointmentDto.setExpectedFrm(appointmentEntity.getExpectedFrm());
@@ -49,8 +74,10 @@ public class BindAppointment {
 
     public static List<AppointmentDto> bindAppointmentEntityList(List<AppointmentEntity> appointmentEntitys) {
         List<AppointmentDto> appointmentDtos = new ArrayList<AppointmentDto>();
-        for (AppointmentEntity appointmentEntity : appointmentEntitys) {
-            appointmentDtos.add(bindAppointment(appointmentEntity));
+        if (appointmentEntitys != null)   {
+            for (AppointmentEntity appointmentEntity : appointmentEntitys) {
+                appointmentDtos.add(bindAppointment(appointmentEntity));
+            }
         }
         return appointmentDtos;
     }

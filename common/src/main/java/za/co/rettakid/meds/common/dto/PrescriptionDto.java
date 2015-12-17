@@ -14,6 +14,7 @@ public class PrescriptionDto    {
     private FileDto file;
     private Date effFrm;
     private Date effTo;
+    private PrescriptionItemListDto prescriptionItemPrescriptions;
 
     public Long getPrescriptionId()   {
         return this.prescriptionId;
@@ -76,6 +77,15 @@ public class PrescriptionDto    {
     @XmlElement(name = "effto")
     public void setEffTo(Date effTo)   {
         this.effTo = effTo;
+    }
+
+
+    public PrescriptionItemListDto getPrescriptionItemPrescriptions()   {
+        return this.prescriptionItemPrescriptions;
+    }
+
+    public void setPrescriptionItemPrescriptions(PrescriptionItemListDto prescriptionItemPrescriptions)   {
+        this.prescriptionItemPrescriptions = prescriptionItemPrescriptions;
     }
 
 }

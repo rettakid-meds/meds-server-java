@@ -37,4 +37,5 @@ public class DoctorPracticeDto    {
         this.doctor = doctor;
     }
 
+
 }

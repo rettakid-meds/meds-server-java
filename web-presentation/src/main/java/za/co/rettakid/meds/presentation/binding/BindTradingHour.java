@@ -14,6 +14,10 @@ public class BindTradingHour {
             tradingHourVo.setTradingHourId(tradingHourDto.getTradingHourId());
             tradingHourVo.setEffFrm(tradingHourDto.getEffFrm());
             tradingHourVo.setEffTo(tradingHourDto.getEffTo());
+            tradingHourVo.setBreakAEffFrm(tradingHourDto.getBreakAEffFrm());
+            tradingHourVo.setBreakAEffTo(tradingHourDto.getBreakAEffTo());
+            tradingHourVo.setBreakBEffFrm(tradingHourDto.getBreakBEffFrm());
+            tradingHourVo.setBreakBEffTo(tradingHourDto.getBreakBEffTo());
             tradingHourVo.setOpen(tradingHourDto.getOpen());
         }
         return tradingHourVo;
@@ -34,6 +38,10 @@ public class BindTradingHour {
             tradingHourDto.setTradingHourId(tradingHourVo.getTradingHourId());
             tradingHourDto.setEffFrm(tradingHourVo.getEffFrm());
             tradingHourDto.setEffTo(tradingHourVo.getEffTo());
+            tradingHourDto.setBreakAEffFrm(tradingHourVo.getBreakAEffFrm());
+            tradingHourDto.setBreakAEffTo(tradingHourVo.getBreakAEffTo());
+            tradingHourDto.setBreakBEffFrm(tradingHourVo.getBreakBEffFrm());
+            tradingHourDto.setBreakBEffTo(tradingHourVo.getBreakBEffTo());
             tradingHourDto.setOpen(tradingHourVo.getOpen());
         }
         return tradingHourDto;

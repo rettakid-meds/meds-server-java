@@ -24,6 +24,20 @@ public class BindUser {
         return userEntity;
     }
 
+    public static UserEntity bindUser(UserDto userDto,UserEntity userEntity) {
+        if (userDto != null && userEntity != null)    {
+            userEntity.setEmail(userDto.getEmail());
+            userEntity.setPassword(userDto.getPassword());
+            userEntity.setName(userDto.getName());
+            userEntity.setSurname(userDto.getSurname());
+            userEntity.setPhone(userDto.getPhone());
+            userEntity.setGender(userDto.getGender());
+            userEntity.setAge(userDto.getAge());
+            userEntity.setUserAllowPush(userDto.getUserAllowPush());
+        }
+        return userEntity;
+    }
+
     public static List<UserEntity> bindUserDtoList(List<UserDto> userDtos) {
     List<UserEntity> userEntities = new ArrayList<UserEntity>();
         for (UserDto userDto : userDtos) {
@@ -51,8 +65,10 @@ public class BindUser {
 
     public static List<UserDto> bindUserEntityList(List<UserEntity> userEntitys) {
         List<UserDto> userDtos = new ArrayList<UserDto>();
-        for (UserEntity userEntity : userEntitys) {
-            userDtos.add(bindUser(userEntity));
+        if (userEntitys != null)   {
+            for (UserEntity userEntity : userEntitys) {
+                userDtos.add(bindUser(userEntity));
+            }
         }
         return userDtos;
     }
