@@ -10,9 +10,25 @@
             selectMonths: true, // Creates a dropdown to control month
             selectYears: 15 // Creates a dropdown of 15 years to control year
         });
+
+        $(".schedule-item-edit").click(function(){
+            var appointmentId = $(this).data("id");
+            window.location.assign("<c:url value="/schedules/{appointmentId}" />".replace("{appointmentId}",appointmentId));
+        });
+
+        $(".schedule-item-new").click(function(){
+            var expectedFrm = $(this).data("frm");
+            var expectedTo = $(this).data("to");
+            window.location.assign("<c:url value="/schedules/new?doctorId=${doctor.doctorId}&expectedFrm={expectedFrm}&expectedTo={expectedTo}" />".replace("{expectedFrm}",expectedFrm).replace("{expectedTo}",expectedTo));
+        });
+
     });
 </script>
-
+<style>
+    .schedule-item:hover {
+        border: 2px solid black;
+    }
+</style>
 <div class="container">
     <input type="date" class="datepicker">
     <br>
@@ -28,17 +44,26 @@
                     <c:forEach var="scheduleItem" items="${scheduleHour}">
                         <c:choose>
                             <c:when test="${scheduleItem.appointmentAvailability.available}">
-                                <td>
+                                <td class="schedule-item schedule-item-new tooltipped grey lighten-3" data-position="bottom"
+                                    data-delay="50" data-tooltip="availible for booking"
+                                    data-frm="${scheduleItem.effFrm.time}"
+                                    data-to="${scheduleItem.effTo.time}" >
 
                                 </td>
                             </c:when>
                             <c:when test="${scheduleItem.appointmentAvailability.appointment == null}">
-                                <td class="grey lighten-3 width-40">
+                                <td class="schedule-item schedule-item-new tooltipped grey lighten-2 width-40" data-position="bottom"
+                                    data-delay="50" data-tooltip="off trading hours"
+                                    data-frm="${scheduleItem.effFrm.time}"
+                                    data-to="${scheduleItem.effTo.time}" >
 
                                 </td>
                             </c:when>
                             <c:otherwise>
-                                <td class="red lighten-3 width-40">
+                                <td class="schedule-item schedule-item-edit tooltipped blue lighten-3 width-40"
+                                    data-position="bottom" data-delay="50"
+                                    data-id="<c:out value="${scheduleItem.appointmentAvailability.appointment.appointmentId}"/>"
+                                    data-tooltip="booked for ${scheduleItem.appointmentAvailability.appointment.user.name} ${scheduleItem.appointmentAvailability.appointment.user.surname}">
                                     <c:out value="${scheduleItem.appointmentAvailability.appointment.user.name} ${scheduleItem.appointmentAvailability.appointment.user.surname}"/>
                                 </td>
                             </c:otherwise>

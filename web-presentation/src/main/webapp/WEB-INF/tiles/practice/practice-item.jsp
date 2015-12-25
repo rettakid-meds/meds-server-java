@@ -37,7 +37,7 @@
                     <p><c:out value="${practice.bio.data}"/></p>
                 </div>
             </div>
-            <c:if test="${not empty doctorPractice}">
+            <c:if test="${not empty doctorPractices}">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title red-text">Doctors</span>
@@ -46,8 +46,7 @@
                                 <li class="collection-item avatar">
                                     <img src="<c:url value="/images/${doctorPractice.doctor.image.imageId}" />"
                                          class="circle">
-                        <span class="title"><c:out
-                                value="${doctorPractice.doctor.user.name} ${doctorPractice.doctor.user.surname}"/></span>
+                                    <span class="title"><c:out value="${doctorPractice.doctor.user.name} ${doctorPractice.doctor.user.surname}"/></span>
                                     <br>
                                     <c:forEach var="doctorField"
                                                items="${doctorPractice.doctor.doctorFieldDoctors.doctorFieldList}">

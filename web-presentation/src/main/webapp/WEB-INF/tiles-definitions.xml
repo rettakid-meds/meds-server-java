@@ -77,12 +77,16 @@
     <definition name="schedule" extends="definition.main">
         <put-attribute name="body" value="/WEB-INF/tiles/schedule/schedule-page.jsp"/>
     </definition>
+    <definition name="schedule-item" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/schedule/schedule-item.jsp"/>
+    </definition>
+    <definition name="schedule-doctor-list" extends="definition.main">
+        <put-attribute name="body" value="/WEB-INF/tiles/schedule/schedule-doctor-list.jsp"/>
+    </definition>
 
     <!--Error-->
     <definition name="error" extends="definition.main">
         <put-attribute name="body" value="/WEB-INF/tiles/error/error-page.jsp"/>
     </definition>
-
-
 
 </tiles-definitions>

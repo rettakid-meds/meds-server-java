@@ -31,7 +31,7 @@ public class FileController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "/{fileId}" , produces = MediaType.ALL_VALUE)
     public byte[] getFile(@PathVariable("fileId") Long fileId) throws IOException {
-        LOGGER.info("get file");
+        LOGGER.debug("get file");
         FileDto fileDto = fileService.getFiles(fileId);
         Path path = Paths.get(FILE_DIR + fileDto.getGuid());
         return Files.readAllBytes(path);

@@ -37,7 +37,7 @@ public class PracticeController extends BaseController {
 
     @RequestMapping
     public String getPracticePage(Model model) {
-        LOGGER.info("accessed practice page");
+        LOGGER.debug("accessed practice page");
         ListDivider<PracticeDto> listDivider = new ListDivider<>();
         List<List<PracticeDto>> practices = listDivider.divideList(practiceService.getPractices().getPracticeList(), 3);
         model.addAttribute("practices", practices);
@@ -46,7 +46,7 @@ public class PracticeController extends BaseController {
 
     @RequestMapping("/{practiceId}")
     public String getPracticeItem(Model model, @PathVariable("practiceId") Long practiceId) {
-        LOGGER.info("retuning single practice item");
+        LOGGER.debug("retuning single practice item");
         PracticeDto practiceDto = practiceService.getPractices(practiceId);
         model.addAttribute("practice", practiceDto);
         model.addAttribute("tradingDay", practiceDto.getTradingDay());
@@ -57,7 +57,7 @@ public class PracticeController extends BaseController {
 
     @RequestMapping("new/form")
     public String getPracticeItemForm(Model model) {
-        LOGGER.info("retuning new practice form");
+        LOGGER.debug("retuning new practice form");
         model.addAttribute("practice", new PracticeVo());
         model.addAttribute("tradingDay", new TradingDayVo());
         model.addAttribute("mapsApiWebKey", MAPS_API_WEB_KEY);
@@ -67,7 +67,7 @@ public class PracticeController extends BaseController {
 
     @RequestMapping("/{practiceId}/form")
     public String getPracticeItemForm(Model model, @PathVariable("practiceId") Long practiceId) {
-        LOGGER.info("retuning single practice form");
+        LOGGER.debug("retuning single practice form");
         if (!hasAnyPermission(PermissionEnum.PRACTICE_ITEM_UPDATE.getCustomPermission(practiceId),
                 PermissionEnum.PRACTICE_OVERRIDE.name())) {
             return denyPermission(model);
@@ -82,11 +82,11 @@ public class PracticeController extends BaseController {
     @RequestMapping(method = RequestMethod.POST)
     public String createPracticeItem(@ModelAttribute("practice") @Valid PracticeVo practiceVo, BindingResult errors, Model model, HttpServletResponse response,
                                      @RequestParam("imageFile") String imageFile) throws IOException {
-        LOGGER.info("create practice item");
+        LOGGER.debug("create practice item");
         if (imageFile == null || imageFile.length() <= 22) {
             errors.addError(new FieldError("practice", "image", "must be entered"));
         }
-        if (errors.hasErrors() || imageFile == null || imageFile.length() <= 22) {
+        if (errors.hasErrors()) {
             model.addAttribute("practice", practiceVo);
             model.addAttribute("tradingDay", practiceVo.getTradingDay());
             model.addAttribute("mapsApiWebKey", MAPS_API_WEB_KEY);
@@ -103,7 +103,7 @@ public class PracticeController extends BaseController {
     public String updatePracticeItem(@ModelAttribute("practice") @Valid PracticeVo practiceVo, BindingResult errors,HttpServletResponse response, Model model,
                                      @PathVariable("practiceId") Long practiceId,
                                      @RequestParam("imageFile") String imageFile) throws IOException {
-        LOGGER.info("edit practice item");
+        LOGGER.debug("edit practice item");
         if (errors.hasErrors()) {
             model.addAttribute("practice", practiceVo);
             model.addAttribute("tradingDay", practiceVo.getTradingDay());

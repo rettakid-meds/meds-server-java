@@ -81,11 +81,7 @@ public class BaseController {
             toastText.add(fieldError.getField().replaceAll("\\.", " ") + " - " + fieldError.getDefaultMessage());
         }
         model.addAttribute(TOAST_ERROR_TEXT, toastText);
-        try {
-            response.sendError(HttpServletResponse.SC_NON_AUTHORITATIVE_INFORMATION);
-        } catch (IOException ex) {
-            LOGGER.error("Could not add status code to response error",ex);
-        }
+        response.setStatus(203);
     }
 
     protected String doRedirect(String page) {
@@ -99,14 +95,22 @@ public class BaseController {
             @Override
             public void setAsText(String text) throws IllegalArgumentException {
                 Date date = null;
+                String dateInMilliPattern = "[\\d]{13}";
+                String defaultDatePattern = "[\\w]{3}\\s[\\w]{3}\\s[\\d]{2}\\s[\\d]{2}:[\\d]{2}:[\\d]{2}\\s[\\w]{3}\\s[\\d]{4}";
                 String dateTimeFormatPattern = "[\\d]{4}-[\\d]{2}-[\\d]{2}\\s[\\d]{2}:[\\d]{2}";
                 String dateFormatPattern = "[\\d]{4}-[\\d]{2}-[\\d]{2}";
                 String timeFormatPattern = "[\\d]{2}:[\\d]{2}";
+                Matcher dateInMilliMatcher = Pattern.compile(dateInMilliPattern).matcher(text);
+                Matcher defaultDateMatcher = Pattern.compile(defaultDatePattern).matcher(text);
                 Matcher dateTimeMatcher = Pattern.compile(dateTimeFormatPattern).matcher(text);
                 Matcher dateMatcher = Pattern.compile(dateFormatPattern).matcher(text);
                 Matcher timeMatcher = Pattern.compile(timeFormatPattern).matcher(text);
                 try {
-                    if (dateTimeMatcher.find()) {
+                    if (dateInMilliMatcher.find()) {
+                        date = new Date(Long.parseLong(text));
+                    } else if (defaultDateMatcher.find()) {
+                        date = new SimpleDateFormat(MedsConstantes.DATE_DEFAULT_FORMAT).parse(text);
+                    } else if (dateTimeMatcher.find()) {
                         date = new SimpleDateFormat(MedsConstantes.DATE_TIME_FORMAT).parse(text);
                     } else if (dateMatcher.find()) {
                         date = new SimpleDateFormat(MedsConstantes.DATE_FORMAT).parse(text);
@@ -148,6 +152,7 @@ public class BaseController {
             );
             grantedAuthorities.addAll(addPracticePermissions(userId, permissionDto.getPermissionName()));
             grantedAuthorities.addAll(addDoctorPermissions(userId, permissionDto.getPermissionName()));
+            grantedAuthorities.addAll(addDoctorSchedulePermissions(userId, permissionDto.getPermissionName()));
         }
         return grantedAuthorities;
     }
@@ -188,6 +193,24 @@ public class BaseController {
         return grantedAuthorities;
     }
 
+    private List<GrantedAuthority> addDoctorSchedulePermissions(final Long userId, final String permissionName) {
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        PermissionEnum permissionEnum = PermissionEnum.get(permissionName);
+        if (permissionEnum != null && permissionEnum.getType() == PermissionEnumType.DOCTOR_SCHEDULE) {
+            for (final DoctorDto doctorDto : doctorUserService.getDoctors(userId).getDoctorList()) {
+                grantedAuthorities.add(
+                        new GrantedAuthority() {
+                            @Override
+                            public String getAuthority() {
+                                return permissionName + "_" + doctorDto.getDoctorId();
+                            }
+                        }
+                );
+            }
+        }
+        return grantedAuthorities;
+    }
+
     protected UserDto getPrinciple() {
         return (UserDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
@@ -211,24 +234,25 @@ public class BaseController {
     }
 
     public String denyPermission(Model model) {
-        LOGGER.info("Error 403");
+        LOGGER.debug("Error 403");
         model.addAttribute("error", "403 you are not authorised to view this page");
         return PageDirectory.ERROR;
     }
 
     /*errors*/
     @ExceptionHandler(MedsErrorException.class)
-    public ModelAndView catchMedsError(MedsErrorException e) {
+    public ModelAndView catchMedsError(MedsErrorException ex) {
+        LOGGER.info(ex.getMessage(), ex);
         ModelAndView model = new ModelAndView(PageDirectory.ERROR);
-        switch (e.getMedsError()) {
+        switch (ex.getMedsError()) {
             case LOGIN_DOES_NOT_EXIST:
                 model.setViewName(PageDirectory.LOGIN);
                 model.addObject("loginVO", new LoginVo());
                 break;
-            case USER_ALREADY_NOT_EXIST:
+            case USER_ALREADY_EXIST:
                 model.setViewName(PageDirectory.REGISTER);
                 model.addObject("userVo", new UserVo());
-                model.addObject(TOAST_TEXT, MedsError.USER_ALREADY_NOT_EXIST.getError());
+                model.addObject(TOAST_TEXT, MedsError.USER_ALREADY_EXIST.getError());
                 break;
         }
         return model;
@@ -238,9 +262,8 @@ public class BaseController {
     public ModelAndView catchGeneralError(Exception exception, HttpServletResponse response) throws IOException {
         LOGGER.error(exception.getMessage(), exception);
         ModelAndView model = new ModelAndView(PageDirectory.ERROR);
-        model.setViewName(PageDirectory.ERROR);
         model.addObject("error", "Sorry something broke");
-        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, exception.getMessage());
+        response.setStatus(500);
         return model;
     }
 

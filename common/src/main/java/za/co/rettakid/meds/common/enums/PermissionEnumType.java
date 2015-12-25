@@ -5,6 +5,6 @@ package za.co.rettakid.meds.common.enums;
  */
 public enum PermissionEnumType {
 
-    PRACTICE , DOCTOR
+    PRACTICE , DOCTOR , DOCTOR_SCHEDULE , FIELD
 
 }

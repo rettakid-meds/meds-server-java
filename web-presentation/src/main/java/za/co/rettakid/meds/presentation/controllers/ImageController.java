@@ -31,7 +31,7 @@ public class ImageController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "/{imageId}" , produces = MediaType.IMAGE_JPEG_VALUE)
     public byte[] getFile(@PathVariable("imageId") Long imageId) throws IOException {
-        LOGGER.info("get image");
+        LOGGER.debug("get image");
         ImageDto imageDto = imageService.getImages(imageId);
         FileDto fileDto = imageDto.getFile();
         Path path = Paths.get(FILE_DIR + fileDto.getGuid());

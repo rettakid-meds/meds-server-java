@@ -25,7 +25,7 @@ public class DashboardController extends BaseController {
 
     @RequestMapping
     public String getDashboardPage(Model model) {
-        LOGGER.info("accessed dashboard page");
+        LOGGER.debug("accessed dashboard page");
         model.addAttribute("fields",fieldService.getFields().getFieldList());
         model.addAttribute("practices",practiceFieldService.getPracticeFields().getPracticeFieldList());
         model.addAttribute("mapsApiWebKey", MAPS_API_WEB_KEY);

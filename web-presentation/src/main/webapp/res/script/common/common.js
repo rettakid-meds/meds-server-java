@@ -32,21 +32,22 @@ function customAjaxCall(ajaxObj) {
                     ajaxObj.success = ajaxObj.valid;
                 }
                 console.log("valid");
+                ajaxObj.success();
             },
             203: function (data) {
                 ajaxObj.invalid(data);
             },
-            412: function () {
-                ajaxObj.valid = false;
+            412: function (data) {
+                ajaxObj.invalid(data);
             },
             404: function () {
-                alert("page not found");
+                window.location.assign("/meds/presentation/error/404");
             },
             403: function () {
-                alert("you are not allowed");
+                window.location.assign("/meds/presentation/error/403");
             },
             500: function () {
-                alert("big error");
+                window.location.assign("/meds/presentation/error/500");
             }
         };
     }

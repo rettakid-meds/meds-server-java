@@ -28,14 +28,14 @@ public class LoginController extends BaseController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getLoginPage(Model model) {
-        LOGGER.info("accessed login");
+        LOGGER.debug("accessed login");
         model.addAttribute("loginVo", new LoginVo());
         return PageDirectory.LOGIN;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String postLoginPage(@ModelAttribute("loginVo") @Valid LoginVo loginVo, BindingResult error, Model model) {
-        LOGGER.info("post login");
+        LOGGER.debug("post login");
         if (error.hasErrors()) {
             createToast(model, "Please complete form.");
             return PageDirectory.LOGIN;

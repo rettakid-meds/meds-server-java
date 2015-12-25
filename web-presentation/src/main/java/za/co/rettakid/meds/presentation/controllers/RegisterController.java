@@ -37,14 +37,14 @@ public class RegisterController extends BaseController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getRegister(Model model) {
-        LOGGER.info("get register");
+        LOGGER.debug("get register");
         model.addAttribute("userVo", new UserVo());
         return PageDirectory.REGISTER;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String postLoginPage(@ModelAttribute("userVo") @Valid UserVo userVo, BindingResult error, Model model,@RequestParam("confirm-password")String confirmPassword) {
-        LOGGER.info("create user");
+        LOGGER.debug("create user");
         if (error.hasErrors())  {
             createToast(model,"Please complete form.");
         } else  {

@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import za.co.rettakid.meds.persistence.dao.AppointmentDao;
 import za.co.rettakid.meds.persistence.entity.AppointmentEntity;
 import za.co.rettakid.meds.persistence.entity.DoctorEntity;
+import za.co.rettakid.meds.persistence.entity.UserEntity;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class AppointmentDaoImpl extends BaseDaoImpl<AppointmentEntity, Long> implements AppointmentDao {
@@ -60,6 +62,22 @@ public class AppointmentDaoImpl extends BaseDaoImpl<AppointmentEntity, Long> imp
                     ))
                 );
         return (AppointmentEntity)criteria.uniqueResult();
+    }
+
+    @Override
+    public Boolean isOwner(Long appointmentId,DoctorEntity doctorEntity)    {
+        Criteria criteria = createCriteria();
+        criteria.add(Restrictions.eq("appointmentId",appointmentId));
+        criteria.add(Restrictions.eq("doctor",doctorEntity));
+        return !criteria.list().isEmpty();
+    }
+
+    @Override
+    public List<AppointmentEntity> getAppointments(UserEntity user,DoctorEntity doctor)    {
+        Criteria criteria = createCriteria();
+        criteria.add(Restrictions.eq("user",user));
+        criteria.add(Restrictions.eq("doctor",doctor));
+        return criteria.list();
     }
 
 }

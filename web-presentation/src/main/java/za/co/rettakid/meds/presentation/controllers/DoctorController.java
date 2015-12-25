@@ -37,7 +37,7 @@ public class DoctorController extends BaseController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getDoctors(Model model)  {
-        LOGGER.info("accessed doctor page");
+        LOGGER.debug("accessed doctor page");
         ListDivider<DoctorDto> listDivider = new ListDivider<>();
         List<List<DoctorDto>> doctors = listDivider.divideList(doctorService.getDoctors().getDoctorList(),3);
         model.addAttribute("doctors", doctors);
@@ -46,7 +46,7 @@ public class DoctorController extends BaseController {
 
     @RequestMapping("/{doctorId}")
     public String getDoctorItem(Model model,@PathVariable("doctorId") Long doctorId) {
-        LOGGER.info("retuning single practice item");
+        LOGGER.debug("retuning single practice item");
         final DoctorDto doctorDto = doctorService.getDoctors(doctorId);
         model.addAttribute("doctor", doctorDto);
         model.addAttribute("tradingDay", doctorDto.getTradingDay());

@@ -32,6 +32,7 @@ public class PageDirectory {
 
     public static final String SCHEDULE = "schedule";
     public static final String SCHEDULE_DOCTOR_LIST = "schedule-doctor-list";
+    public static final String SCHEDULE_ITEM = "schedule-item";
 
     public static final String ERROR = "error";
 

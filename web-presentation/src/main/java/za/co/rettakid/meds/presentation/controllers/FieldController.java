@@ -31,7 +31,7 @@ public class FieldController extends BaseController {
 
     @RequestMapping
     public String getFieldPage(Model model) {
-        LOGGER.info("accessed field page");
+        LOGGER.debug("accessed field page");
         model.addAttribute("fields",fieldService.getFields().getFieldList());
         return PageDirectory.FIELDS;
     }

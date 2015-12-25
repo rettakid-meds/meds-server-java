@@ -17,7 +17,7 @@ public class HomeController extends BaseController {
 
     @RequestMapping
     public String getHomePage(Model model) {
-        LOGGER.info("Accessed home page");
+        LOGGER.debug("Accessed home page");
         return PageDirectory.HOME;
     }
 

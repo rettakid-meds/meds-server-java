@@ -26,8 +26,9 @@
         <security:intercept-url pattern="/login/**" access="permitAll()"/>
         <security:intercept-url pattern="/register/**" access="permitAll()"/>
         <security:intercept-url pattern="/error/**" access="permitAll()"/>
-        <security:intercept-url pattern="/res/ThirdParty/font" access="permitAll()"/>
+        <security:intercept-url pattern="/res/**" access="permitAll()"/>
         <security:intercept-url pattern="/" access="permitAll()"/>
+        <security:intercept-url pattern="/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/error/*" access="permitAll()"/>
 
         <security:intercept-url pattern="/chat" access="isAuthenticated()"/>
@@ -40,6 +41,9 @@
         <security:intercept-url pattern="/files/*" access="isAuthenticated()"/>
 
         <security:intercept-url pattern="/images/*" access="isAuthenticated()"/>
+
+        <security:intercept-url pattern="/appointments" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/appointments/**" access="isAuthenticated()"/>
 
         <security:intercept-url pattern="/practices" access="hasAuthority(T(za.co.rettakid.meds.common.enums.PermissionEnum).PRACTICE_LIST_READ.toString())"/>
         <security:intercept-url pattern="/practices" access="hasAuthority(T(za.co.rettakid.meds.common.enums.PermissionEnum).PRACTICE_ITEM_ADD.toString())" method="POST"/>
@@ -55,8 +59,8 @@
         <security:intercept-url pattern="/doctors/*" access="hasAuthority(T(za.co.rettakid.meds.common.enums.PermissionEnum).DOCTOR_ITEM_DELETE.toString())" method="DELETE"/>
         <security:intercept-url pattern="/doctors/*" access="hasAuthority(T(za.co.rettakid.meds.common.enums.PermissionEnum).DOCTOR_ITEM_READ.toString())"/>
 
-        <security:intercept-url pattern="/schedules" access="hasAuthority(T(za.co.rettakid.meds.common.enums.PermissionEnum).DOCTOR_ITEM_UPDATE.toString())"/>
-        <security:intercept-url pattern="/schedules/*" access="hasAuthority(T(za.co.rettakid.meds.common.enums.PermissionEnum).DOCTOR_ITEM_UPDATE.toString())"/>
+        <security:intercept-url pattern="/schedules" access="hasAuthority(T(za.co.rettakid.meds.common.enums.PermissionEnum).DOCTOR_SCHEDULE_LIST_READ.toString())"/>
+        <security:intercept-url pattern="/schedules/" access="hasAuthority(T(za.co.rettakid.meds.common.enums.PermissionEnum).DOCTOR_SCHEDULE_LIST_READ.toString())"/>
 
         <security:form-login login-page="/login"/>
         <security:access-denied-handler error-page="/error/403"/>

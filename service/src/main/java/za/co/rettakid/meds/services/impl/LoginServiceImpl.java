@@ -5,10 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import za.co.rettakid.meds.common.dto.LoginDto;
-import za.co.rettakid.meds.common.dto.PermissionDto;
 import za.co.rettakid.meds.common.dto.UserDto;
 import za.co.rettakid.meds.common.Utilz;
-import za.co.rettakid.meds.common.dto.UserPermissionDto;
 import za.co.rettakid.meds.common.enums.PermissionEnum;
 import za.co.rettakid.meds.common.enums.PermissionSet;
 import za.co.rettakid.meds.common.error.MedsError;
@@ -19,12 +17,7 @@ import za.co.rettakid.meds.persistence.dao.UserPermissionDao;
 import za.co.rettakid.meds.persistence.entity.UserEntity;
 import za.co.rettakid.meds.persistence.entity.UserPermissionEntity;
 import za.co.rettakid.meds.services.LoginService;
-import za.co.rettakid.meds.services.PermissionService;
-import za.co.rettakid.meds.services.UserPermissionService;
-import za.co.rettakid.meds.services.UserService;
 import za.co.rettakid.meds.services.binding.BindUser;
-
-import java.util.List;
 
 /**
  * Created by Lwazi Prusent on 2015/10/31.
@@ -53,7 +46,7 @@ public class LoginServiceImpl implements LoginService {
     public void resister(UserDto userDto,PermissionSet permissionSet) throws MedsErrorException{
         LOGGER.info("register user");
         if (userDao.getUser(userDto.getEmail()) != null)    {
-            throw new MedsErrorException(MedsError.USER_ALREADY_NOT_EXIST);
+            throw new MedsErrorException(MedsError.USER_ALREADY_EXIST);
         } else  {
             UserEntity userEntity = BindUser.bindUser(userDto);
             userEntity.setPassword(Utilz.CRYPT(userDto.getPassword()));

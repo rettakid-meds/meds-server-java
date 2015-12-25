@@ -7,4 +7,8 @@ import za.co.rettakid.meds.persistence.entity.*;
 public interface AppointmentDao extends BaseDao<AppointmentEntity,Long>    {
 
     AppointmentEntity getAppointment(DoctorEntity doctorEntity, Date frmDate, Date toDate);
+
+    Boolean isOwner(Long appointmentId, DoctorEntity doctorEntity);
+
+    List<AppointmentEntity> getAppointments(UserEntity user, DoctorEntity doctor);
 }

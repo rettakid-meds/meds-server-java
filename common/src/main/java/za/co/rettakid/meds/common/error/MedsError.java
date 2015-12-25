@@ -7,7 +7,7 @@ public enum MedsError {
 
     /*login exceptions*/
     LOGIN_DOES_NOT_EXIST(101,"The login detail provided do not match any of the existing users"),
-    USER_ALREADY_NOT_EXIST(102,"The system already contains a user with that email address");
+    USER_ALREADY_EXIST(102,"The system already contains a user with that email address");
 
     private Integer code;
     private String error;

@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import za.co.rettakid.meds.common.dto.AppointmentAvailability;
+import za.co.rettakid.meds.common.dto.AppointmentDto;
 import za.co.rettakid.meds.presentation.binding.BindAppointment;
 import za.co.rettakid.meds.presentation.binding.BindDoctor;
 import za.co.rettakid.meds.presentation.binding.BindUser;
@@ -41,7 +43,7 @@ public class AppointmentController extends BaseController {
 
     @RequestMapping(value = "/doctors/{doctorId}", method = RequestMethod.GET)
     public String getDoctorsAppointments(Model model, @PathVariable("doctorId") final Long doctorId,@RequestParam(value = "success",required = false) Boolean success) {
-        LOGGER.info("accessed doctor appointment page");
+        LOGGER.debug("accessed doctor appointment page");
         if (success != null && success)    {
             createToast(model,"Appointment created");
         }
@@ -54,38 +56,36 @@ public class AppointmentController extends BaseController {
                 }
             }.getSchedule(date));
         }
-        AppointmentVo appointmentVo = new AppointmentVo();
-        DoctorVo doctorVo = BindDoctor.bindDoctor(doctorService.getDoctors(doctorId));
-        doctorVo.setDoctorId(doctorId);
-        appointmentVo.setDoctor(doctorVo);
-        appointmentVo.setUser(BindUser.bindUser(getPrinciple()));
-        model.addAttribute("appointment",appointmentVo);
+        model.addAttribute("doctorId",doctorId);
         model.addAttribute("weekSchedule",weekSchedule);
         return PageDirectory.APPOINTMENTS;
     }
 
-    @RequestMapping(value = "/doctors/addPossibleAppointment",method = RequestMethod.GET)
-    public String checkDoctorAvailable(Model model,
-                                       @RequestParam("doctorId") Long doctorId,
-                                       @RequestParam("effTo") Date effTo)    {
-        LOGGER.info("get next available time");
+    @RequestMapping(value = "/doctors/new/form", method = RequestMethod.GET)
+    public String getDoctorsAppointments(Model model, @RequestParam("expectedFrom") Date expectedFrom, @RequestParam("doctorId") Long doctorId) {
+        LOGGER.debug("accessed doctor appointment form");
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(effTo);
+        calendar.setTime(expectedFrom);
         calendar.add(Calendar.MINUTE,30);
-        if (doctorService.isAvailable(doctorId,effTo,calendar.getTime()).getAvailable())   {
-            model.addAttribute("effTo",calendar.getTime());
-            model.addAttribute("effFrm",effTo);
-            return PageDirectory.APPOINTMENTS_CARD_AVAILABLE;
-        } else  {
-            model.addAttribute("effTo",effTo);
-            return PageDirectory.APPOINTMENTS_CARD_NOT_AVAILABLE;
-        }
+
+        AppointmentDto appointment = new AppointmentDto();
+        appointment.setExpectedFrm(expectedFrom);
+        appointment.setExpectedTo(calendar.getTime());
+        appointment.setUser(getPrinciple());
+        appointment.setDoctor(doctorService.getDoctors(doctorId));
+        model.addAttribute("appointment",appointment);
+        return PageDirectory.APPOINTMENTS_FORM;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String postAppointments(Model model, @ModelAttribute("appointment") @Valid AppointmentVo appointmentVo,BindingResult errors,HttpServletResponse response) {
-        LOGGER.info("post appointment");
+        LOGGER.debug("post appointment");
+        if (appointmentVo.getExpectedTo() == null || appointmentVo.getExpectedFrm() == null || !doctorService.isAvailable(appointmentVo.getDoctor().getDoctorId(),appointmentVo.getExpectedFrm(),appointmentVo.getExpectedTo()).getAvailable()) {
+            errors.addError(new FieldError("appointment", "date", "is conflicting with another appointment"));
+        }
         if (errors.hasErrors()) {
+            appointmentVo.setDoctor(BindDoctor.bindDoctor(doctorService.getDoctors(appointmentVo.getDoctor().getDoctorId())));
+            model.addAttribute("appointment",appointmentVo);
             createErrorToast(model,response,errors.getFieldErrors());
             return PageDirectory.APPOINTMENTS_FORM;
         } else  {
